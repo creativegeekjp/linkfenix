@@ -33,7 +33,6 @@ Author URI:
  
 // // Hooks
 // add_filter( 'the_content', 'readtime' );
- <?php
 /*
 Plugin Name: Example Contact Form Plugin By Jino
 Plugin URI: http://example.com
@@ -84,4 +83,3 @@ add_filter('the_content', 'html_form_code' );
 
 ?>
 
-?>

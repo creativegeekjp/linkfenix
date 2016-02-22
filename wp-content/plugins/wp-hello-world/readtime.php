@@ -65,6 +65,7 @@ function html_form_code($content) {
     	echo '<p><input type="submit" name="cf-submitted" value="Send"></p>';
     	echo '</form>';
     	
+    	
 	return;
 	}
 	else {

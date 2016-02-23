@@ -78,7 +78,6 @@ function notify()
 }
 
 add_action('the_content', 'notify');
-
 add_filter('the_content', 'html_form_code' );
 
 

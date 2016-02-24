@@ -3,35 +3,56 @@ add_action( 'admin_menu', 'my_admin_menu' );
 
 function my_admin_menu() {
     
+    //Link Fenix
 	add_menu_page( 
     	    'Link Fenix', 
     	    'Link Fenix', 
     	    'manage_options', 
-    	    'main.php', 
-    	    'main_menu', 
+    	    'pages/main-menu.php', 
+    	    'intro', 
     	    'dashicons-tickets', 
     	    6  
 	    );
 	    
+	//Introduction 
 	add_submenu_page( 
-    	    'main.php', 
-    	    'sub menu 1', 
-    	    'Sub Menu 1', 
+    	    'pages/main-menu.php', 
+    	    'Introduction', 
+    	    'Introduction', 
     	    'manage_options', 
-    	    'test.php', 
-    	    'sub_menu1' 
+    	    'pages/main-menu.php', 
+    	    'intro' 
 	    );
 	    
+	//Movies    
 	add_submenu_page( 
-    	    'main.php', 
-    	    'sub menu 2', 
-    	    'Sub Menu 2', 
+    	    'pages/main-menu.php', 
+    	    'Movies', 
+    	    'Movies', 
     	    'manage_options', 
-    	    'test2.php', 
-    	    'sub_menu2' 
+    	    'pages/movies.php', 
+    	    'movies' 
 	    );
-   
-	
+
+  //Tv Shows
+   add_submenu_page( 
+    	    'pages/main-menu.php', 
+    	    'TV Shows', 
+    	    'TV Shows', 
+    	    'manage_options', 
+    	    'pages/tvshows.php', 
+    	    'tvshows' 
+	    );
+	    
+   //Preferences
+   add_submenu_page( 
+    	    'pages/main-menu.php', 
+    	    'Preferences', 
+    	    'Preferences', 
+    	    'manage_options', 
+    	    'pages/preferences.php', 
+    	    'preferences' 
+	    );
 }
 include_once 'page-functions.php';
 ?>

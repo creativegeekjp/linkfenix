@@ -1,4 +1,5 @@
 <?php 
+         
 
 /* Include Main Css Hook */
 
@@ -8,8 +9,11 @@ include_once 'css/index-hook.php';
 
 include_once 'class/functions.php';
 
-//messages
-include_once 'class/messageloaders.php';
+//ensure that divs loads on submit buttons only
+if($_POST)
+{
+    include_once 'class/messageloaders.php';
+}
 
 /* Generate or append basic HTML text for our menus */
 
@@ -69,5 +73,8 @@ function movies(){
     echo "<input type='checkbox' id='chk' name='chksubmit' value='pcontent' >Posters only in the content<br>";
     echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Save' >";
     echo "</div></div></form>";
+    
 }
+
+ 
 ?>

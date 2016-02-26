@@ -2,32 +2,44 @@
 
 function styles()
 { 
-    echo '<style>';
-    echo '
-    .wrap{
+
+echo '<style>
+    
+    .wrap
+    {
         margin-top: 30px;
     }
-    b{
+    b
+    {
         font-family: Serif;
         font-size: 25px;
         margin-right: 30px;
     
     }
-    #searchsubmit{
+    #searchsubmit
+    {
         background-color: #fff;
         color: #000;
         border: 1px solid #ccc;
         width: 100px;
         height: 30px;
     }
-    div#int-wrapper-content{
+    #searchsubmit:hover
+    {
+        background: #DEDEDE;
+        cursor: pointer;
+    }
+    div#int-wrapper-content
+    {
         
     }
-    div#int-main-content{
+    div#int-main-content
+    {
         width: 58%;
         float: left;
     }
-    div#movie-content{
+    div#movie-content
+    {
         width: 40%;
         float: right;
     }
@@ -38,8 +50,10 @@ function styles()
     {
         border-color: #000000;
     }
-    ';
-    echo '</style>';
+   
+   
+   
+ </style>';
 }
 
 add_action('admin_head', 'styles');

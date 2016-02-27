@@ -6,4 +6,5 @@ function my_error_notice() {
     </div>
     <?php
 }
+
 ?>

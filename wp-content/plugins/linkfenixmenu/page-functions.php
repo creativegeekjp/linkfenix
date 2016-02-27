@@ -27,13 +27,13 @@ function intro()
             content or just use it without importing:
         </p>
         <p>
-            FULl IMPORT - Import Our Movies or / and TV shows to your website.
-            Each movie contains a poster, title (oblicagtory), year, description, imbd
+            FULL IMPORT - Import Our Movies or / and TV shows to your website.
+            Each movie contains a poster, title (obligatory), year, description, imbd
             link and genres (obligatory).
         </p>
         <p>
             PARTIAL IMPORT - Choose from our movie list which Movies or  TV shows
-            do your want to import to your website.
+            do you want to import to your website.
         </p>
         <p>
             LINK SHORTCODES - Best option if you want to use only our immortal 
@@ -73,7 +73,11 @@ function movies(){
     echo "<input type='checkbox' id='chk' name='chksubmit' value='pcontent' >Posters only in the content<br>";
     echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Save' >";
     echo "</div></div></form>";
+
+    // $image = file_get_contents('http://www.url.com/image.jpg');
     
+    // file_put_contents('/wp-content/plugins/linkfenixmenu/uploads/image.jpg', $image); //Where to save the image on your server
+
 }
 
  

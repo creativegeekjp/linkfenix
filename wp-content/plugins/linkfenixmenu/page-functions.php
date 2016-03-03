@@ -1,21 +1,11 @@
 <?php 
-         
+include 'css/index-hook.php';
+include 'class/functions.php';
 
-/* Include Main Css Hook */
-
-include_once 'css/index-hook.php';
-
-/* Class Menu functions */
-
-include_once 'class/functions.php';
-
-//ensure that divs loads on submit buttons only
 if($_POST)
 {
-    include_once 'class/messageloaders.php';
+    include 'class/messageloaders.php';
 }
-
-/* Generate or append basic HTML text for our menus */
 
 function intro()
 {
@@ -73,12 +63,5 @@ function movies(){
     echo "<input type='checkbox' id='chk' name='chksubmit' value='pcontent' >Posters only in the content<br>";
     echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Save' >";
     echo "</div></div></form>";
-
-    // $image = file_get_contents('http://www.url.com/image.jpg');
-    
-    // file_put_contents('/wp-content/plugins/linkfenixmenu/uploads/image.jpg', $image); //Where to save the image on your server
-
 }
-
- 
 ?>

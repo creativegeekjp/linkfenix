@@ -86,4 +86,15 @@
     		return true;
     	}
     }
+    function check_post_status()//$post->post_type ='publish'
+    {
+         if( get_post_status ($post->ID) == 'publish' )
+         {
+             return true;
+         }
+         else
+         {
+             return false;
+         }
+    }
 ?>

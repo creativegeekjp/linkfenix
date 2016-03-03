@@ -1,7 +1,7 @@
 <?php 
-function my_error_notice() {
+function my_notice() {
     ?>
-    <div class="error notice">
+    <div class="update notice">
         <p><?php _e( 'Full Import Successfull', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php

@@ -1,0 +1,89 @@
+@import 'bootstrap';
+@import 'compass';
+
+strong, b {
+	font-family: 'roboto_bold', $font-family-sans-serif;
+}
+
+em, i, cite {
+	font-family: 'robotobold_italic', $font-family-sans-serif;
+}
+
+
+.icon-link {
+	display: inline-block;
+	margin: 0 8px 0 0;
+
+	img {
+		@include box(32px);
+	}
+}
+
+.text-link {
+	@extend strong;
+}
+
+
+.quality {
+	width: (100% / 3);
+	@extend .pull-left;
+	// line-height: 1.7;
+
+	.fa {
+		color: #005058;
+		font-size: 18px;
+		margin: 0 3px 3px 0;
+		@include box(20px);
+	}
+}
+
+
+#table-data {
+
+	thead {
+		background: $brand-success;
+	}
+
+	th {
+		@extend .text-center;
+		color: #fff;
+	}
+
+	th:nth-of-type(even) {
+		background: lighten($brand-success, 1.8%);
+	}
+
+	tr:nth-of-type(odd) td:nth-of-type(even) {
+		background: darken($table-bg-accent, 1.8%);
+	}
+
+	tr:nth-of-type(even) td:nth-of-type(even) {
+		background: lighten($table-bg-accent, 7%);
+	}
+}
+
+
+// Overrides
+.img-thumbnail {
+	padding: 0;
+	border: 0;
+}
+
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+}

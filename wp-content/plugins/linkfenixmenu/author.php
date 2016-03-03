@@ -12,8 +12,9 @@ Author: Jino
 Version: 1.0
 Author URI: 
 */
-include_once 'register-menu.php' ;
 
-include_once 'title_suggest/titles.php';
+include 'register-menu.php' ;
+
+include 'class/autocomplete_title.php';
 
 ?>

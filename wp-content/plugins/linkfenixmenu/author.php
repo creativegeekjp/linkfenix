@@ -15,6 +15,4 @@ Author URI:
 
 include 'register-menu.php' ;
 
-include 'class/autocomplete_title.php';
-
 ?>

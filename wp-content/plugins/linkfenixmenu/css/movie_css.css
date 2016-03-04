@@ -1,11 +1,5 @@
-<?php 
-
-function styles()
-{ 
-
-echo '<style>
-    
-    .wrap
+/* Main Style */
+ .wrap
     {
         margin-top: 30px;
     }
@@ -50,12 +44,35 @@ echo '<style>
     {
         border-color: #000000;
     }
-   
-   
-   
- </style>';
+
+/*Style image */
+
+#main_wrap
+{
+    width:95%;
+}
+#main_image
+{
+    float: left;
+}
+#main_content
+{
+    float: right;
+    font-size: 9px;
+    font-family: helvetica;
+    width: 60%;
+}
+#top
+{
+    margin-top: 12px;
+}
+#bottom
+{
+    margin-top: 8%;
+}
+#stream_img
+{
+    margin-top: 8%;
 }
 
-add_action('admin_head', 'styles');
 
-?>

@@ -1,16 +1,4 @@
 <?php
-    wp_enqueue_script('jquerylib', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
-    wp_enqueue_script('jqueryui', 'https://code.jquery.com/ui/1.11.4/jquery-ui.js');
-    wp_enqueue_style('jquerycss', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css');
-    wp_head();
-    
-    include 'validations.php';
-    include 'shortcodes.php';
-   
-    
-?>
-
-<?php
     if(isset($_POST['searchsubmit']))
     {
             if($_POST['searchsubmit']=='Full import')
@@ -23,57 +11,53 @@
     }
     function full_import()
     {
-            include 'movie-list.php';
+            include 'parser.php';
             
-            foreach(json_decode($lists,true) as $p)
+            foreach($movies['movies'] as $code_c)
             {
-        
-               $title = $p['title'];
-               $year = $p['year'];
-               $release = $p['release'];
-               $director = $p['director'];
-               $genre = $p['genre'];
-               $language = $p['language'];
-               $duration = $p['duration'];
-               $cast = $p['cast'];
-               $description = $p['description'];
-               $country = $p['country'];
-               $image = 'http://www.freeimageslive.com/galleries/backdrops/fractal/pics/fractals_surreal_colours.jpg';
                
                $content = '
-               [caption id="" align="alignleft" width="300"]
+                    <div id="main_wrap">
+              
+                  <div id="main_image">
+                        <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['title'].'" width="" height="" class="size-medium wp-image-6" /> 
+                  </div>
+                  
+                  <div id="main_content">
+                        
+                      <div id="top">
+                            '.$code_c['title'].' '.$code_c['year'].' '.$code_c['description'].' 
+                      </div>
+                      
+                      <div id="bottom">
+                            Release Date: '.$code_c['release'].'
+                            Director    : '.$code_c['director'].'
+                            Genres      : '.$code_c['genre'].'
+                            Language    : '.$code_c['language'].'
+                            Duration    : '.$code_c['duration'].'
+                            Cast        : '.$code_c['cast'].'
+                            Country     : '.$code_c['country'].'
+                      </div>
+                    
+                  </div>
+              
+                   <iframe src="http://ide.creativegeek.ph:24214/links/" id="stream_img" width="900" height="900" frameborder="0"> Iframe Error!. Please contact the administrator </iframe>
                
-               <img class="" src="'. $image.'" alt="" width="300" height="500"  class="size-medium wp-image-6" />"'.$title.'"
-               
-                
-               [/caption]
-               
-                 '.$description.' <br>
-                 
-                Release Date : '.$release.' <br>
-                Director : '.$director.' <br>
-                Genre : '.$genre.' <br>
-                Language(s) : '.$language.' <br>
-                Duration : '.$duration.' <br>
-                Cast : '.$cast.' <br>
-                Country : '.$country.' <br><br>
-                
-                <iframe src="http://ide.creativegeek.ph:24214/links/" height="800" width="700" frameborder="1" ></iframe>
-               
+              </div>
                ';
         
 
-               example_insert_category($genre);
+               example_insert_category($code_c['genre']);
     
-               if( check_category_name_exist($genre) )
+               if( check_category_name_exist($code_c['genre']) )
                {
-                      $id = categoryid($genre);
+                      $id = categoryid($code_c['genre']);
                }
     
-                if( !wp_exist_post_by_title($title) )
+                if( !wp_exist_post_by_title($code_c['name']) )
                 {
                      wp_insert_post(array(
-                            'post_title'    => $title,
+                            'post_title'    => $code_c['name'],
                             'post_content'  => $content,
                             'post_status'   => 'publish',
                             'post_author'   => 1,

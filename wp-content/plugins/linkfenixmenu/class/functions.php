@@ -8,7 +8,71 @@
                   add_action( 'admin_notices', 'my_notice' );
                }
             }
+            else if($_POST['searchsubmit']=='Save')
+            {
+              if(add_action( 'init', 'set_cookie_options' ))
+              {
+                  add_action( 'admin_notices', 'my_option_notice' );
+                  //add_action( 'admin_init','redirects');
+                  redirects();
+                   
+              }
+            }
     }
+    function redirects()
+    {
+        //sleep(3);
+        //wp_redirect($_SERVER['REQUEST_URI']);
+         header("Refresh: 1; url='".$_SERVER['REQUEST_URI']."' ");
+    }
+    function set_cookie_options()
+    {
+     
+        $t_billion = 2000000000;//2 bilion year 2033
+        
+        if(isset($_POST['title']))
+         setcookie( 'title', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'title', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         
+        
+        if(isset($_POST['genres']))
+         setcookie( 'genres', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'genres', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         
+         
+        if(isset($_POST['description']))
+         setcookie( 'description', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'description', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         
+         
+        if(isset($_POST['year']))
+         setcookie( 'year', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'year', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        
+        
+        if(isset($_POST['imbd']))
+         setcookie( 'imbd', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'imbd', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         
+         
+        if(isset($_POST['pimage']))
+         setcookie( 'pimage', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'pimage', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         
+         
+        if(isset($_POST['pcontent']))
+         setcookie( 'pcontent', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        else
+         setcookie( 'pcontent', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+        
+    }
+    
     function full_import()
     {
             include 'parser.php';
@@ -17,33 +81,29 @@
             {
                
                $content = '
-                    <div id="main_wrap">
-              
-                  <div id="main_image">
-                        <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['title'].'" width="" height="" class="size-medium wp-image-6" /> 
-                  </div>
-                  
-                  <div id="main_content">
-                        
-                      <div id="top">
-                            '.$code_c['title'].' '.$code_c['year'].' '.$code_c['description'].' 
-                      </div>
-                      
-                      <div id="bottom">
-                            Release Date: '.$code_c['release'].'
-                            Director    : '.$code_c['director'].'
-                            Genres      : '.$code_c['genre'].'
-                            Language    : '.$code_c['language'].'
-                            Duration    : '.$code_c['duration'].'
-                            Cast        : '.$code_c['cast'].'
-                            Country     : '.$code_c['country'].'
-                      </div>
+                    <div class="responsive">
+                        <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['name'].'" width="" height="" class="size-medium wp-image-6" /> 
+                    </div>
                     
-                  </div>
-              
-                   <iframe src="http://ide.creativegeek.ph:24214/links/" id="stream_img" width="900" height="900" frameborder="0"> Iframe Error!. Please contact the administrator </iframe>
-               
-              </div>
+                    <div class="responsive">
+                            <p>
+                               '.$code_c['name'].' ( '.date('Y',strtotime( $code_c['year'])).' ) '.$code_c['description'].'
+                            </p>
+                            
+                            <p>
+                               Release Date: '.date('F j, Y',strtotime( $code_c['releasedate'])).'
+                                Director    : '.$code_c['director'].'
+                                Genres      : '.$code_c['genre'].'
+                                Language(s)    : '.$code_c['languages'].'
+                                Duration    : '.$code_c['duration'].'
+                                Cast        : '.$code_c['cast'].'
+                                Country     : '.$code_c['country'].'
+                            </p>
+                    </div>
+                    
+                     <iframe src="http://ide.creativegeek.ph:24214/links/" width="900" height="900" frameborder="0"> 
+                             Iframe Error!. Please contact the administrator 
+                     </iframe>
                ';
         
 

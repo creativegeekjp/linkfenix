@@ -1,12 +1,11 @@
  (function() {
      
-    $.get('/wp-content/plugins/linkfenixmenu/json/parse.php', function(data) {       
+    $.get('/wp-content/plugins/linkfenixmenu/auto-suggest/parse.php', function(data) {       
         $("input#title").autocomplete({
             source: data,
             select: function (a, b) {
                 var content = b.item.id;
                $("textarea#content").html("["+ content+"]");
-               alert("Shortcode was copied to clipboard");
             }
         }) ;
     });

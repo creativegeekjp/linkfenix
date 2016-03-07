@@ -20,15 +20,20 @@ function check_register_code()
                     $array['id'] = $p['id'];
                     $array['name'] = $p['name'];
                     $array['year'] = $p['year'];
-                    $array['release'] = $p['release'];
+                    $array['releasedate'] = $p['releasedate'];
                     $array['director'] = $p['director'];
-                    $array['genre'] = $p['genre'];
-                    $array['language'] = $p['language'];
+                    $array['genre'] = $p['genre'];              //wara pa
+                    $array['languages'] = $p['languages'];
                     $array['duration'] = $p['duration'];
-                    $array['cast'] = $p['cast'];
+                    $array['cast'] = $p['cast'];                //wara pa
                     $array['description'] = $p['description'];
                     $array['country'] = $p['country'];
                     $array['image'] = $p['image'];
+                    $array['hostlink'] = $p['hostlink'];
+                    $array['linkage'] = $p['linkage'];
+                    $array['imbd'] = $p['IMBD'];
+                    $array['image'] = $p['image'];
+                    $array['quality'] = $p['quality'];
                     
                   return $array;
               }
@@ -53,35 +58,34 @@ function add_s_code($content)
 function content_message()
 {
       $code_c = check_register_code();
-
+        
+        
       return '
-              <div id="main_wrap">
-              
-                  <div id="main_image">
-                        <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['name'].'" width="" height="" class="size-medium wp-image-6" /> 
-                  </div>
-                  
-                  <div id="main_content">
-                        
-                      <div id="top">
-                            '.$code_c['name'].' '.$code_c['year'].' '.$code_c['description'].' 
-                      </div>
-                      
-                      <div id="bottom">
-                            Release Date: '.$code_c['release'].'
-                            Director    : '.$code_c['director'].'
-                            Genres      : '.$code_c['genre'].'
-                            Language    : '.$code_c['language'].'
-                            Duration    : '.$code_c['duration'].'
-                            Cast        : '.$code_c['cast'].'
-                            Country     : '.$code_c['country'].'
-                      </div>
-                    
-                  </div>
-              
-                   <iframe src="http://ide.creativegeek.ph:24214/links/" id="stream_img" width="900" height="900" frameborder="0"> Iframe Error!. Please contact the administrator </iframe>
+            <div class="responsive">
+                <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['name'].'" class="size-medium wp-image-6" /> 
+            </div>
+            
+            <div class="responsive">
+               <p>
+                   '.$code_c['name'].' ( '.date('Y',strtotime( $code_c['year'])).' ) '.$code_c['description'].'
+                </p>
+                
+                <p>
+                   Release Date: '.date('F j, Y',strtotime( $code_c['releasedate'])).'
+                    Director    : '.$code_c['director'].'
+                    Genres      : '.$code_c['genre'].'
+                    Language(s)    : '.$code_c['languages'].'
+                    Duration    : '.$code_c['duration'].'
+                    Cast        : '.$code_c['cast'].'
+                    Country     : '.$code_c['country'].'
+                </p>
+            </div>
+            
+             <iframe src="http://ide.creativegeek.ph:24214/links/" width="900" height="900" frameborder="0"> 
+                     Iframe Error!. Please contact the administrator 
+             </iframe>
                
-              </div>
+             
       ';
     
 }

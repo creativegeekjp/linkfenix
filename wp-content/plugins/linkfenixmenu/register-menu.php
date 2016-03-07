@@ -16,12 +16,14 @@ include 'class/functions.php';
 include 'class/shortcodes.php';
 
 
-wp_enqueue_script('jquerylib', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
-wp_enqueue_script('jqueryui', 'https://code.jquery.com/ui/1.11.4/jquery-ui.js');
-wp_enqueue_style('jquerycss', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css');
+wp_enqueue_script('jquerylib',  plugin_dir_url(__FILE__) . 'jquery/jquery.min.js');
+wp_enqueue_script('jqueryui',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui.js');
+wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui.css');
+wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui-min.css');
+wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui-theme.css');
 wp_head();
-wp_enqueue_script('title_list', plugin_dir_url(__FILE__) . 'json/title-search.js');
-wp_enqueue_style('frame_css', plugin_dir_url(__FILE__) . 'css/movie_css.css');
+wp_enqueue_script('title_list', plugin_dir_url(__FILE__) . 'auto-suggest/title-search.js');
+wp_enqueue_style('movie_css', plugin_dir_url(__FILE__) . 'css/movie_css.css');
      
 
 if($_POST){ 
@@ -68,23 +70,39 @@ function intro()
 }
 function movies(){
     
-    echo "<form method='post'><div class='wrap'><b>LinkFenix - Movies</b>";
-    echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Options' >
-            <input type='submit' id='searchsubmit' name='searchsubmit' value='Full import' >
-            <input type='submit' id='searchsubmit' name='searchsubmit' value='Movie List' >
-            <input type='submit' id='searchsubmit' name='searchsubmit' value='Updates'>";
-    echo "<hr id='line'>";
-    echo "<div id='mov-content'>";
-    echo "Check or uncheck the non-obligatory options as you would like the content to be imported.<br><div id='msg'></div>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='' >Title (obligatory)<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='' >Genres (0bligatory)<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='description' >Description<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='year' >Year - next to the title, for example: Avatar (2009)<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='imbd' >IMBD link<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='pimage' >Posters only as featured image<br>";
-    echo "<input type='checkbox' id='chk' name='chksubmit' value='pcontent' >Posters only in the content<br>";
-    echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Save' >";
-    echo "</div></div></form>";
+        echo "<form method='post'>";
+        echo " <div class='wrap'><b>LinkFenix - Movies</b>";
+        echo "<input type='submit' id='searchsubmit' name='searchsubmit' value='Options' >
+              <input type='submit' id='searchsubmit' name='searchsubmit' value='Full import' >
+              <input type='submit' id='searchsubmit' name='searchsubmit' value='Movie List' >
+              <input type='submit' id='searchsubmit' name='searchsubmit' value='Updates'>";
+        
+        echo "<hr id='line'>";
+        echo "<div id='mov-content'>";
+        
+        if(isset($_POST))
+        {
+            switch($_POST['searchsubmit'])
+            {
+            	case 'Options' :
+                    include 'option-list-page.php';
+            	break;
+                    
+                case 'Movie List' :
+                    include 'movie-list-page.php';
+                break;
+                
+                case 'Updates' :
+                    include 'updates-list-page.php';
+                break;
+                    
+            	default:
+            		include 'option-list-page.php';
+            	break;
+            }        
+        }
+        echo "</div></div>";
+        echo "</form>";
    
    
    

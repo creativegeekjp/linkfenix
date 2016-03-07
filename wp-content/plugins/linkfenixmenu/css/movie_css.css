@@ -47,32 +47,24 @@
 
 /*Style image */
 
-#main_wrap
+
+div.responsive {
+   float: left;
+   width: 270px;
+   height: 300px;
+   border: 0px solid white;
+}  
+
+div.responsive p
 {
-    width:95%;
-}
-#main_image
-{
-    float: left;
-}
-#main_content
-{
-    float: right;
-    font-size: 9px;
+    font-size: 12px;
     font-family: helvetica;
-    width: 60%;
+    line-height: 20px;
 }
-#top
+div.responsive img
 {
-    margin-top: 12px;
-}
-#bottom
-{
-    margin-top: 8%;
-}
-#stream_img
-{
-    margin-top: 8%;
-}
+     display: block;
+    margin-left: auto;
+    margin-right: auto
 
-
+}

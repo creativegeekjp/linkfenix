@@ -1,6 +1,6 @@
  <?php 
-  $title = isset($_COOKIE['title']) ? 'checked="'.$_COOKIE['title'].'"' : '';
-  $genres = isset($_COOKIE['genres']) ? 'checked="'.$_COOKIE['genres'].'"' : '';
+  $title = isset($_COOKIE['title']) ? 'checked="'.$_COOKIE['title'].'"' : 'checked';
+  $genres = isset($_COOKIE['genres']) ? 'checked="'.$_COOKIE['genres'].'"' : 'checked';
   $description = isset($_COOKIE['description']) ? 'checked="'.$_COOKIE['description'].'"' : '';
   $year = isset($_COOKIE['year']) ? 'checked="'.$_COOKIE['year'].'"' : '';
   $imbd = isset($_COOKIE['imbd']) ? 'checked="'.$_COOKIE['imbd'].'"' : '';

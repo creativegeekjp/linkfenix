@@ -103,8 +103,5 @@ function movies(){
         }
         echo "</div></div>";
         echo "</form>";
-   
-   
-   
 }
 ?>

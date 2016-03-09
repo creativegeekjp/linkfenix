@@ -1,11 +1,9 @@
 <?php 
 header('Content-type: application/json');
-    
-$movie = file_get_contents('http://ide.creativegeek.ph:23268/movies/indexrest');
 
-$decoded = json_decode($movie,true);
+$movies = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/movies/indexrest'),true);
 
-foreach ($decoded['movies'] as $key => $value)
+foreach ($movies['movies']['viewVars']['movies'] as $key => $value)
 { 
     $options[] = array
     (

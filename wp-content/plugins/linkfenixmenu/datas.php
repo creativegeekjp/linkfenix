@@ -3,32 +3,7 @@ header('Content-type: application/json');
     
 include 'class/parser.php';
 
-$sorts = 'name' ? 'name' : 'name' ;
-
-switch($sorts)
-{
-    
-    case 'name' :
-        uasort($movies['movies'], function($item1, $item2){
-         return $item1['name'] > $item2['name'];
-        });
-    break;
-    
-    // case 'created' :
-    //     uasort($movies['movies'], function($item1, $item2){
-    //      return $item1['created'] > $item2['created'];
-    //     });
-    // break;
-    
-    default: 
-        uasort($movies['movies'], function($item1, $item2){
-         return $item1['name'] > $item2['name'];
-            });
-    break;
-}
-
-
-foreach ($movies['movies'] as $key => $value)
+foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
 { 
     $i= 0;
     
@@ -45,12 +20,15 @@ foreach ($movies['movies'] as $key => $value)
         'id' => $value['id'],
         'name'    => $value['name'],
         'year'  => date('Y',strtotime($value['year'])),
-        'genre'  => implode(',',$tmp)
+        'genre'  => implode('<br>',$tmp),
+        'created'  => date('m/d/Y',strtotime($value['created']))
              
     );
 
   $i++;
 }
+
 echo json_encode($options); 
+
 ?>
 

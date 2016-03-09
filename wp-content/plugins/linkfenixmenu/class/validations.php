@@ -30,8 +30,8 @@
     		'category',
     		array
     		(
-    		  'description'	=> 'This is an example category created with wp_insert_term.',
-    		  'slug' 		=> 'example-category'
+    		  'description'	=> 'This is an example category for'.$cat_name,
+    		  'slug' 		=> 'example-category-'.$cat_name
     		)
     	);
     }

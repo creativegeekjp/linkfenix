@@ -12,32 +12,53 @@ function check_register_code()
         global $post;
         
         include 'parser.php';
-             
-        foreach($movies['movies'] as $p)
-        {
-              if(preg_match_all( '#["'.$p['id'].'"*.*?]#s', $post->post_content, $matches ) )
-              {
-                    $array['id'] = $p['id'];
-                    $array['name'] = $p['name'];
-                    $array['year'] = $p['year'];
-                    $array['releasedate'] = $p['releasedate'];
-                    $array['director'] = $p['director'];
-                    $array['genre'] = $p['genre'];              //wara pa
-                    $array['languages'] = $p['languages'];
-                    $array['duration'] = $p['duration'];
-                    $array['cast'] = $p['cast'];                //wara pa
-                    $array['description'] = $p['description'];
-                    $array['country'] = $p['country'];
-                    $array['image'] = $p['image'];
-                    $array['hostlink'] = $p['hostlink'];
-                    $array['linkage'] = $p['linkage'];
-                    $array['imbd'] = $p['IMBD'];
-                    $array['image'] = $p['image'];
-                    $array['quality'] = $p['quality'];
-                    
-                  return $array;
-              }
+        
+       foreach ($movies['movies']['viewVars']['movies']  as $key => $p)
+        { 
+            $i= 0;
+            
+            $tmp = array();
+            
+            foreach($p['genres'] as $key => $v)
+            {
+                $tmp[$key+1] = $v['name'];
+            }
+            
+            $tmp_cast = array();
+    
+            foreach($p['casts'] as $key_c => $casts)
+            {
+                $tmp_cast [$key_c+1] = $casts['name'];
+            }
+    
+    
+            if(preg_match_all( '#["'.$p['id'].'"*.*?]#s', $post->post_content, $matches ) )
+            {
+                            $array['id'] = $p['id'];
+                            $array['name'] = $p['name'];
+                            $array['year'] = $p['year'];
+                            $array['releasedate'] = $p['releasedate'];
+                            $array['director'] = $p['director'];
+                            $array['genre'] = implode(',',$tmp);
+                            $array['languages'] = $p['languages'];
+                            $array['duration'] = $p['duration'];
+                            $array['cast'] = implode(',',$tmp_cast ); 
+                            $array['description'] = $p['description'];
+                            $array['country'] = $p['country'];
+                            $array['image'] = $p['image'];
+                            $array['hostlink'] = $p['hostlink'];
+                            $array['linkage'] = $p['linkage'];
+                            $array['imbd'] = $p['IMBD'];
+                            $array['image'] = $p['image'];
+                            $array['quality'] = $p['quality'];
+                            
+                          return $array;
+            }
+        
+        
+          $i++;
         }
+
 }
 
 function add_s_code($content)
@@ -76,11 +97,11 @@ function content_message()
                     Genres      : '.$code_c['genre'].'
                     Language(s)    : '.$code_c['languages'].'
                     Duration    : '.$code_c['duration'].'
-                    Cast        : '.$code_c['cast'].'
+                    Cast(s)        : '.$code_c['cast'].'
                     Country     : '.$code_c['country'].'
                 </p>
             </div>
-            
+            <br><br>
              <iframe src="http://ide.creativegeek.ph:24214/links/" width="900" height="900" frameborder="0"> 
                      Iframe Error!. Please contact the administrator 
              </iframe>

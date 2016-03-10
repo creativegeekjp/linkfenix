@@ -1,6 +1,8 @@
 <?php 
 header('Content-type: application/json');
-    
+
+include 'class/time-zone.php';
+
 include 'class/parser.php';
 
 foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
@@ -14,6 +16,8 @@ foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
         $tmp[$key+1] = $v['name'];
     }
     
+    //$indicator = date("Y-m-d H:i:s") > date('Y-m-d H:i:s',strtotime($value['created'])) ? 'old' : 'New';
+    
     $options['data'][] = array
     (
        
@@ -21,8 +25,8 @@ foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
         'name'    => $value['name'],
         'year'  => date('Y',strtotime($value['year'])),
         'genre'  => implode('<br>',$tmp),
-        'created'  => date('m/d/Y',strtotime($value['created']))
-             
+        'created'  => date('Y-m-d',strtotime($value['created'])),
+        'indicator' => date("Y-m-d")  
     );
 
   $i++;

@@ -1,37 +1,36 @@
-<br><div id='msg'></div>
-<html>
-<head>
-  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
-  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-</head>
-<body>
-    
-    Sort By: <select id="sort">
-    <option value="">column </option>
-    <option value="0">Shortcode</option>        
-    <option value="1">Name</option>        
-    <option value="2">Year</option>              
-    <option value="3">Genre</option>        
-    </select>
-    
-       <table id="movies" class="display" width="100%" cellspacing="0">
-         <thead>
-            <tr>
-                <th>Shortcode</th>
-                <th>Name</th>
-                <th>Year</th>
-                <th>Genre</th>
-                <th>Created</th>
-                <th></th>
-            </tr>
-         <thead>
-    </table>
-</body>
- 
+<?php 
+wp_enqueue_style('jquery_tbl_css',  plugin_dir_url(__FILE__) . 'datatable/jquery.dataTables.min.css');
+wp_enqueue_script('jquery_lib',  plugin_dir_url(__FILE__) . 'datatable/jquery-1.12.0.min.js');
+wp_enqueue_script('jquery_tbl',  plugin_dir_url(__FILE__) . 'datatable/jquery.dataTables.min.js');
+wp_enqueue_script('jquery_ui_css',  plugin_dir_url(__FILE__) . 'datatable/jquery-ui.js');
+wp_enqueue_style('jquery_ui_css2',  plugin_dir_url(__FILE__) . 'datatable/jquery-ui.css');
+wp_enqueue_script('clipboard',  plugin_dir_url(__FILE__) . 'jquery/clipboard.js');
+?>
+
+Sort By: 
+<select id="sort">
+<option value="">column </option>
+<option value="0">Shortcode</option>        
+<option value="1">Name</option>        
+<option value="2">Year</option>              
+<option value="3">Genre</option>        
+</select>
+
+   <table id="movies" class="display" width="100%" cellspacing="0">
+     <thead>
+        <tr>
+            <th>Shortcode</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Created</th>
+            <th>Indicator</th>
+            <th></th>
+        </tr>
+     <thead>
+</table>
+
+
   <script type="text/javascript" language="javascript" >
     $(document).ready(function() 
     {
@@ -59,31 +58,31 @@
                 { "data": "year"  },
                 { "data": "genre" }, //"bVisible" : false
                 { "data": "created"},
-                {"defaultContent": "<a>Get Shortcode</a>"}
-            ]
-        
+                { "data": "indicator"},
+                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'>"}
+            ],
+            "rowCallback": function( row, data, index ) {
+                if ( data.created > data.indicator ) {
+                  $(row).css('color', 'red');
+                }
+              }
         });
-    
-          
         $('#movies').on('click', 'tr', function(event) 
         {
-            
-          var aData = table.fnGetData( this );
-          var  formData = "id="+aData['id'];  //Name value Pair
-          var data;
-          //data.mcontent
-            $(this).css('background', 'red');
-     
-            $.ajax({
-                url : "/wp-content/plugins/linkfenixmenu/insert-clipboard.php",
-                type: "POST",
-                data : formData,
-                success: function(data, textStatus, jqXHR)
-                {
-                 
-                   $( "<div id='dialog-message' title='Shortcode Published'><p><span class='ui-icon ui-icon-circle-check' " +
+            var aData = table.fnGetData( this );
+    
+            var clipboard = new Clipboard('img#copy', {
+                text: function() {
+                    return "["+aData['id']+"]";
+                }
+            });
+            // clipboard.on('success', function(e) {});
+            // clipboard.on('error', function(e) { console.log(e);});
+              
+             $( "<div id='dialog-message' title='Message'><p><span class='ui-icon ui-icon-circle-check' " +
                           "style='float:left; margin:0 7px 50px 0;'></span>Shortcode [ " +aData['id']+  " ] was copied to clipboard.</p>" )
                        .dialog({
+                          dialogClass: 'no-close',
                           modal: true,
                           height: 200,
                           width: 300,
@@ -93,15 +92,7 @@
                             }
                           }
                         }); 
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert(data.mcontent);
-                }
-            });
-         
-         
-         
+                
         });
   
         $('#sort').change(function() 
@@ -109,9 +100,7 @@
             var col = $(this).val();
             table.fnSort([ [ col, 'asc'] ]);
         });    
-
 } );
-</script>
-</body>
-</html>
+</script> 
+
 

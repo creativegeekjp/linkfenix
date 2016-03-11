@@ -16,8 +16,6 @@ foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
         $tmp[$key+1] = $v['name'];
     }
     
-    //$indicator = date("Y-m-d H:i:s") > date('Y-m-d H:i:s',strtotime($value['created'])) ? 'old' : 'New';
-    
     $options['data'][] = array
     (
        
@@ -26,12 +24,13 @@ foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
         'year'  => date('Y',strtotime($value['year'])),
         'genre'  => implode('<br>',$tmp),
         'created'  => date('Y-m-d',strtotime($value['created'])),
-        'indicator' => date("Y-m-d")  
+        'indicator' => date("Y-m-d") ,
     );
-
+   
   $i++;
+  
 }
-
+ 
 echo json_encode($options); 
 
 ?>

@@ -4,11 +4,33 @@ add_action( 'admin_menu', 'my_admin_menu' );
 
 function my_admin_menu()
 {
-        add_menu_page( 'Link Fenix', 'Link Fenix', 'manage_options', 'pages/main-menu.php', 'intro', 'dashicons-tickets', 6 );
-        add_submenu_page( 'pages/main-menu.php', 'Introduction',  'Introduction', 'manage_options', 'pages/main-menu.php', 'intro' );
-        add_submenu_page( 'pages/main-menu.php', 'Movies', 'Movies', 'manage_options', 'pages/movies.php', 'movies'  );
-        add_submenu_page( 'pages/main-menu.php', 'TV Shows',  'TV Shows', 'manage_options', 'pages/tvshows.php', 'tvshows' );
-        add_submenu_page( 'pages/main-menu.php', 'Preferences', 'Preferences', 'manage_options', 'pages/preferences.php', 'preferences' );
+    global $submenu;
+    
+    add_menu_page( 'Link Fenix', 'Link Fenix', 'manage_options', 'pages/main-menu.php', 'intro', 'dashicons-tickets', 6 );
+    add_submenu_page( 'pages/main-menu.php', 'Introduction',  'Introduction', 'manage_options', 'pages/main-menu.php', 'intro' );
+    add_submenu_page( 'pages/main-menu.php', 'Movies', 'Movies', 'manage_options', 'movies.php', 'movies'  );
+    add_submenu_page( 'pages/main-menu.php', 'TV Shows',  'TV Shows', 'manage_options', 'pages/tvshows.php', 'tvshows' );
+    add_submenu_page( 'pages/main-menu.php', 'Preferences', 'Preferences', 'manage_options', 'pages/preferences.php', 'preferences' );
+        
+    $newitem = count_new_movies();
+    
+    $submenu['pages/main-menu.php']['1'][0] .= $newitem ? "<span class='update-plugins count-1'> <span class='update-count'>  $newitem </span></span>" : '';
+     
+}
+
+function count_new_movies()
+{
+
+    include 'class/time-zone.php';
+    
+    include 'class/parser.php';
+    
+    foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
+    { 
+      $count_m += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
+    }
+    
+    return  $count_m;
 }
 
 include 'class/validations.php';

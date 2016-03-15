@@ -51,7 +51,7 @@ Genres:
     <option value="z">Z</option> 
 </select>
 
-<table id="movies" class="display" width="100%" cellspacing="0">
+<table id="tvshows" class="display" width="100%" cellspacing="0">
      <thead>
         <tr>
             <th>Shortcode</th>
@@ -60,6 +60,7 @@ Genres:
             <th>Genre</th>
             <th>Created</th>
             <th>Indicator</th>
+            <th>Episodes</th>
             <th></th>
         </tr>
      <thead>
@@ -70,13 +71,13 @@ Genres:
     $(document).ready(function() 
     {
 
-            var table = $('#movies').dataTable({
+            var table = $('#tvshows').dataTable({
             "language": 
             {
-                "lengthMenu": "Display _MENU_ movies per page",
-                "zeroRecords": "No movies found- sorry",
+                "lengthMenu": "Display _MENU_ tvshows per page",
+                "zeroRecords": "No tvshows found- sorry",
                 "info": "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty": "No movies available",
+                "infoEmpty": "No tvshows available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
             },
                 "bFilter": true,
@@ -87,7 +88,7 @@ Genres:
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
                 "processing": true,
-                "ajax": "/wp-content/plugins/linkfenixmenu/datas.php",
+                "ajax": "/wp-content/plugins/linkfenixmenu/tv-datas.php",
             "columns": 
             [ 
                 { 
@@ -108,6 +109,9 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false,
                 },
+                { 
+                    "data": "seasons_id"
+                },
                 {"defaultContent": "<img class='clippy' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'>"} 
             ],
             "rowCallback": function( row, data, index ) 
@@ -124,7 +128,7 @@ Genres:
               
         });
         
-        $('#movies tbody').on('click', 'tr', function(event) 
+        $('#tvshows tbody').on('click', 'tr', function(event) 
         {
             var aData = table.fnGetData( this );
     

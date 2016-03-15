@@ -12,10 +12,13 @@ function my_admin_menu()
     add_submenu_page( 'pages/main-menu.php', 'TV Shows',  'TV Shows', 'manage_options', 'pages/tvshows.php', 'tvshows' );
     add_submenu_page( 'pages/main-menu.php', 'Preferences', 'Preferences', 'manage_options', 'pages/preferences.php', 'preferences' );
         
-    $newitem = count_new_movies();
+    $newmovies = count_new_movies();
     
-    $submenu['pages/main-menu.php']['1'][0] .= $newitem ? "<span class='update-plugins count-1'> <span class='update-count'>  $newitem </span></span>" : '';
-     
+    $newtvshows = count_new_tv_shows();
+    
+    $submenu['pages/main-menu.php']['1'][0] .= $newmovies ? "<span class='update-plugins count-1'> <span class='update-count'>  $newmovies </span></span>" : '';
+    
+    $submenu['pages/main-menu.php']['2'][0] .=  $newtvshows ? "<span class='update-plugins count-1'> <span class='update-count'>   $newtvshows </span></span>" : '';
 }
 
 function count_new_movies()
@@ -31,6 +34,21 @@ function count_new_movies()
     }
     
     return  $count_m;
+}
+
+function count_new_tv_shows()
+{
+    
+    include 'class/time-zone.php';
+    
+    include 'class/tv-parser.php';
+    
+    foreach ($tv['tvshows']['viewVars']['tvshows']  as $key => $value)
+    { 
+      $count_tv += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
+    }
+    
+    return  $count_tv;
 }
 
 include 'class/validations.php';
@@ -125,8 +143,46 @@ function movies(){
         }
         echo "</div></div>";
         echo "</form>";
+
+}
+function tvshows(){
     
-    
-    
+        echo "<form method='post'>";
+        echo " <div class='wrap'><b>LinkFenix - TV Shows</b>";
+        echo "<input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Options' >
+              <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Full Import' >
+              <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Tv Shows' >
+              <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Updates'>";
+        
+        echo "<hr id='line'>";
+        echo "<div id='mov-content'>";
+        
+        if(isset($_POST))
+        {
+            switch($_POST['tv-searchsubmit'])
+            {
+            	case 'Options' :
+                    include 'tv-option-list-page.php';
+            	break;
+                    
+                case 'Tv Shows' :
+                    include 'tv-movie-list-page.php';
+                break;
+                
+                case 'Updates' :
+                    include 'tv-updates-list-page.php';
+                break;
+                    
+            	default:
+            		include 'tv-option-list-page.php';
+            	break;
+            }        
+        }
+        echo "</div></div>";
+        echo "</form>";
+
+
+
+
 }
 ?>

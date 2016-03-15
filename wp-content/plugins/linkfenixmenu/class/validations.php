@@ -30,7 +30,7 @@
     		'category',
     		array
     		(
-    		  'description'	=> 'This is an example category for'.$cat_name,
+    		  'description'	=> 'This is an example category for '.$cat_name,
     		  'slug' 		=> 'example-category-'.$cat_name
     		)
     	);

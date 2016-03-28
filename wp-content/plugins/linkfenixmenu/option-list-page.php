@@ -14,7 +14,7 @@
   <input type='checkbox' name='genres'<?php echo $genres; ?> value='genres' >Genres (obligatory)<br>
   <input type='checkbox' name='description' <?php echo $description; ?> value='description' >Description<br>
   <input type='checkbox' name='year' <?php echo $year; ?> value='year' >Year - next to the title, for example: Avatar (2009)<br>
-  <input type='checkbox' name='imbd' <?php echo $imbd; ?> value='imbd' >IMBD link<br>
+  <input type='checkbox' name='imbd' <?php echo $imbd; ?> value='imbd' >IMDB link<br>
   <input type='checkbox' name='pimage' <?php echo $pimage; ?> value='pimage' >Posters only as featured image<br>
   <input type='checkbox' name='pcontent' <?php echo $pcontent; ?> value='pcontent' >Posters only in the content<br>
     

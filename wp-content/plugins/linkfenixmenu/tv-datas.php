@@ -21,20 +21,13 @@ while(true)
                 $i= 0;
                 
                 $tmp = array();
-                $tmp_seasons = array();
-                $tmp_seasons_id = array();
                 
                 foreach($value['genres'] as $key => $v)
                 {
                     $tmp[$key+1] = $v['name'];
                 }
                 
-                foreach($value['seasons'] as $key2 => $z)
-                {
-                    $tmp_seasons[$key2+1] = $z['name'];
-                    $tmp_seasons_id[$key2+1] = $z['id'];
-                }
-                
+               
                 $options['data'][] = array
                 (
                    
@@ -43,9 +36,8 @@ while(true)
                     'year'  => date('Y',strtotime($value['year'])),
                     'genre'  => implode('<br>',$tmp),
                     'created'  => date('Y-m-d',strtotime($value['created'])),
-                    'indicator' => date("Y-m-d") ,
-                    'seasons' => implode(',',$tmp_seasons),
-                    'seasons_id' => implode(',',$tmp_seasons_id)
+                    'indicator' => date("Y-m-d") 
+                   
                 );
                
               $i++;
@@ -55,6 +47,7 @@ while(true)
 }
 
 echo json_encode($options); 
+
 
 ?>
 

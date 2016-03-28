@@ -12,7 +12,7 @@ Sort By:
 <select id="sort">
     <option></option> 
     <option value="1">Name</option> 
-    <option value="0">Shortcode</option>  
+    <option value="0">Id</option>  
     <option value="2">Year</option>              
     <option value="3">Genre</option>  
     <option value="4">Newest</option> 
@@ -87,7 +87,7 @@ Genres:
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
                 "processing": true,
-                "ajax": "/wp-content/plugins/linkfenixmenu/datas.php",
+                "ajax": "<?php echo plugins_url( 'datas.php', __FILE__ ); ?>",
             "columns": 
             [ 
                 { 
@@ -108,13 +108,18 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false,
                 },
-                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'>"} 
+                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' height='30' width='30' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'>"} 
             ],
             "rowCallback": function( row, data, index ) 
             {
                 if ( data.created >= data.indicator ) 
                 {
                   $(row).css('color', 'red');
+                }
+                
+                if(data.id > 0)
+                {
+                     $(row).find('td:eq(0)').html("[mov mtype=mov id="+data.id+"]");
                 }
                 
                 $(row).css('cursor' , 'hand');
@@ -132,7 +137,7 @@ Genres:
             {
                 text: function() 
                 {
-                    return "["+aData['id']+"]";
+                    return "[mov mtype=mov id="+aData['id']+"]";
                 }
             });
             
@@ -147,7 +152,7 @@ Genres:
                 
             });
               
-               $.fn.dpToast('Shortcode ['+aData['id']+'] was copied to clipboard',2000);
+               $.fn.dpToast('Shortcode [mov mtype=mov id='+aData['id']+'] was copied to clipboard',2000);
                 
         });
   

@@ -32,6 +32,20 @@
 <body>
 
 
+
+<?php 
+//mtype -> mov or tv
+//scode -> episode_id or movie_id
+$shortcode = isset($_GET['scode']) ? $_GET['scode'] : 0 ;
+$type = isset($_GET['mtype']) ? $_GET['mtype'] : 0 ;
+
+echo $shortcode;
+echo $type;
+?>
+
+
+
+
 <table id="table-data" class="table table-striped">
 
 	<thead class="text-uppercase">

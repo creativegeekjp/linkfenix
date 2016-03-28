@@ -1,4 +1,5 @@
 <?php
+
     if(isset($_POST['tv-searchsubmit']))
     {
          if($_POST['tv-searchsubmit']=='Full Import')
@@ -34,7 +35,7 @@
                }
                else
                {
-                     foreach($tv['tvshows']['viewVars']['tvshows'] as $code_c)
+                   foreach($tv['tvshows']['viewVars']['tvshows'] as $code_c)
                    {
                         $i= 0;
              
@@ -52,37 +53,10 @@
                         {
                             $tmp_cast [$key_c+1] = $casts['name'];
                         }
-             
-             
-                        $content = '
-                             <div class="responsive">
-                                 <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['name'].'" width="" height="" class="size-medium wp-image-6" /> 
-                             </div>
-                             
-                             <div class="responsive">
-                                     <p>
-                                        '.$code_c['name'].' ( '.date('Y',strtotime( $code_c['year'])).' ) '.$code_c['description'].'
-                                     </p>
-                                     
-                                     <p>
-                                        Release Date: '.date('F j, Y',strtotime( $code_c['releasedate'])).'
-                                         Director    : '.$code_c['director'].'
-                                         Genres      : '.implode(',',$tmp).'
-                                         Language(s)    : '.$code_c['languages'].'
-                                         Duration    : '.$code_c['duration'].'
-                                         Cast(s)        : '. implode(',',$tmp_cast ).'
-                                         Country     : '.$code_c['country'].'
-                                     </p>
-                             </div>
-                             <br><br>
-                              <iframe src="http://ide.creativegeek.ph:24214/links/" width="900" height="900" frameborder="0"> 
-                                      Iframe Error!. Please contact the administrator 
-                              </iframe>
-                        ';
-                      
-                    
+                        
+                        
                         example_insert_category(implode( "," , $tmp ));
-             
+                        
                         if( check_category_name_exist(implode( "," , $tmp )) )
                         {
                                $id = categoryid(implode( "," , $tmp ));
@@ -91,18 +65,84 @@
                         {
                                $id = $id; //assign category name for those who are uncategorized
                         }
-             
-                         if( !wp_exist_post_by_title($code_c['name']) )
-                         {
-                              wp_insert_post(array(
-                                     'post_title'    => $code_c['name'],
-                                     'post_content'  => $content,
-                                     'post_status'   => 'publish',
-                                     'post_author'   => 1,
-                                     'post_category' => array( $id )
-                             ));
-                         } 
                          
+                     
+                        foreach($code_c['seasons'] as $key => $season)
+                        {
+                             $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$season['id']),true);
+                      
+                             foreach ($episodes['episodes']  as  $epi)
+                             { 
+                                  
+                                   
+                                   $post_titles = isset($_COOKIE['tv-title']) ? $code_c['name'].'/'.$epi['title'] : "" ;
+                                   
+                                   $seasons_title = isset($season['name']) ?  $code_c['name'].' > '.$season['name'] :  $code_c['name'].' > ' ;
+                                   
+                                    $imdb = isset($_COOKIE['tv-imbd']) ? '<a href="'.$epi['IMDB'].'">IMDb</a>' : "" ;
+                                   
+                                   $image =  isset($_COOKIE['tv-pcontent'])  ? '<img class="" src="'.$epi['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" width="100%" />' : "" ;
+                         
+                                   $pimage = isset($_COOKIE['tv-pimage']) ? true : false ;
+
+
+                                   $category = isset($_COOKIE['tv-genres']) ?  implode( "," , $tmp ) : "" ;
+                        
+                                   $desc1 =  isset($_COOKIE['tv-description']) ?  $epi['description'] : "";
+                                     
+                                    if (strlen($desc1) > 150)
+                                    {
+                                       $str = substr($desc1, 0, 100) . '...';
+                                    }
+                                    else
+                                    {
+                                       $str = $desc1;
+                                    }
+                         
+                                   $description =  $str.'
+                                                 Release Date: '.date('F j, Y',strtotime( $epi['releasedate'])).'
+                                                 Duration    : '.$epi['duration'].'
+                                                 Cast(s)        : '. implode(',',$tmp_cast ).' 
+                                                 
+                                                 ';
+                                   
+                                           
+                                   $content = '
+                                   
+                                         [caption id="" align="alignleft" width="200"] 
+                                         '.$image.'
+                                         [/caption]
+                                         
+                                         [caption id="" align="alignright" width="200"]
+                                         '. $seasons_title.'
+                                         
+                                         '.$imdb.'
+                                         '.$description.'
+                                         [/caption]
+                                         
+                                         [tv mtype=tv id='.$epi['id'].']
+                                    
+                                    ';
+                                   
+                                    if( !wp_exist_post_by_title($post_titles) )
+                                    {
+                                        $post_id = wp_insert_post(array(
+                                                'post_title'    =>  $post_titles,
+                                                'post_content'  =>  $content,
+                                                'post_status'   => 'publish',
+                                                'post_author'   => 1,
+                                                'post_category' => array( $id )
+                                        ));
+                                        
+                                         if($pimage==true)
+                                         {
+                                            generate_featured_image( $epi['image'],   $post_id );
+                                         }
+                                        
+                                    } 
+                             }
+                        }
+
                          $i++;
                      }
                }
@@ -112,48 +152,48 @@
     function set_cookie_options_tv()
     {
         
-        $t_billion = 2000000000;//2 bilion year 2033
+        $t_billion = (20 * 365 * 24 * 60 * 60);
         
         if(isset($_POST['tv-title']))
-         setcookie( 'tv-title', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-title', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-title', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-title', '', time() - $t_billion);
          
         
         if(isset($_POST['tv-genres']))
-         setcookie( 'tv-genres', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-genres', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-genres', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-genres', '', time() - $t_billion);
          
          
         if(isset($_POST['tv-description']))
-         setcookie( 'tv-description', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-description', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-description', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-description', '', time() - $t_billion);
          
          
         if(isset($_POST['tv-year']))
-         setcookie( 'tv-year', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-year', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-year', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-year', '', time() - $t_billion);
         
         
         if(isset($_POST['tv-imbd']))
-         setcookie( 'tv-imbd', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-imbd', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-imbd', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-imbd', '', time() - $t_billion);
          
          
         if(isset($_POST['tv-pimage']))
-         setcookie( 'tv-pimage', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-pimage', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-pimage', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-pimage', '', time() - $t_billion);
          
          
         if(isset($_POST['tv-pcontent']))
-         setcookie( 'tv-pcontent', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-pcontent', 'checked', time() + $t_billion);
         else
-         setcookie( 'tv-pcontent', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'tv-pcontent', '', time() - $t_billion);
     }
 
 
@@ -187,48 +227,48 @@
     function set_cookie_options()
     {
      
-        $t_billion = 2000000000;//2 bilion year 2033
+        $t_billion = (20 * 365 * 24 * 60 * 60);
         
         if(isset($_POST['title']))
-         setcookie( 'title', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'title', 'checked', time() + $t_billion);
         else
-         setcookie( 'title', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'title', '', time() - $t_billion);
          
         
         if(isset($_POST['genres']))
-         setcookie( 'genres', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'genres', 'checked', time() + $t_billion);
         else
-         setcookie( 'genres', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'genres', '', time() - $t_billion);
          
          
         if(isset($_POST['description']))
-         setcookie( 'description', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'description', 'checked', time() + $t_billion);
         else
-         setcookie( 'description', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'description', '', time() - $t_billion);
          
          
         if(isset($_POST['year']))
-         setcookie( 'year', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'year', 'checked', time() + $t_billion);
         else
-         setcookie( 'year', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'year', '', time() - $t_billion);
         
         
         if(isset($_POST['imbd']))
-         setcookie( 'imbd', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'imbd', 'checked', time() + $t_billion);
         else
-         setcookie( 'imbd', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'imbd', '', time() - $t_billion);
          
          
         if(isset($_POST['pimage']))
-         setcookie( 'pimage', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'pimage', 'checked', time() + $t_billion);
         else
-         setcookie( 'pimage', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'pimage', '', time() - $t_billion);
          
          
         if(isset($_POST['pcontent']))
-         setcookie( 'pcontent', 'checked', time() + $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'pcontent', 'checked', time() + $t_billion);
         else
-         setcookie( 'pcontent', '', time() - $t_billion, COOKIEPATH, COOKIE_DOMAIN );
+         setcookie( 'pcontent', '', time() - $t_billion);
         
     }
     
@@ -246,8 +286,6 @@
               }
               else
               {
-                foreach($movies['movies']['viewVars']['movies'] as $code_c)
-                  {
                       foreach($movies['movies']['viewVars']['movies'] as $code_c)
                       {
                          $i= 0;
@@ -266,62 +304,138 @@
                          {
                              $tmp_cast [$key_c+1] = $casts['name'];
                          }
-              
-              
-                         $content = '
-                              <div class="responsive">
-                                  <img src="'.$code_c['image'].'" alt="'.$code_c['description'].'" title="'.$code_c['name'].'" width="" height="" class="size-medium wp-image-6" /> 
-                              </div>
-                              
-                              <div class="responsive">
-                                      <p>
-                                         '.$code_c['name'].' ( '.date('Y',strtotime( $code_c['year'])).' ) '.$code_c['description'].'
-                                      </p>
-                                      
-                                      <p>
-                                         Release Date: '.date('F j, Y',strtotime( $code_c['releasedate'])).'
+                         
+                         
+                         $title = isset($_COOKIE['title']) ? $code_c['name'] : "" ;
+                         
+                         $year = isset($_COOKIE['year']) ? '('.date('Y',strtotime( $code_c['year'])).' )' : "" ;
+                           
+                         $post_titles =   $title.''.$year  ; 
+                         
+                         $category = isset($_COOKIE['genres']) ?  implode( "," , $tmp ) : "" ;
+                         
+                         
+                         $desc1 =  isset($_COOKIE['description']) ?  $code_c['description'] : "";
+                         
+                         
+                         if (strlen($desc1) > 150)
+                         {
+                            $str = substr($desc1, 0, 100) . '...';
+                         }
+                         else
+                         {
+                            $str = $desc1;
+                         }
+                             
+   
+                         $description = $str.'
+                                          
+                                          Release Date: '.date('F j, Y',strtotime( $code_c['releasedate'])).'
                                           Director    : '.$code_c['director'].'
                                           Genres      : '.implode(',',$tmp).'
                                           Language(s)    : '.$code_c['languages'].'
                                           Duration    : '.$code_c['duration'].'
                                           Cast(s)        : '. implode(',',$tmp_cast ).'
-                                          Country     : '.$code_c['country'].'
-                                      </p>
-                              </div>
-                              <br><br>
-                               <iframe src="http://ide.creativegeek.ph:24214/links/" width="900" height="900" frameborder="0"> 
-                                       Iframe Error!. Please contact the administrator 
-                               </iframe>
-                         ';
-                       
-                     
-                         example_insert_category(implode( "," , $tmp ));
+                                          Country     : '.$code_c['country'] ;
+                         
               
-                         if( check_category_name_exist(implode( "," , $tmp )) )
+                         
+                         $imdb = isset($_COOKIE['imbd']) ? '<a href="'.$code_c['IMDB'].'">IMDb</a>' : "" ;
+                       
+                         $image =  isset($_COOKIE['pcontent'])  ? '<img class="" src="'.$code_c['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" width="100%" />' : "" ;
+                         
+                         $pimage = isset($_COOKIE['pimage']) ? true : false ;
+
+                         
+                         $content = '
+                                    [caption id="" align="alignleft" width="200"] 
+                                    '.$image.'
+                                    [/caption]
+                                    
+                                    [caption id="" align="alignright" width="200"]
+                                    
+                                    '.$imdb.'
+                                    '.$description.'
+                                    [/caption]
+                                    
+                                    [tv mtype=tv id='.$code_c['id'].']
+                         
+                         ';
+                         
+                         
+                         example_insert_category( $category );
+              
+                         if( check_category_name_exist(  $category ) )
                          {
-                                $id = categoryid(implode( "," , $tmp ));
+                                $id = categoryid( $category );
                          }
-                         else if( implode(',',$tmp) )
+                         else if(  $category )
                          {
                                 $id = $id; //asssign category for those who are uncategorized
                          }
               
-                          if( !wp_exist_post_by_title($code_c['name']) )
-                          {
-                               wp_insert_post(array(
-                                      'post_title'    => $code_c['name'],
-                                      'post_content'  => $content,
-                                      'post_status'   => 'publish',
-                                      'post_author'   => 1,
-                                      'post_category' => array( $id )
-                              ));
-                          } 
-                          
+                         if( !wp_exist_post_by_title( $post_titles ) )
+                         {
+                              $post_id = wp_insert_post(array(
+                                     'post_title'    => $post_titles,
+                                     'post_content'  => $content,
+                                     'post_status'   => 'publish',
+                                     'post_author'   => 1,
+                                     'post_category' => array( $id )
+                             ));
+                              
+                              
+                           if($pimage==true)
+                           {
+                              generate_featured_image( $code_c['image'],   $post_id );
+                           }
+                           
+                         }
+                         
                           $i++;
                       }
-                  }
               }
               
           }
     }
+    
+  function generate_featured_image( $image_url, $post_id  )
+    {
+         $random_digit=rand(0000,9999);
+         
+         $upload_dir = wp_upload_dir();
+         
+         $image_data = file_get_contents($image_url);
+         
+         $filename = basename($image_url);
+         
+         if(wp_mkdir_p($upload_dir['path']))  
+           $file = $upload_dir['path'] . '/' .$random_digit.'-'.date('Y-m-d').'-'. $filename;
+         
+         else                                    
+            $file = $upload_dir['basedir'] . '/' .$random_digit.'-'.date('Y-m-d').'-'. $filename;
+         
+         file_put_contents($file, $image_data);
+     
+         $wp_filetype = wp_check_filetype($filename, null );
+         
+         $attachment = array(
+             'post_mime_type' => $wp_filetype['type'],
+             'post_title' => sanitize_file_name($filename),
+             'post_content' => '',
+             'post_status' => 'inherit'
+         );
+         
+         $attach_id = wp_insert_attachment( $attachment, $file, $post_id );
+         
+         require_once(ABSPATH . 'wp-admin/includes/image.php');
+         
+         $attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+         
+          wp_update_attachment_metadata( $attach_id, $attach_data );
+      
+          
+          set_post_thumbnail( $post_id, $attach_id );
+
+}
 ?>

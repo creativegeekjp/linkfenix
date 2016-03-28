@@ -14,7 +14,7 @@
   <input type='checkbox' name='tv-genres'<?php echo $genres; ?> value='tv-genres' >Genres (obligatory)<br>
   <input type='checkbox' name='tv-description' <?php echo $description; ?> value='tv-description' >Description<br>
   <input type='checkbox' name='tv-year' <?php echo $year; ?> value='tv-year' >Year - next to the title, for example: Avatar (2009)<br>
-  <input type='checkbox' name='tv-imbd' <?php echo $imbd; ?> value='tv-imbd' >IMBD link<br>
+  <input type='checkbox' name='tv-imbd' <?php echo $imbd; ?> value='tv-imbd' >IMDB link<br>
   <input type='checkbox' name='tv-pimage' <?php echo $pimage; ?> value='tv-pimage' >Posters only as featured image<br>
   <input type='checkbox' name='tv-pcontent' <?php echo $pcontent; ?> value='tv-pcontent' >Posters only in the content<br>
     

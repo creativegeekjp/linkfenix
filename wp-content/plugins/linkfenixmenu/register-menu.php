@@ -45,15 +45,28 @@ function count_new_tv_shows()
     
     foreach ($tv['tvshows']['viewVars']['tvshows']  as $key => $value)
     { 
-      $count_tv += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
+       $count_tv += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
+      
+       foreach($value['seasons'] as $key => $season)
+        {
+           $count_tv += getEpisodes($season['id']);
+        }
     }
     
     return  $count_tv;
 }
-
+function getEpisodes($id)
+{
+    $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$id),true);
+ 
+        foreach ($episodes['episodes']  as  $epi)
+        { 
+            return date('Y-m-d',strtotime($epi['created'])) >= date("Y-m-d") ? 1 : 0;
+        }
+     
+    }
 include 'class/validations.php';
 include 'class/functions.php';
-include 'class/shortcodes.php';
 
 
 wp_enqueue_script('jquerylib',  plugin_dir_url(__FILE__) . 'jquery/jquery.min.js');
@@ -62,10 +75,11 @@ wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui.css'
 wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui-min.css');
 wp_enqueue_style('jquerycss',  plugin_dir_url(__FILE__) . 'jquery/jquery-ui-theme.css');
 wp_head();
-wp_enqueue_script('title_list', plugin_dir_url(__FILE__) . 'auto-suggest/title-search.js');
+include 'class/title-search.php';
+include 'class/shortcodes.php';
 wp_enqueue_style('movie_css', plugin_dir_url(__FILE__) . 'css/movie_css.css');
      
-
+    
 if($_POST){ 
         
         include 'class/messageloaders.php'; 
@@ -159,30 +173,55 @@ function tvshows(){
         
         if(isset($_POST))
         {
-            switch($_POST['tv-searchsubmit'])
+            if(isset($_POST['tv-seasons']))
             {
-            	case 'Options' :
-                    include 'tv-option-list-page.php';
-            	break;
+                 include 'tv-seasons.php';
+            }
+            else if(isset($_POST['tv-episodes']))
+            {
+                 include 'tv-episodes.php';
+            }
+            else
+            {
+                switch($_POST['tv-searchsubmit'])
+                {
+                	case 'Options' :
+                        include 'tv-option-list-page.php';
+                	break;
+                        
+                    case 'Tv Shows' :
+                        include 'tv-movie-list-page.php';
+                    break;
                     
-                case 'Tv Shows' :
-                    include 'tv-movie-list-page.php';
-                break;
-                
-                case 'Updates' :
-                    include 'tv-updates-list-page.php';
-                break;
+                    case 'Updates' :
+                        include 'tv-updates-list-page.php';
+                    break;
                     
-            	default:
-            		include 'tv-option-list-page.php';
-            	break;
-            }        
+                	default:
+                		include 'tv-option-list-page.php';
+                	break;
+                }
+            }
         }
         echo "</div></div>";
         echo "</form>";
+}
 
-
-
+function preferences()
+{
+        echo "<form method='post'>";
+        echo " <div class='wrap'><b>LinkFenix - Preferences</b>";
+        echo "<input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Shortcoder' >
+        <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Links' >
+        <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Iframe' >";
+        
+        echo "<hr id='line'>";
+        echo "<div id='mov-content'>";
+        
+        
+        echo "</div></div>";
+        echo "</form>";
+ 
 
 }
 ?>

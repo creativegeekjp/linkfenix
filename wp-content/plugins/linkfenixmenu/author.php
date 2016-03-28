@@ -7,7 +7,7 @@
 
 Plugin Name: LinkFenix Plugin 
 Plugin URI: 
-Description: Plugin Example for WordPress
+Description: LinkFenix Project
 Author: Jino
 Version: 1.0
 Author URI: 

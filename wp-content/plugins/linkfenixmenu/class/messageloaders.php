@@ -9,7 +9,7 @@ function my_notice() {
 function my_option_notice() {
     ?>
     <div class="update notice">
-        <p><?php _e( 'Options was selected', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Options was checked please wait...', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }

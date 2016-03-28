@@ -12,7 +12,7 @@ Sort By:
 <select id="sort">
     <option></option> 
     <option value="1">Name</option> 
-    <option value="0">Shortcode</option>  
+    <option value="0">Id</option>  
     <option value="2">Year</option>              
     <option value="3">Genre</option>  
     <option value="4">Newest</option> 
@@ -60,7 +60,6 @@ Genres:
             <th>Genre</th>
             <th>Created</th>
             <th>Indicator</th>
-            <th>Episodes</th>
             <th></th>
         </tr>
      <thead>
@@ -88,31 +87,28 @@ Genres:
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
                 "processing": true,
-                "ajax": "/wp-content/plugins/linkfenixmenu/tv-datas.php",
+                "ajax": "<?php echo plugins_url( 'tv-datas.php', __FILE__ ); ?>", 
             "columns": 
             [ 
                 { 
-                    "data": "id" 
+                    "data": "id" , "bVisible" : false
                 },
                 { 
                     "data": "name"
                 },
                 { 
-                    "data": "year"
+                    "data": "year" , "bVisible" : false
                 },
                 { 
-                    "data": "genre" , "bVisible" : false,
+                    "data": "genre" , "bVisible" : false
                 }, 
                 { 
-                    "data": "created" , "bVisible" : false, 
+                    "data": "created" , "bVisible" : false
                 },
                 { 
-                    "data": "indicator" , "bVisible" : false,
+                    "data": "indicator" , "bVisible" : false
                 },
-                { 
-                    "data": "seasons_id"
-                },
-                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'>"} 
+                {"defaultContent": "<div></div>"} 
             ],
             "rowCallback": function( row, data, index ) 
             {
@@ -124,37 +120,15 @@ Genres:
                 $(row).css('cursor' , 'hand');
                 
                 $(row).attr('title','click to add in clipboard');
+                
+                if(data.id > 0)
+                {
+                     $(row).find('td:eq(1)').html("<button id='searchsubmit' name='tv-seasons' value="+data.id+">View List</button> ").val(data.id);
+                }
             }
               
         });
-        
-        $('#tvshows tbody').on('click', 'tr', function(event) 
-        {
-            var aData = table.fnGetData( this );
-    
-            var clipboard = new Clipboard('tr', 
-            {
-                text: function() 
-                {
-                    return "["+aData['id']+"]";
-                }
-            });
-            
-            clipboard.on('success', function(e) {
-                
-                console.log("Copied to clipboard");
-            });
-            
-            clipboard.on('error', function(e) { 
-                
-                console.log(e);
-                
-            });
-              
-               $.fn.dpToast('Shortcode ['+aData['id']+'] was copied to clipboard',2000);
-                
-        });
-  
+
         $('#sort').change(function() 
         {
              if( $(this).val() == 5 )

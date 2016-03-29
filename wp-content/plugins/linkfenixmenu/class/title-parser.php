@@ -14,7 +14,7 @@ while(true)
       }
       else
       {
-            foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
+            foreach ($movies['movies']['viewVars']['movies']  as $value)
             { 
                 $list1[] = array
                 (
@@ -36,21 +36,21 @@ while(true)
       }
       else
       {
-            foreach ($tv['tvshows']['viewVars']['tvshows']  as $key => $value)
+            foreach ($tv['tvshows']['viewVars']['tvshows']  as  $value)
             { 
              
-                foreach($value['seasons'] as $key => $season)
+                foreach($value['seasons'] as $season)
                 {
-                   $episode = getEpisodes($season['id']);
-                    
-                    $list2[] = array
-                            (
-                               
-                                'id' => $episode['id'], //$value['id']
-                                'label'   => ucfirst($value['name'])." , ".$episode['name'],
-                                'mtype' => 'tv'
-                            );
-                }
+                  $episode = getEpisodes($season['id']);
+                  
+                  $list1[] = array
+                    (
+                        
+                        'id' => $episode['id'],
+                        'label'   => ucfirst($value['name']).', '.$episode['name'],
+                        'mtype' => 'tv'
+                    );
+                }   
             }
       }
 }
@@ -71,10 +71,8 @@ function getEpisodes($id)
      
     }
 
-$list5 = array_merge($list1,$list2);
-
 header('Content-type: application/json');
-echo json_encode( $list5 ); 
+echo json_encode( $list1 ); 
 
 ?>
 

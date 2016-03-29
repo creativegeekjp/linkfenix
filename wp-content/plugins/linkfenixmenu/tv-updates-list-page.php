@@ -74,7 +74,7 @@ Genres:
             "language": 
             {
                 "lengthMenu": "Display _MENU_ tvshows per page",
-                "zeroRecords": "No tvshows found- sorry",
+                "zeroRecords": "No updates for tvshows found",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No tvshows available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
@@ -86,7 +86,7 @@ Genres:
                 "order": [ [ 1,"asc" ] ],
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
-                "processing": true,
+                "processing": false,
                 "ajax": "<?php echo plugins_url( 'tv-update-datas.php', __FILE__ ); ?>", 
             "columns": 
             [ 

@@ -1,4 +1,9 @@
 <?php
+/*
+*  statement that tooks required action eg. import, updates frames etc.
+*
+*/
+
 
     if(isset($_POST['tv-searchsubmit']))
     {
@@ -20,6 +25,126 @@
               }
             }
     }
+    if(isset($_POST['searchsubmit']))
+    {
+            if($_POST['searchsubmit']=='Full import')
+            {
+               if(add_action('wp_loaded', 'full_import') )
+               {
+                  add_action( 'admin_notices', 'my_notice' );
+               }
+            }
+            else if($_POST['searchsubmit']=='Save')
+            {
+              if(add_action( 'init', 'set_cookie_options' ))
+              {
+                  add_action( 'admin_notices', 'my_option_notice' );
+                  //add_action( 'admin_init','redirects');
+                  redirects();
+                   
+              }
+            }
+    }
+    if(isset($_POST['pref-searchsubmit']))
+    {
+       if($_POST['pref-searchsubmit']=='Save Changes')
+            {
+              if(add_action( 'init', 'set_cookie_preferences' ))
+              {
+                  add_action( 'admin_notices', 'my_option_preferences' );
+                  
+                  redirects();
+                   
+              }
+            }
+    }
+    
+/*
+*  function that redirects to current url after clicking button save
+*
+*/
+    function redirects()
+    {
+        ///sleep(1);
+        //wp_redirect($_SERVER['REQUEST_URI']);
+         header("Refresh: 0; url='".$_SERVER['REQUEST_URI']."' ");
+    }
+/*
+*  function that include that updates iframe links, designs and other inforamations
+*
+*/
+    function set_cookie_preferences()
+    {
+        $t_billion = (20 * 365 * 24 * 60 * 60);
+        
+        if(isset($_POST['shortcoder'])){
+         setcookie( 'shortcoder', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'shortcoder', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-a'])){
+         setcookie( 'link-a', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-a', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-b'])){
+         setcookie( 'link-b', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-b', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-c'])){
+         setcookie( 'link-c', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-c', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-d'])){
+         setcookie( 'link-d', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-d', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-e'])){
+         setcookie( 'link-e', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-e', '', time() - $t_billion);
+        }
+        if(isset($_POST['link-f'])){
+         setcookie( 'link-f', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'link-f', '', time() - $t_billion);
+        }
+        if(isset($_POST['design-a'])){
+         setcookie( 'design-a', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'design-a', '', time() - $t_billion);
+        }
+        if(isset($_POST['design-b'])){
+         setcookie( 'design-b', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'design-b', '', time() - $t_billion);
+        }
+        if(isset($_POST['design-c'])){
+         setcookie( 'design-c', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'design-c', '', time() - $t_billion);
+        }
+        if(isset($_POST['design-d'])){
+         setcookie( 'design-d', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'design-d', '', time() - $t_billion);
+        }
+        if(isset($_POST['design-e'])){
+         setcookie( 'design-e', 'checked', time() + $t_billion);
+        }else{
+         setcookie( 'design-e', '', time() - $t_billion);
+        }
+        
+    }
+/*
+*  function for importing tv-shows and store to wordpress database 
+*
+*  Those who movies that has seasons and episodes only will be imported to database
+*
+*/
     function full_import_tv()
     {
          $page = 1;
@@ -149,6 +274,12 @@
          }
 
     }
+/*
+*  function that include those obligatory and non obligatory
+*
+*  options before importing tv shows
+*
+*/
     function set_cookie_options_tv()
     {
         
@@ -195,35 +326,12 @@
         else
          setcookie( 'tv-pcontent', '', time() - $t_billion);
     }
-
-
-
-    if(isset($_POST['searchsubmit']))
-    {
-            if($_POST['searchsubmit']=='Full import')
-            {
-               if(add_action('wp_loaded', 'full_import') )
-               {
-                  add_action( 'admin_notices', 'my_notice' );
-               }
-            }
-            else if($_POST['searchsubmit']=='Save')
-            {
-              if(add_action( 'init', 'set_cookie_options' ))
-              {
-                  add_action( 'admin_notices', 'my_option_notice' );
-                  //add_action( 'admin_init','redirects');
-                  redirects();
-                   
-              }
-            }
-    }
-    function redirects()
-    {
-        ///sleep(1);
-        //wp_redirect($_SERVER['REQUEST_URI']);
-         header("Refresh: 0; url='".$_SERVER['REQUEST_URI']."' ");
-    }
+/*
+*  function that include those obligatory and non obligatory
+*
+*  options before importing movies
+*
+*/
     function set_cookie_options()
     {
      
@@ -272,6 +380,11 @@
         
     }
     
+/*
+*  function for importing movies and store to wordpress database 
+*
+*
+*/
     function full_import()
     {
           $page = 1;
@@ -348,15 +461,17 @@
 
                          
                          $content = '
-                                    [caption id="" align="alignleft" width="200"] 
+                                   <div class="thumbnail"> 
                                     '.$image.'
-                                    [/caption]
+                                   </div>
                                     
-                                    [caption id="" align="alignright" width="200"]
-                                    
-                                    '.$imdb.'
-                                    '.$description.'
-                                    [/caption]
+                                   <div class="details">
+	                                   	<div class="pad">
+                                      
+                                      '.$imdb.'
+                                      '.$description.'
+                                     </div>
+	                                   </div>
                                     
                                     [tv mtype=tv id='.$code_c['id'].']
                          
@@ -399,8 +514,14 @@
           }
     }
     
-  function generate_featured_image( $image_url, $post_id  )
-    {
+/*
+*  function for generating featured image both movies and tv-shows that 
+*
+*  uploads image to its uploads folder located at wp-content/uploads
+*
+*/    
+function generate_featured_image( $image_url, $post_id  )
+{
          $random_digit=rand(0000,9999);
          
          $upload_dir = wp_upload_dir();
@@ -409,17 +530,22 @@
          
          $filename = basename($image_url);
          
-         if(wp_mkdir_p($upload_dir['path']))  
+         if(wp_mkdir_p($upload_dir['path'])) { 
+          
            $file = $upload_dir['path'] . '/' .$random_digit.'-'.date('Y-m-d').'-'. $filename;
          
-         else                                    
+         }else{                                    
+          
             $file = $upload_dir['basedir'] . '/' .$random_digit.'-'.date('Y-m-d').'-'. $filename;
-         
+        
+         }
+        
          file_put_contents($file, $image_data);
      
          $wp_filetype = wp_check_filetype($filename, null );
          
-         $attachment = array(
+         $attachment = array
+         (
              'post_mime_type' => $wp_filetype['type'],
              'post_title' => sanitize_file_name($filename),
              'post_content' => '',
@@ -432,10 +558,8 @@
          
          $attach_data = wp_generate_attachment_metadata( $attach_id, $file );
          
-          wp_update_attachment_metadata( $attach_id, $attach_data );
-      
+         wp_update_attachment_metadata( $attach_id, $attach_data );
           
-          set_post_thumbnail( $post_id, $attach_id );
-
+         set_post_thumbnail( $post_id, $attach_id );
 }
 ?>

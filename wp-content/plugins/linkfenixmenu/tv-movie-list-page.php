@@ -55,12 +55,12 @@ Genres:
      <thead>
         <tr>
             <th>Shortcode</th>
-            <th>Name</th>
+            <th>Tv Shows</th>
             <th>Year</th>
             <th>Genre</th>
             <th>Created</th>
             <th>Indicator</th>
-            <th></th>
+            <th>Seasons</th>
         </tr>
      <thead>
          <tfoot><tfoot>
@@ -74,7 +74,7 @@ Genres:
             "language": 
             {
                 "lengthMenu": "Display _MENU_ tvshows per page",
-                "zeroRecords": "No tvshows found- sorry",
+                //"zeroRecords": "No tvshows found- sorry",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No tvshows available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
@@ -86,7 +86,7 @@ Genres:
                 "order": [ [ 1,"asc" ] ],
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
-                "processing": true,
+                "processing": false,
                 "ajax": "<?php echo plugins_url( 'tv-datas.php', __FILE__ ); ?>", 
             "columns": 
             [ 
@@ -94,7 +94,7 @@ Genres:
                     "data": "id" , "bVisible" : false
                 },
                 { 
-                    "data": "name"
+                    "data": "name", className: "dt-body-right"
                 },
                 { 
                     "data": "year" , "bVisible" : false
@@ -108,7 +108,7 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false
                 },
-                {"defaultContent": "<div></div>"} 
+                {"defaultContent": "<div></div>",className: "dt-body-center"} 
             ],
             "rowCallback": function( row, data, index ) 
             {
@@ -119,7 +119,7 @@ Genres:
                 
                 $(row).css('cursor' , 'hand');
                 
-                $(row).attr('title','click to add in clipboard');
+                $(row).attr('title','view list of seasons');
                 
                 if(data.id > 0)
                 {

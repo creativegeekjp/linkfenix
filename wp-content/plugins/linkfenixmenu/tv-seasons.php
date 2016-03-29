@@ -12,10 +12,10 @@
      <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Tv Show</th>
             <th>Seasons</th>
             <th>Seasons Code</th>
-            <th></th>
+            <th>Episodes</th>
         </tr>
      <thead>
          <tfoot><tfoot>
@@ -29,7 +29,7 @@
             "language": 
             {
                 "lengthMenu": "Display _MENU_ tvseasons per page",
-                "zeroRecords": "No tvseasons found- sorry",
+                "zeroRecords": "No tvseasons found",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No tvseasons available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
@@ -53,19 +53,19 @@
             "columns": 
             [ 
                 { 
-                    "data": "id" , "bVisible" : false
+                    "data": "id" , "bVisible" : false ,className: "dt-body-right"
                 },
                 { 
-                    "data": "tvname"
+                    "data": "tvname" ,className: "dt-body-right"
                 },
                 { 
-                    "data": "seasonsname"
+                    "data": "seasonsname" ,className: "dt-body-right"
                 },
                 { 
-                    "data": "scode"
+                    "data": "scode" ,className: "dt-body-center"
                 },
                 {
-                    "defaultContent": "<div></div>"
+                    "defaultContent": "<div></div>" ,className: "dt-body-center"
                 } 
              ],
             "rowCallback": function( row, data, index ) 

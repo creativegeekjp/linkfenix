@@ -211,13 +211,10 @@ function preferences()
 {
         echo "<form method='post'>";
         echo " <div class='wrap'><b>LinkFenix - Preferences</b>";
-        echo "<input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Shortcoder' >
-        <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Links' >
-        <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Iframe' >";
-        
         echo "<hr id='line'>";
         echo "<div id='mov-content'>";
         
+        include 'preferences.php';
         
         echo "</div></div>";
         echo "</form>";

@@ -1,22 +1,37 @@
 <?php 
-function my_notice() {
+//message notice for movies import
+function my_notice()
+{
     ?>
     <div class="update notice">
-        <p><?php _e( 'Full Import Successfull', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Full import for movies was successfull.', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }
-function my_option_notice() {
+//message notice of options tv and movies
+function my_option_notice()
+{
     ?>
     <div class="update notice">
-        <p><?php _e( 'Options was checked please wait...', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Options was updating please wait...', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }
-function my_notice_tv() {
+//message notice of tvshows import
+function my_notice_tv() 
+{
     ?>
     <div class="update notice">
-        <p><?php _e( 'Full Import Successfull', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Full import for tvshows was successfull.', 'my_plugin_textdomain' ); ?></p>
+    </div>
+    <?php
+}
+//message notice for options of prefrences
+function my_option_preferences() 
+{
+    ?>
+    <div class="update notice">
+        <p><?php _e( 'Options was updating please wait...', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }

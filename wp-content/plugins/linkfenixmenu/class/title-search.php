@@ -5,7 +5,7 @@
         <script type="text/javascript">
             (function() {
              
-            $.get("<?php echo plugins_url( 'title-parser.php', __FILE__ ); ?>", function(data) {       
+            $.get("/wp-content/plugins/linkfenixmenu/class/title-parser.php", function(data) {       
                 $("input#title").autocomplete({
                     source: data,
                     select: function (a, b) {

@@ -1,4 +1,5 @@
 <?php 
+header('Content-type: application/json');
 
 $page = 1;
 $page1= 1;
@@ -14,7 +15,7 @@ while(true)
       }
       else
       {
-            foreach ($movies['movies']['viewVars']['movies']  as $value)
+            foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
             { 
                 $list1[] = array
                 (
@@ -25,53 +26,53 @@ while(true)
             }
       }
 }
-while(true)
-{
+// while(true)
+// {
 
- $tv = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/tvshows/indexrest/?page='.$page2++),true);
+//  $tv = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/tvshows/indexrest/?page='.$page2++),true);
 
-    if($tv==FALSE)
-      {
-          break;
-      }
-      else
-      {
-            foreach ($tv['tvshows']['viewVars']['tvshows']  as  $value)
-            { 
+//     if($tv==FALSE)
+//       {
+//           break;
+//       }
+//       else
+//       {
+//             foreach ($tv['tvshows']['viewVars']['tvshows']  as $key => $value)
+//             { 
              
-                foreach($value['seasons'] as $season)
-                {
-                  $episode = getEpisodes($season['id']);
-                  
-                  $list1[] = array
-                    (
-                        
-                        'id' => $episode['id'],
-                        'label'   => ucfirst($value['name']).', '.$episode['name'],
-                        'mtype' => 'tv'
-                    );
-                }   
-            }
-      }
-}
+//                 foreach($value['seasons'] as $key => $season)
+//                 {
+//                   $episode = getEpisodes($season['id']);
+                   
+//                     $list1[] = array
+//                             (
+                               
+//                                 'id' => $value['id'],//$episode['id']
+//                                 'label'   => ucfirst($value['name']),
+//                                 'mtype' => 'tv'
+//                             );
+                
+//             }
+//       }
+// }
 
-function getEpisodes($id)
-{
-    $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$id),true);
+// function getEpisodes($id)
+// {
+//     $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$id),true);
  
-        foreach ($episodes['episodes']  as  $epi)
-        { 
-            return array
-            (
+//         foreach ($episodes['episodes']  as  $epi)
+//         { 
+//             return array
+//             (
                
-                'id' => $epi['id'],
-                'name' => $epi['name']
-            );
-        }
+//                 'id' => $epi['id'],
+//                 'name' => $epi['name']
+//             );
+//         }
      
-    }
-
-header('Content-type: application/json');
+//     }
+// }
+//$list5 = array_merge($list1,$list2);
 echo json_encode( $list1 ); 
 
 ?>

@@ -231,23 +231,27 @@
                                                  
                                                  ';
                                    
-                                           
+                                
                                    $content = '
-                                   
-                                         [caption id="" align="alignleft" width="200"] 
-                                         '.$image.'
-                                         [/caption]
-                                         
-                                         [caption id="" align="alignright" width="200"]
-                                         '. $seasons_title.'
-                                         
-                                         '.$imdb.'
-                                         '.$description.'
-                                         [/caption]
-                                         
-                                         [tv mtype=tv id='.$epi['id'].']
+                                   <!-- div holder for our content image-->
+                                     <div class="thumbnail">
+                                           '.$image.'
+                                     </div>
                                     
+                                   <!-- div holder for our description, year etc. -->
+                                     <div class="details">
+                                          <div class="pad">
+                                            '. $seasons_title.'
+                                             
+                                            '.$imdb.'
+                                            '.$description.'
+                                          </div>
+                                     </div>
+                                    
+                                     <!-- shortcode for iframe -->
+                                     [tv mtype=tv id='.$epi['id'].']
                                     ';
+                                    
                                    
                                     if( !wp_exist_post_by_title($post_titles) )
                                     {
@@ -461,20 +465,22 @@
 
                          
                          $content = '
-                                   <div class="thumbnail"> 
-                                    '.$image.'
-                                   </div>
-                                    
-                                   <div class="details">
-	                                   	<div class="pad">
-                                      
-                                      '.$imdb.'
-                                      '.$description.'
+                                   <!-- div holder for our content image-->
+                                     <div class="thumbnail">
+                                           '.$image.'
                                      </div>
-	                                   </div>
                                     
-                                    [tv mtype=tv id='.$code_c['id'].']
-                         
+                                   <!-- div holder for our description, year etc. -->
+                                     <div class="details">
+                                          <div class="pad">
+                                          
+                                            '.$imdb.'
+                                            '.$description.'
+                                          </div>
+                                     </div>
+                                    
+                                     <!-- shortcode for iframe -->
+                                     [tv mtype=tv id='.$code_c['id'].']
                          ';
                          
                          

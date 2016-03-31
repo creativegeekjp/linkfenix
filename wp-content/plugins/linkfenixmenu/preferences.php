@@ -1,4 +1,4 @@
- <?php 
+s<?php 
 
     $scoder = isset($_COOKIE['shortcoder']) ? 'checked="'.$_COOKIE['shortcoder'].'"' : '';
     
@@ -33,11 +33,11 @@ Iframe Links<br>
 <input type='checkbox' name='link-f'<?php echo $link_f; ?> value='link-f' >Show All<br>
 
 Iframe Designs<br>
-<input type='checkbox' name='design-a'<?php echo $frame_a; ?> value='design-a' >Design 1<br>
-<input type='checkbox' name='design-b'<?php echo $frame_b; ?> value='design-b' >Design 2<br>
-<input type='checkbox' name='design-c'<?php echo $frame_c; ?> value='design-c' >Design 3<br>
-<input type='checkbox' name='design-d'<?php echo $frame_d; ?> value='design-d' >Design 4<br>
-<input type='checkbox' name='design-e'<?php echo $frame_e; ?> value='design-e' >Design 5<br><br><br>
+<input type='checkbox' name='design-a'<?php echo $frame_a; ?> value='design-a' ><a href="">Design 1 </a><br>
+<input type='checkbox' name='design-b'<?php echo $frame_b; ?> value='design-b' ><a href="">Design 2 </a><br>
+<input type='checkbox' name='design-c'<?php echo $frame_c; ?> value='design-c' ><a href="">Design 3 </a><br>
+<input type='checkbox' name='design-d'<?php echo $frame_d; ?> value='design-d' ><a href="">Design 4 </a><br>
+<input type='checkbox' name='design-e'<?php echo $frame_e; ?> value='design-e' ><a href="">Design 5 </a><br><br><br>
 
 
 <input type='submit' id='searchsubmit' name='pref-searchsubmit' value='Save Changes' >

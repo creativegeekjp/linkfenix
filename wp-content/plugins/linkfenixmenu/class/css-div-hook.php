@@ -1,9 +1,25 @@
-<?php 
-add_action('wp_head','cascade');
+<?php
+/*
+*
+*  Hook that make our movie information reposive to any layouts
+*  
+*
+*/
+add_action( 'wp_head', 'metadatas' );
+add_action( 'wp_head', 'cascade' );
 
-function cascade() {
 
-	$output="<style>
+function metadatas()
+{
+    echo '<meta charset="utf-8">';
+	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+}
+function cascade() 
+{
+
+	$content="<style>
+	
                 .thumbnail {
                 	width: 30%;
                 	float: left;
@@ -20,6 +36,8 @@ function cascade() {
                 
                 .details .pad {
                 	padding: 0 20px;
+                	font-size: 12px;
+                	font-family: helvetica;
                 }
                 
                 
@@ -34,8 +52,9 @@ function cascade() {
                 		display: block;
                 	}
                 }
-	        </script>";
+	        </style>";
 
-	echo $output;
+	echo $content;
 }
+
 ?>

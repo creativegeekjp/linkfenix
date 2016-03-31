@@ -110,7 +110,7 @@ function twentyfourteen_setup() {
 		'featured_content_filter' => 'twentyfourteen_get_featured_posts',
 		'max_posts' => 6,
 	) );
-
+	
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
 }

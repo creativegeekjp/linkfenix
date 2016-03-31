@@ -1,13 +1,13 @@
 <?php
 /**
- * @package LinkFenix
+ * @package Linkfenix
  * @version 1.0
  */
 /*
 
-Plugin Name: LinkFenix Plugin 
+Plugin Name: Linkfenix  
 Plugin URI: 
-Description: LinkFenix Project
+Description: Linkfenix 
 Author: Jino
 Version: 1.0
 Author URI: 

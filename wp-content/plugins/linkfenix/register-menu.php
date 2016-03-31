@@ -221,40 +221,5 @@ function preferences()
         echo "</div></div>";
         echo "</form>";
       
-       
-    $term = "prophecy";
-    
-    $datus = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/movies/search/'.$term),true);
-  
-    foreach($datus as $key => $value)
-    {
-         $v = $key;
-    }
-   
-     foreach($datus[$v] as $key => $value)
-        {
-            if($v=='mov')
-            {
-                 $arr[] = array(
-                        'id' => $value['id'],
-                        'label' => $value['name'],
-                        'mtype' => $v
-                    );
-            }else{
-                 foreach($value as $tvs)
-                 {
-                      $arr[] = array(
-                            'id' => $tvs['id'],
-                            'label' => $tvs['name'],
-                            'mtype' => $v
-                         );
-                 }
-            }
-        }
-   
-    echo json_encode($arr);
-      
-     
-
 }
 ?>

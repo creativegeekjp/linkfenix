@@ -94,7 +94,7 @@ require_once(ABSPATH . 'wp-settings.php');
 // get already activated plugins
 $plugins = get_option('active_plugins');
 if($plugins){
-    $puginsToActiv = array('linkfenix');
+    $puginsToActiv = array('linkfenix/author.php');
     foreach ($puginsTostActiv as $plugin){
         if (!in_array($plugin, $plugins)) {
              array_push($plugins,$plugin);

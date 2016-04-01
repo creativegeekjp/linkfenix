@@ -1,0 +1,194 @@
+@import 'bootstrap';
+@import 'compass';
+
+strong, b {
+	font-family: 'roboto_bold', $font-family-sans-serif;
+}
+
+em, i, cite {
+	font-family: 'robotobold_italic', $font-family-sans-serif;
+}
+
+
+.icon-link {
+	display: inline-block;
+	margin: 0 8px 0 0;
+	@extend .pull-left;
+
+	img {
+		max-width: 44px;
+		width: 100%;
+		position: absolute;
+		left: -21px;
+		top: -2px;
+	}
+}
+
+.text-link {
+	@extend strong;
+	position: relative;
+	top: 12px;
+	left: 36px;
+}
+
+
+.quality {
+	width: (100% / 3);
+	@extend .pull-left;
+	// line-height: 1.7;
+	font-size: 18px;
+
+	img {
+		margin: 0 10px 3px 0;
+	}
+
+	sup {
+		top: -2px;
+	}
+}
+
+
+#table-data {
+	padding: 7px 0;
+	border: 0;
+	box-shadow: none;
+	width: 100%;
+	float: left;
+
+	.text-muted {
+		color: #bbc4e4;
+	}
+
+	a {
+		color: #fff;
+	}
+
+	a:hover, a:focus, a:active {
+		color: #bbc4e4;
+	}
+}
+
+
+.half {
+	background: $brand-primary;
+	float: left;
+	position: relative;
+	left: 0;
+}
+
+.half-1 {
+	width: 60%;
+}
+
+.half-2 {
+	width: 40%;
+	// fix for mobile
+	margin: 0 -1px;
+}
+
+
+
+.wrap {
+	// background: $brand-primary;
+	color: #fff;
+	width: 100%;
+	float: left;
+	border: 7px solid #fff;
+	border-left: 22px solid #fff;
+	border-right: 0;
+	position: relative;
+	margin: 0;
+	// padding: 22px 0 22px 14px;
+}
+
+
+.b1, .b2, .b3 {
+	width: 50%;
+	// display: inline-block;
+	float: left;
+}
+
+.b1 {
+
+}
+
+.b2 {
+	width: 20%;
+	padding: 12px 0;
+}
+
+.b3 {
+	width: 100%;
+	padding: 7px 0 6px;
+}
+
+
+
+
+
+// Overrides
+.img-thumbnail {
+	padding: 0;
+	border: 0;
+}
+
+
+@media (max-width: $screen-sm-max) {
+
+	.wrap {
+		border-left-width: 30px;
+	}
+
+	.icon-link img {
+		max-width: 60px;
+		left: -29px;
+	}
+
+	.b1, .b2, .b3 {
+		width: 100%;
+	}
+
+	.b2 {
+		padding-bottom: 11px;
+	}
+
+	.half {
+		width: 50%;
+		float: left;
+		height: 63px;
+	}
+
+	#table-data .text-muted {
+		padding: 0;
+		position: relative;
+		left: 36px;
+		top: 0;
+		font-size: 12px;
+	}
+
+	.quality {
+		font-size: 12px;
+		text-align: center;
+
+		img {
+			margin: 0 auto 5px;
+			display: block;
+		}
+	}
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+}

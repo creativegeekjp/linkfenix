@@ -5,6 +5,8 @@ include 'class/time-zone.php';
 
 $page = 1;
 
+$display = false;
+
 while(true)
 {
 
@@ -18,8 +20,6 @@ while(true)
       {
         foreach ($tv['tvshows']['viewVars']['tvshows']  as $value)
         { 
-            
-              $i= 0;
                
                 $seasonsS = array();
                 
@@ -31,28 +31,31 @@ while(true)
                     { 
                         if( date('Y-m-d',strtotime($valuess['created'])) >= date("Y-m-d"))
                         {
-                           $options['data'][] = array
-                            (
-                               
-                                'id' => $value['id'],
-                                'name'    => $value['name'],
-                                'year'  => date('Y',strtotime($value['year'])),
-                                'genre'  => implode('<br>',$tmp),
-                                'created'  => date('Y-m-d',strtotime($value['created'])),
-                                'indicator' => date("Y-m-d") 
-                               
-                            );
+                        //   if($value['id'] ==$episodeS['tvshow_id'])
+                        //   {
+                        //       $display = true;
+                        //   }
                         }
                        
                        
                     }
                 }
-               
-              $i++;
-              
-           
-            
-            
+                
+            //   if($display==true)
+            //   {
+            //         $options['data'][] = array
+            //                 (
+                               
+            //                     'id' => $value['id'],
+            //                     'name'    => $value['name'],
+            //                     'year'  => date('Y',strtotime($value['year'])),
+            //                     'genre'  => implode('<br>',$tmp),
+            //                     'created'  => date('Y-m-d',strtotime($value['created'])),
+            //                     'indicator' => date("Y-m-d") 
+                               
+            //                 );
+            //   }
+         
            
         }
       }

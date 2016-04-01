@@ -112,32 +112,14 @@
         }else{
          setcookie( 'link-f', '', time() - $t_billion);
         }
-        if(isset($_POST['design-a'])){
-         setcookie( 'design-a', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'design-a', '', time() - $t_billion);
-        }
-        if(isset($_POST['design-b'])){
-         setcookie( 'design-b', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'design-b', '', time() - $t_billion);
-        }
-        if(isset($_POST['design-c'])){
-         setcookie( 'design-c', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'design-c', '', time() - $t_billion);
-        }
-        if(isset($_POST['design-d'])){
-         setcookie( 'design-d', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'design-d', '', time() - $t_billion);
-        }
-        if(isset($_POST['design-e'])){
-         setcookie( 'design-e', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'design-e', '', time() - $t_billion);
+        
+        foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframes/editframe/'.$_POST['f']),true) as  $iframe)
+        { 
+           $id = $iframe['id'];
+          
         }
         
+       
     }
 /*
 *  function for importing tv-shows and store to wordpress database 

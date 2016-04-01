@@ -1,0 +1,190 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic);
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+}
+
+h4 {
+margin-bottom: 12px;
+font-size: 1em;
+font-weight: bold;
+text-transform:;
+}
+
+h5 {
+font-size: 1.75em;
+}
+
+
+
+
+ol, ul {
+list-style: none;
+}
+
+body {
+line-height: 1;
+}
+
+strong {
+color:#000;
+font-weight: 600;
+}
+
+.plans {
+background: #e7f2f0;
+}
+
+.layer {
+clear: both;
+width: 100%;
+height: auto;
+padding: 60px 7.5% 60px;
+display: block;
+}
+
+.layer > section, .layer > article {
+clear: both;
+width: 100%;
+height: auto;
+max-width: 1092px;
+margin: 0 auto;
+display: block;
+}
+
+.third {
+  /* width: 20%; */
+  /*margin: 0 30px 0 0;*/
+  /* display: inline-block; */
+}
+
+.plan-tier {
+background:#fff;
+vertical-align: baseline;
+border-radius: 0px;
+-moz-border-radius: 0px;
+cursor: pointer;
+overflow: hidden;
+}
+
+.lift {
+position: relative;
+-webkit-transition: all .075s ease-out;
+-moz-transition: all .075s ease-out;
+-o-transition: all .075s ease-out;
+transition: all .075s ease-out;
+}
+
+.lift:hover {
+top: -3px;
+-webkit-box-shadow: 0 2px 6px rgba(39,65,90,.15);
+-moz-box-shadow: 0 2px 6px rgba(39,65,90,.15);
+box-shadow: 0 2px 6px rgba(39,65,90,.15);
+}
+
+.plan-tier h4 {
+padding: 18px 0 15px;
+margin: 0 0 30px;
+background: #494949 none repeat scroll 0% 0%;
+color: white;
+}
+
+.plan-tier {
+cursor: pointer;
+}
+
+.plan-tier sup {
+position: relative;
+right: -9px;
+}
+
+.plan-tier ul {
+margin: 30px 0 0;
+border-top: 2px solid #e7f2f0;
+}
+
+.plan-tier ul li {
+font-size: 1em;
+padding: 8px 0px;
+color: #000;
+border-bottom: 1px solid #E7F2F0;
+}
+
+sup {
+vertical-align: top;
+}
+
+.plan-tier .plan-price {
+  font-weight: bold;
+  letter-spacing: -3px;
+  font-size: 90px;
+  color: #000;
+}
+
+.plan-tier sub {
+vertical-align: bottom;
+position: relative;
+bottom: .875em;
+}
+
+.plan-tier .early-adopter-price {
+color: #0091e5;
+}
+p:first-of-type {
+margin-top: 0;
+}
+
+small, del {
+color: rgba(39,65,90,.5);
+font-size: 1em;
+line-height: 1.5em;
+}
+
+s, strike, del {
+text-decoration: line-through;
+}
+
+
+.layer {
+padding-top: 96px;
+padding-bottom: 96px;
+}
+
+.plan-tier.callout h6 {
+width: 100%;
+padding: 15px 0 14px;
+background: #8dcf3f;
+color: rgba(39,65,90,.5);
+font-size: 1.25em;
+}
+
+.plan-tier.callout h4 {
+background-color: #78b336;
+}
+
+
+#features{
+	font-family: 'Helvetica Neue LT Std';
+	font-size: 20px;
+	color:#2C2C2C;
+	font-weight:;
+	margin-top:20px;
+}
+
+#features-title {
+  font-family: "Helvetica Neue ...",sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  color: #000;
+}
+
+
+#ftr{font-size:15px; color:white;}
+.ftr{font-size:15px; color:white;}
+
+.superscript{
+	color: #000;
+}

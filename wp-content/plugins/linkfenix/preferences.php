@@ -1,4 +1,4 @@
-s<?php 
+<?php 
 
     $scoder = isset($_COOKIE['shortcoder']) ? 'checked="'.$_COOKIE['shortcoder'].'"' : '';
     
@@ -10,15 +10,36 @@ s<?php
     $link_f = isset($_COOKIE['link-f']) ? 'checked="'.$_COOKIE['link-f'].'"' : '';
     
     
-    $frame_a = isset($_COOKIE['design-a']) ? 'checked="'.$_COOKIE['design-a'].'"' : '';
-    $frame_b = isset($_COOKIE['design-b']) ? 'checked="'.$_COOKIE['design-b'].'"' : '';
-    $frame_c = isset($_COOKIE['design-c']) ? 'checked="'.$_COOKIE['design-c'].'"' : '';
-    $frame_d = isset($_COOKIE['design-d']) ? 'checked="'.$_COOKIE['design-d'].'"' : '';
-    $frame_e = isset($_COOKIE['design-e']) ? 'checked="'.$_COOKIE['design-e'].'"' : '';
+    foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframes/design'),true) as  $iframe)
+    { 
+      $id = $iframe['id'];
+    }
+    switch($id)
+    {
+        case 1;
+            $frame_a = 'checked=checked';
+        break;
+        
+        case 2;
+            $frame_b = 'checked=checked';
+        break;
+        
+        case 3;
+            $frame_c = 'checked=checked';
+        break;
+        
+        case 4;
+            $frame_d = 'checked=checked';
+        break;
+        
+        case 5;
+            $frame_e = 'checked=checked';
+        break;
+    }
     
  ?>
  
-Check or uncheck the non-obligatory options as you would like the content to be updated.<br><div id='msg'></div>
+ Check or uncheck the non-obligatory options as you would like the content to be updated.<br><div id='msg'></div>
  
  
 Shortcoder<br>
@@ -33,11 +54,11 @@ Iframe Links<br>
 <input type='checkbox' name='link-f'<?php echo $link_f; ?> value='link-f' >Show All<br>
 
 Iframe Designs<br>
-<input type='checkbox' name='design-a'<?php echo $frame_a; ?> value='design-a' ><a href="">Design 1 </a><br>
-<input type='checkbox' name='design-b'<?php echo $frame_b; ?> value='design-b' ><a href="">Design 2 </a><br>
-<input type='checkbox' name='design-c'<?php echo $frame_c; ?> value='design-c' ><a href="">Design 3 </a><br>
-<input type='checkbox' name='design-d'<?php echo $frame_d; ?> value='design-d' ><a href="">Design 4 </a><br>
-<input type='checkbox' name='design-e'<?php echo $frame_e; ?> value='design-e' ><a href="">Design 5 </a><br><br><br>
+<input type='checkbox' name='f'<?php echo $frame_a; ?> value='1' ><a href="">Design 1 </a><br>
+<input type='checkbox' name='f'<?php echo $frame_b; ?> value='2' ><a href="">Design 2 </a><br>
+<input type='checkbox' name='f'<?php echo $frame_c; ?> value='3' ><a href="">Design 3 </a><br>
+<input type='checkbox' name='f'<?php echo $frame_d; ?> value='4' ><a href="">Design 4 </a><br>
+<input type='checkbox' name='f'<?php echo $frame_e; ?> value='5' ><a href="">Design 5 </a><br><br><br>
 
 
 <input type='submit' id='searchsubmit' name='pref-searchsubmit' value='Save Changes' >

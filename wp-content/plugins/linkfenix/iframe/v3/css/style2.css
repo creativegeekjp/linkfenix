@@ -1,0 +1,70 @@
+body{
+	background-color:#00040D;
+}
+.navbar-inverse {
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.navbar-inverse {
+    background-color: #000;
+}
+
+.navbar {
+    border-radius:0 0 0 0;
+    min-height: 30px;
+}
+
+.side-map ul, li{
+	display: block;
+	color: #00ccff;
+}
+
+#bg{
+	background-image:url(../img/body.png);
+
+	background-repeat:repeat-x;
+}
+#bg2{
+	background-image:url(../img/body2.png);
+
+	background-repeat:repeat-x;
+}
+#bg3{
+	background-image:url(../img/body3.png);
+
+	background-repeat:repeat-x;
+}
+#bg4{
+	background-image:url(../img/body4.png);
+
+	background-repeat:repeat-x;
+}
+
+.navbar-inverse .navbar-nav > .active > a{
+
+    background-color: rgba(113, 125, 137, 0);
+}
+
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.navbar-inverse .navbar-nav {
+    margin: 0 auto;
+}
+
+.nav > li > a {
+        padding-top: px;
+        padding-right: 15px;
+        padding-bottom: px;
+        padding-left: 15px;
+        font-size:10px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 4px;
+    color: #FFF;
+}

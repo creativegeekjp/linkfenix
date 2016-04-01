@@ -1,0 +1,95 @@
+@import 'bootstrap';
+@import 'compass';
+
+strong, b {
+	font-family: 'roboto_bold', $font-family-sans-serif;
+}
+
+em, i, cite {
+	font-family: 'robotobold_italic', $font-family-sans-serif;
+}
+
+
+#panel-data {
+	border: 0;
+
+	.panel-heading {
+		padding: 15px;
+		@include b-rad(6px 6px 0 0);
+	}
+
+	.panel-title {
+		font-size: 24px;
+		@extend strong;
+	}
+
+	.panel-body {
+		padding-top: 0;
+	}
+}
+
+
+.icon-link {
+	display: block;
+	max-width: 70px;
+	margin: 0 auto;
+
+	img {
+		height: auto;
+		width: 100%;
+	}
+}
+
+
+.text-link {
+	font-size: 18px;
+	@extend strong;
+	margin: 0 0 12px;
+
+	small {
+		margin: 4px 0 0;
+	}
+}
+
+.quality {
+	width: (100% / 3);
+	max-width: 119px;
+	@extend .pull-left;
+}
+
+
+.item {
+	border-bottom: 1px solid #d1d4d3;
+	padding: 10px 0;
+}
+
+
+.no-rpad {
+	padding-right: 0;
+}
+
+
+.badge.big {
+	@include box(34px);
+	@include b-rad(999px);
+	font-size: 14px;
+	padding: 10px 0;
+	background: $brand-primary;
+	margin: 0 10px 5px 0;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+}

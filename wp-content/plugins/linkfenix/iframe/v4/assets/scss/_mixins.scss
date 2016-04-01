@@ -1,0 +1,11 @@
+@mixin b-rad( $rad ) {
+	-moz-border-radius: $rad;
+	-webkit-border-radius: $rad;
+	border-radius: $rad;
+}
+
+
+@mixin box( $dimension ) {
+	height: $dimension;
+	width: $dimension;
+}

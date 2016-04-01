@@ -1,18 +1,24 @@
 <?php 
-
-add_action( 'wp_head', 'first_initialized' );
-
-function first_initialized()
+function frames()
 {
-    add_action( 'the_content', 'tv');
-    add_action( 'the_content' , 'mov' );
+      
+    foreach (json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/iframes/design'),true) as  $iframe)
+    { 
+         $active_frame = $iframe['name'];
+     
+    }
+
+ return $active_frame ; 
+
 }
 
 function tv($content)
 {
+  
     add_shortcode(  'tv' , 'content_tv' );
  
     return $content;
+   
 }
 
 function mov($content)
@@ -24,10 +30,10 @@ function mov($content)
  
 }
 
+
 function content_tv($atts)
-{
-     $frame_src = plugins_url( '../links/', __FILE__ ); 
-     
+{  
+  
     extract(shortcode_atts(array(
           'mtype' => '',
           'id' => '',
@@ -44,12 +50,14 @@ function content_tv($atts)
            case 'id' :
                $id = $attributes;
            break;
+        
        }
     }
+    
       return '
             <script type="text/javascript">
                 $(function() {
-                     $("#movieFrame").attr("src", "'.$frame_src.'/?scode='.$id.'&mtype='.$mtype.' "); 
+                     $("#movieFrame").attr("src", "'.plugins_url( frames() , __FILE__ ).'/?scode='.$id.'&mtype='.$mtype.' "); 
                 } );
             </script>
 
@@ -57,15 +65,16 @@ function content_tv($atts)
                      Iframe Error!. Please contact the administrator 
              </iframe>
       ';
+      
 }
 
 function content_mov($atts)
 {
-    $frame_src = plugins_url( '/links/', __FILE__ ); 
     
-    extract(shortcode_atts(array(
-              'mtype' => '',
-              'id' => '',
+
+   extract(shortcode_atts(array(
+          'mtype' => '',
+          'id' => '',
     ), $atts));
      
     foreach($atts as $key => $attributes)
@@ -79,21 +88,25 @@ function content_mov($atts)
            case 'id' :
                $id = $attributes;
            break;
+         
        }
     }
-       return '
+    return '
             <script type="text/javascript">
                 $(function() {
-                     $("#movieFrame").attr("src", "'.$frame_src.'/?scode='.$id.'&mtype='.$mtype.' "); 
+                     $("#movieFrame").attr("src", "'.plugins_url( frames() , __FILE__ ).'/?scode='.$id.'&mtype='.$mtype.' "); 
                 } );
             </script>
+
              <iframe id="movieFrame" width="900" height="900" frameborder="0"> 
                      Iframe Error!. Please contact the administrator 
              </iframe>
-      ';
+     ';
     
-}
+} 
 
+add_action( 'the_content', 'tv');
+add_action( 'the_content' , 'mov' );
 ?>
 
 

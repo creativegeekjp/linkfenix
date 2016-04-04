@@ -420,282 +420,89 @@ canvas#pie {
 
 </head>
 <body>
+<?php 
+	include '../links.php';
+
+?>
 	<div class="container-fluid">
 		<div class="col-md-12 col-lg-12">
 			<div class="header-link row" style="background-color:#ff6418; height:50px; border-radius:5px 5px 0px 0px;" >
 				<h3 id="center text-white" style="color:white; text-align:center; line-height: 0.1;">LINKS</h3>
 			</div>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/6.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">HDStream</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-1" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
+			
+		
+			
+				<?php 
+			
+				$i = 0;
+	
+					foreach($rs[0] as $key => $values)
+					{
+					     
+					    $name = $rs[0][$i]['name'];
+					    $icon_type= $rs[0][$i]['icon'];  
+					    $link = $rs[0][$i]['link'];  
+					    $source = $rs[0][$i]['source'];  
+					    $age = $rs[0][$i]['age'];  
+					    $vote = $rs[0][$i]['vote'];  
+					    $video = $rs[0][$i]['video'];  
+					    $audio = $rs[0][$i]['audio'];      
+					   
+					    switch($icon_type)
+					    {
+					    
+					    	case 1:
+					    		$icons = "assets/img/icon-vvids.png";
+					    	break;
+					    	
+					    	case 2:
+					    		 $icons = "assets/img/icon-flashx.png";
+					    	break;
+					    	
+					    	case 3:
+					    		$icons = "assets/img/icon-filehoot.png"; 
+					    	break;
+					    	
+					    	case 4:
+					    		 $icons = "assets/img/icon-hdstream.png"; 
+					    	break;
+					    	
+					    }
+					    
+					  echo '<div class="link-content row" style="padding:5px 0px 5px 0px;">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
+									<a href="#"><img src="'.$icons.'" class="img-responsive" alt=""></a>
 								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-2" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
+								<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+									<div class="row">
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											<a href="'.$link.'" target="_blank" ><h4 style="color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
+											<span>'.$age.'</span>
+										</div>						
+										<div class="col-xs-8 col-lg-5">
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											    '.$vote.'
+												<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
+											</div>
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+												'.$video.'
+												<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
+											</div>
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											   	'.$audio.'
+												<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
+											</div>
+										</div>
+									</div>
 								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
 							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-3" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/7.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">V-vids</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-4" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-5" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-6" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/8.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FlashX</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-7" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-8" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-9" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/9.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FileHoot</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-10" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-11" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-12" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/6.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">HDStream</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-13" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-14" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-15" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/7.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">V-vids</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-16" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-17" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-18" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/8.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FlashX</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-19" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-20" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-21" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/9.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FileHoot</h4></a>
-							<span>1y ago</span>
-						</div>						
-						<div class="col-xs-8 col-lg-5">
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-22" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-23" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div id="demo-pie-24" class="pie-title-center" data-percent="60"> 
-									<span class="pie-value"></span> 
-								</div>
-								<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+								<hr>';
+					    
+					    if (++$i >= ( $count ) ) break;
+					  
+					}
+			
+			?>
 
 		</div>
 	</div>

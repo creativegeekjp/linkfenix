@@ -31,318 +31,96 @@
 </head>
 <body>
 
+<?php 
+	include '../links.php';
+?>
 
 <table id="table-data" class="table table-striped">
 
 	<thead class="text-uppercase">
 		<tr>
 			<th width="40%">Link </th>
-			<th width="20%">Age</th>
+			<th width="18%">Age</th>
 			<th width="40%">Quality</th>
 		</tr>
 	</thead>
 
 	<tbody>
 
-		<tr class="text-center">
-				<td class="text-left">
-					<a href="#" class="icon-link" target="_blank">
-						<img class="img-responsive img-thumbnail" src="assets/img/icon-hdstream.jpg" alt="icon: HDStrem">
-					</a>
-					<a href="#" class="text-link" target="_blank">HDStream</a>
-				</td>
+	
+			
+			<?php 
+			
+				$i = 0;
+	
+					foreach($rs[0] as $key => $values)
+					{
+					     
+					    $name = $rs[0][$i]['name'];
+					    $icon_type= $rs[0][$i]['icon'];  
+					    $link = $rs[0][$i]['link'];  
+					    $source = $rs[0][$i]['source'];  
+					    $age = $rs[0][$i]['age'];  
+					    $vote = $rs[0][$i]['vote'];  
+					    $video = $rs[0][$i]['video'];  
+					    $audio = $rs[0][$i]['audio'];      
+					   
+					    switch($icon_type)
+					    {
+					    	case 1:
+					    		$icons = "assets/img/icon-vvids.jpg";
+					    	break;
+					    	
+					    	case 2:
+					    		 $icons = "assets/img/icon-flashx.jpg";
+					    	break;
+					    	
+					    	case 3:
+					    		$icons = "assets/img/icon-filehoot.jpg"; 
+					    	break;
+					    	
+					    	case 4:
+					    		 $icons = "assets/img/icon-hdstream.jpg"; 
+					    	break;
+					    	
+					    }
+					    
+					  echo '	<tr class="text-center">
+								<td class="text-left">
+									<a href="#" class="icon-link" target="_blank">
+										<img class="img-responsive img-thumbnail" src="'.$icons.'" alt="icon: V-Vids">
+									</a>
+									<a href="'.$link.'" class="text-link" target="_blank">'.$name.'</a>
+								</td>
+				
+								<td>
+									'.$age.'
+								</td>
+				
+								<td>
+									<div class="quality rating">
+										<i class="fa fa-thumbs-o-up"></i>100%
+									</div>
+									<div class="quality video">
+										<i class="fa fa-video-camera"></i>'. $video.'
+									</div>
+									<div class="quality audio">
+										<i class="fa fa-volume-up"></i>'.$audio.'
+									</div>		
+								</td>
+						</tr>';
+					    
+					    if (++$i >= ( $count ) ) break;
+					  
+					}
+			
+			?>
+			
+	
+	
 
-				<td>
-					1 year
-				</td>
-
-				<td>
-					<div class="quality rating">
-						<i class="fa fa-thumbs-o-up"></i>100%
-					</div>
-					<div class="quality video">
-						<i class="fa fa-video-camera"></i>100%
-					</div>
-					<div class="quality audio">
-						<i class="fa fa-volume-up"></i>100%
-					</div>		
-				</td>
-		</tr>
-
-		<tr class="text-center">
-				<td class="text-left">
-					<a href="#" class="icon-link" target="_blank">
-						<img class="img-responsive img-thumbnail" src="assets/img/icon-vvids.jpg" alt="icon: V-Vids">
-					</a>
-					<a href="#" class="text-link" target="_blank">V-Vids</a>
-				</td>
-
-				<td>
-					2 years
-				</td>
-
-				<td>
-					<div class="quality rating">
-						<i class="fa fa-thumbs-o-up"></i>100%
-					</div>
-					<div class="quality video">
-						<i class="fa fa-video-camera"></i>100%
-					</div>
-					<div class="quality audio">
-						<i class="fa fa-volume-up"></i>100%
-					</div>		
-				</td>
-		</tr>
-
-		<tr class="text-center">
-				<td class="text-left">
-					<a href="#" class="icon-link" target="_blank">
-						<img class="img-responsive img-thumbnail" src="assets/img/icon-flashx.jpg" alt="icon: FlashX">
-					</a>
-					<a href="#" class="text-link" target="_blank">FlashX</a>
-				</td>
-
-				<td>
-					1 year
-				</td>
-
-				<td>
-					<div class="quality rating">
-						<i class="fa fa-thumbs-o-up"></i>100%
-					</div>
-					<div class="quality video">
-						<i class="fa fa-video-camera"></i>100%
-					</div>
-					<div class="quality audio">
-						<i class="fa fa-volume-up"></i>100%
-					</div>		
-				</td>
-		</tr>
-
-		<tr class="text-center">
-				<td class="text-left">
-					<a href="#" class="icon-link" target="_blank">
-						<img class="img-responsive img-thumbnail" src="assets/img/icon-filehoot.jpg" alt="icon: FileHoot">
-					</a>
-					<a href="#" class="text-link" target="_blank">FielHoot</a>
-				</td>
-
-				<td>
-					&lt;1 year
-				</td>
-
-				<td>
-					<div class="quality rating">
-						<i class="fa fa-thumbs-o-up"></i>100%
-					</div>
-					<div class="quality video">
-						<i class="fa fa-video-camera"></i>100%
-					</div>
-					<div class="quality audio">
-						<i class="fa fa-volume-up"></i>100%
-					</div>		
-				</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-hdstream.jpg" alt="icon: HDStrem">
-				</a>
-				<a href="#" class="text-link" target="_blank">HDStream</a>
-			</td>
-
-			<td>
-				1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-vvids.jpg" alt="icon: V-Vids">
-				</a>
-				<a href="#" class="text-link" target="_blank">V-Vids</a>
-			</td>
-
-			<td>
-				2 years
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-flashx.jpg" alt="icon: FlashX">
-				</a>
-				<a href="#" class="text-link" target="_blank">FlashX</a>
-			</td>
-
-			<td>
-				1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-filehoot.jpg" alt="icon: FileHoot">
-				</a>
-				<a href="#" class="text-link" target="_blank">FielHoot</a>
-			</td>
-
-			<td>
-				&lt;1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-hdstream.jpg" alt="icon: HDStrem">
-				</a>
-				<a href="#" class="text-link" target="_blank">HDStream</a>
-			</td>
-
-			<td>
-				1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-vvids.jpg" alt="icon: V-Vids">
-				</a>
-				<a href="#" class="text-link" target="_blank">V-Vids</a>
-			</td>
-
-			<td>
-				2 years
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-flashx.jpg" alt="icon: FlashX">
-				</a>
-				<a href="#" class="text-link" target="_blank">FlashX</a>
-			</td>
-
-			<td>
-				1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
-
-		<tr class="text-center">
-			<td class="text-left">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive img-thumbnail" src="assets/img/icon-filehoot.jpg" alt="icon: FileHoot">
-				</a>
-				<a href="#" class="text-link" target="_blank">FielHoot</a>
-			</td>
-
-			<td>
-				&lt;1 year
-			</td>
-
-			<td>
-				<div class="quality rating">
-					<i class="fa fa-thumbs-o-up"></i>100%
-				</div>
-				<div class="quality video">
-					<i class="fa fa-video-camera"></i>100%
-				</div>
-				<div class="quality audio">
-					<i class="fa fa-volume-up"></i>100%
-				</div>		
-			</td>
-		</tr>
+	
+	
 
 	</tbody>
 

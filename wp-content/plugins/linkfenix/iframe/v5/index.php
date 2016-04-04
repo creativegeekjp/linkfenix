@@ -31,7 +31,9 @@
 </head>
 <body>
 
-
+<?php 
+	include '../links.php';
+?>
 
 <div id="panel-data" class="panel panel-primary">
 	<div class="panel-heading">
@@ -39,297 +41,88 @@
 	</div><!-- /.panel-heading -->
 
 	<div class="panel-body">
-		
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-hdstream.jpg" alt="icon: HDStrem">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">HDStream</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-vvids.jpg" alt="icon: V-Vids">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">V-Vids</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-flashx.jpg" alt="icon: FlashX">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">FlashX</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-filehoot.jpg" alt="icon: FileHoot">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">FileHoot</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-hdstream.jpg" alt="icon: HDStrem">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">HDStream</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-vvids.jpg" alt="icon: V-Vids">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">V-Vids</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-flashx.jpg" alt="icon: FlashX">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">FlashX</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="item">
-					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
-							<a href="#" class="icon-link" target="_blank">
-								<img class="img-circle" src="assets/img/icon-filehoot.jpg" alt="icon: FileHoot">
-							</a>
-						</div><!-- /.col -->
-
-						<div class="col-xs-9 col-sm-9 col-md-10">
-							
-							<h3 class="text-link">
-								<a href="#" target="_blank">FileHoot</a>
-								<small class="text-muted pull-right">1y ago</small>
-							</h3>
-
-							<div class="quality">
-								<span class="badge big">5</span>
-								<span class="text-uppercase">rating</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">video</span>
-							</div><!-- /.quality -->
-
-							<div class="quality">
-								<span class="badge big">10</span>
-								<span class="text-uppercase">audio</span>
-							</div><!-- /.quality -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.item -->
-			</div><!-- /.col -->
-
-		</div><!-- /.row -->
-
+        	<?php 
+			
+				$i = 0;
+	
+					foreach($rs[0] as $key => $values)
+					{
+					     
+					    $name = $rs[0][$i]['name'];
+					    $icon_type= $rs[0][$i]['icon'];  
+					    $link = $rs[0][$i]['link'];  
+					    $source = $rs[0][$i]['source'];  
+					    $age = $rs[0][$i]['age'];  
+					    $vote = $rs[0][$i]['vote'];  
+					    $video = $rs[0][$i]['video'];  
+					    $audio = $rs[0][$i]['audio'];      
+					   
+					    switch($icon_type)
+					    {
+					    
+					    	case 1:
+					    		$icons = "assets/img/icon-vvids.jpg";
+					    	break;
+					    	
+					    	case 2:
+					    		 $icons = "assets/img/icon-flashx.jpg";
+					    	break;
+					    	
+					    	case 3:
+					    		$icons = "assets/img/icon-filehoot.jpg"; 
+					    	break;
+					    	
+					    	case 4:
+					    		 $icons = "assets/img/icon-hdstream.jpg"; 
+					    	break;
+					    	
+					    }
+					    
+					  echo '<div class="row">
+								<div class="col-xs-12 col-sm-6">
+									<div class="item">
+										<div class="row">
+											<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
+												<a href="#" class="icon-link" target="_blank">
+													<img class="img-circle" src="'.$icons.'" alt="icon: HDStrem">
+												</a>
+											</div><!-- /.col -->
+					
+											<div class="col-xs-9 col-sm-9 col-md-10">
+												
+												<h3 class="text-link">
+													<a href="'.$link.'" target="_blank">HDStream</a>
+													<small class="text-muted pull-right">'.$age.' ago</small>
+												</h3>
+					
+												<div class="quality">
+													<span class="badge big">'.$vote.'</span>
+													<span class="text-uppercase">rating</span>
+												</div><!-- /.quality -->
+					
+												<div class="quality">
+													<span class="badge big">'.$video.'</span>
+													<span class="text-uppercase">video</span>
+												</div><!-- /.quality -->
+					
+												<div class="quality">
+													<span class="badge big">'.$audio.'</span>
+													<span class="text-uppercase">audio</span>
+												</div><!-- /.quality -->
+											</div><!-- /.col -->
+										</div><!-- /.row -->
+									</div><!-- /.item -->
+								</div><!-- /.col -->
+					
+							</div><!-- /.row -->';
+					    
+					    if (++$i >= ( $count ) ) break;
+					  
+					}
+			
+			?>
 	</div><!-- ./panel-body -->
 </div><!-- /.panel -->
-
-	
-
-
 <!-- jQuery -->
 <script src="assets/js/jquery.min.js"></script>
 <!-- Bootstrap -->

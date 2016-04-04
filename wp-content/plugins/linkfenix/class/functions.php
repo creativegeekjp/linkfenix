@@ -77,44 +77,29 @@
     {
         $t_billion = (20 * 365 * 24 * 60 * 60);
         
-        if(isset($_POST['shortcoder'])){
+        if(isset($_POST['shortcoder']))
+        {
          setcookie( 'shortcoder', 'checked', time() + $t_billion);
-        }else{
+        }
+        else
+        {
          setcookie( 'shortcoder', '', time() - $t_billion);
         }
-        if(isset($_POST['link-a'])){
-         setcookie( 'link-a', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-a', '', time() - $t_billion);
-        }
-        if(isset($_POST['link-b'])){
-         setcookie( 'link-b', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-b', '', time() - $t_billion);
-        }
-        if(isset($_POST['link-c'])){
-         setcookie( 'link-c', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-c', '', time() - $t_billion);
-        }
-        if(isset($_POST['link-d'])){
-         setcookie( 'link-d', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-d', '', time() - $t_billion);
-        }
-        if(isset($_POST['link-e'])){
-         setcookie( 'link-e', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-e', '', time() - $t_billion);
-        }
-        if(isset($_POST['link-f'])){
-         setcookie( 'link-f', 'checked', time() + $t_billion);
-        }else{
-         setcookie( 'link-f', '', time() - $t_billion);
+        
+        /*Set active links default is 10*/
+        foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframelinks/setactivelinks/'.$_POST['l']),true) as  $iframelinks)
+        { 
+            
+           //do nothings
+           $id = $iframelinks['id'];
+          
         }
         
+        /*Set active iframe design*/
         foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframes/editframe/'.$_POST['f']),true) as  $iframe)
         { 
+            
+           // do nothing
            $id = $iframe['id'];
           
         }

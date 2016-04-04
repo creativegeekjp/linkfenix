@@ -31,126 +31,83 @@
 </head>
 <body>
 
+<?php 
+	include '../links.php';
+?>
+
 
 <div id="table-data">
+		<?php 
+			
+				$i = 0;
 	
-	<div class="wrap">
-		<div class="half half-1">
-			<div class="b1">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive" src="assets/img/icon-hdstream-hex.png" alt="icon: HDStrem">
-				</a>
-				<a href="#" class="text-link" target="_blank">HDStream</a>
-			</div><!-- /.b1 -->
-
-			<div class="b2">
-				<span class="text-muted">1yr ago</span>
-			</div><!-- /.b2 -->
-		</div><!-- /.half -->
-
-		<div class="half half-2">
-			<div class="b3">
-				<div class="quality rating">
-					<img src="assets/img/icon-rating.png" alt="icon: rating">5<sup>/5</sup>
-				</div>
-				<div class="quality video">
-					<img src="assets/img/icon-video.png" alt="icon: video">100%
-				</div>
-				<div class="quality audio">
-					<img src="assets/img/icon-audio.png" alt="icon: audio">100%
-				</div>
-			</div><!-- /.b3 -->
-		</div><!-- /.half -->
-	</div><!-- /.wrap -->
-
-	<div class="wrap">
-		<div class="half half-1">
-			<div class="b1">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive" src="assets/img/icon-vvids-hex.png" alt="icon: V-Vids">
-				</a>
-				<a href="#" class="text-link" target="_blank">V-Vids</a>
-			</div><!-- /.b1 -->
-
-			<div class="b2">
-				<span class="text-muted">1yr ago</span>
-			</div><!-- /.b2 -->
-		</div><!-- /.half -->
-
-		<div class="half half-2">
-			<div class="b3">
-				<div class="quality rating">
-					<img src="assets/img/icon-rating.png" alt="icon: rating">5<sup>/5</sup>
-				</div>
-				<div class="quality video">
-					<img src="assets/img/icon-video.png" alt="icon: video">100%
-				</div>
-				<div class="quality audio">
-					<img src="assets/img/icon-audio.png" alt="icon: audio">100%
-				</div>
-			</div><!-- /.b3 -->
-		</div><!-- /.half -->
-	</div><!-- /.wrap -->
-
-
-	<div class="wrap">
-		<div class="half half-1">
-			<div class="b1">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive" src="assets/img/icon-flashx-hex.png" alt="icon: FlashX">
-				</a>
-				<a href="#" class="text-link" target="_blank">FlashX</a>
-			</div><!-- /.b1 -->
-
-			<div class="b2">
-				<span class="text-muted">1yr ago</span>
-			</div><!-- /.b2 -->
-		</div><!-- /.half -->
-
-		<div class="half half-2">
-			<div class="b3">
-				<div class="quality rating">
-					<img src="assets/img/icon-rating.png" alt="icon: rating">5<sup>/5</sup>
-				</div>
-				<div class="quality video">
-					<img src="assets/img/icon-video.png" alt="icon: video">100%
-				</div>
-				<div class="quality audio">
-					<img src="assets/img/icon-audio.png" alt="icon: audio">100%
-				</div>
-			</div><!-- /.b3 -->
-		</div><!-- /.half -->
-	</div><!-- /.wrap -->
-
-
-	<div class="wrap">
-		<div class="half half-1">
-			<div class="b1">
-				<a href="#" class="icon-link" target="_blank">
-					<img class="img-responsive" src="assets/img/icon-filehoot-hex.png" alt="icon: FileHoot">
-				</a>
-				<a href="#" class="text-link" target="_blank">FileHoot</a>
-			</div><!-- /.b1 -->
-
-			<div class="b2">
-				<span class="text-muted">1yr ago</span>
-			</div><!-- /.b2 -->
-		</div><!-- /.half -->
-
-		<div class="half half-2">
-			<div class="b3">
-				<div class="quality rating">
-					<img src="assets/img/icon-rating.png" alt="icon: rating">5<sup>/5</sup>
-				</div>
-				<div class="quality video">
-					<img src="assets/img/icon-video.png" alt="icon: video">100%
-				</div>
-				<div class="quality audio">
-					<img src="assets/img/icon-audio.png" alt="icon: audio">100%
-				</div>
-			</div><!-- /.b3 -->
-		</div><!-- /.half -->
-	</div><!-- /.wrap -->
+					foreach($rs[0] as $key => $values)
+					{
+					     
+					    $name = $rs[0][$i]['name'];
+					    $icon_type= $rs[0][$i]['icon'];  
+					    $link = $rs[0][$i]['link'];  
+					    $source = $rs[0][$i]['source'];  
+					    $age = $rs[0][$i]['age'];  
+					    $vote = $rs[0][$i]['vote'];  
+					    $video = $rs[0][$i]['video'];  
+					    $audio = $rs[0][$i]['audio'];      
+					   
+					    switch($icon_type)
+					    {
+					    
+					    	case 1:
+					    		$icons = "assets/img/icon-vvids-hex.png";
+					    	break;
+					    	
+					    	case 2:
+					    		 $icons = "assets/img/icon-flashx-hex.png";
+					    	break;
+					    	
+					    	case 3:
+					    		$icons = "assets/img/icon-filehoot-hex.png"; 
+					    	break;
+					    	
+					    	case 4:
+					    		 $icons = "assets/img/icon-hdstream-hex.png"; 
+					    	break;
+					    	
+					    }
+					    
+					  echo '<div class="wrap">
+								<div class="half half-1">
+									<div class="b1">
+										<a href="#" class="icon-link" target="_blank">
+											<img class="img-responsive" src="'.$icons.'" alt="icon: '.$name.'">
+										</a>
+										<a href="'.$link.'" class="text-link" target="_blank">'.$name.'</a>
+									</div><!-- /.b1 -->
+						
+									<div class="b2">
+										<span class="text-muted">'.$age.' ago</span>
+									</div><!-- /.b2 -->
+								</div><!-- /.half -->
+						
+								<div class="half half-2">
+									<div class="b3">
+										<div class="quality rating">
+											<img src="assets/img/icon-rating.png" alt="icon: rating">'.$vote.'<sup></sup>
+										</div>
+										<div class="quality video">
+											<img src="assets/img/icon-video.png" alt="icon: video">'.$video.'%
+										</div>
+										<div class="quality audio">
+											<img src="assets/img/icon-audio.png" alt="icon: audio">'.$audio.'%
+										</div>
+									</div><!-- /.b3 -->
+								</div><!-- /.half -->
+							</div><!-- /.wrap -->';
+					    
+					    if (++$i >= ( $count ) ) break;
+					  
+					}
+			
+			?>
 
 </div><!-- /#table-data -->
 

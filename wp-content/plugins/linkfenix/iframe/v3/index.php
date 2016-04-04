@@ -418,307 +418,95 @@ canvas#pie {
 
 </head>
 <body>
+<?php 
+	include '../links.php';
+?>
 	<div class="container-fluid">
 		<div class="col-md-12 col-lg-12">
 			<div class="header-link row" style="background-color:#ca0000; height:50px;" >
 				<h3 id="center text-white" style="color:white; text-align:center; line-height: 0.1;">LINKS</h3>
 			</div>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/1.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">HDStream</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
+			
+			
+				<?php 
+			
+				$i = 0;
+	
+					foreach($rs[0] as $key => $values)
+					{
+					     
+					    $name = $rs[0][$i]['name'];
+					    $icon_type= $rs[0][$i]['icon'];  
+					    $link = $rs[0][$i]['link'];  
+					    $source = $rs[0][$i]['source'];  
+					    $age = $rs[0][$i]['age'];  
+					    $vote = $rs[0][$i]['vote'];  
+					    $video = $rs[0][$i]['video'];  
+					    $audio = $rs[0][$i]['audio'];      
+					   
+					    switch($icon_type)
+					    {
+					    
+					    	case 1:
+					    		$icons = "assets/img/icon-vvids.png";
+					    	break;
+					    	
+					    	case 2:
+					    		 $icons = "assets/img/icon-flashx.png";
+					    	break;
+					    	
+					    	case 3:
+					    		$icons = "assets/img/icon-filehoot.png"; 
+					    	break;
+					    	
+					    	case 4:
+					    		 $icons = "assets/img/icon-hdstream.png"; 
+					    	break;
+					    	
+					    }
+					    
+					  echo '<div class="link-content row" style="padding:5px 0px 5px 0px;">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
+								<a href="#"><img src="'.$icons.'" class="img-responsive" alt=""></a>
 							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/2.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">V-Vids</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-						<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/3.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FlashX</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
+							<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
+										<a target="_blank" href="'.$link.'"><h4 style="color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
+									</div>						
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">'.$age.' ago</h6>
+									</div>
+								</div>
+			
+								<div class="row lower">
+									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
+										<div class="header">
+											<span><img src="images/sm-img1.jpg" alt=""> </span>'.$vote.'<sup></sup>
+										</div>
+									</div>						
+									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
+										<div class="header">
+											<span><img src="images/sm-img2.jpg" alt=""> </span>'.$video.'<sup></sup>
+										</div>
+									</div>						
+									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
+										<div class="header">
+											<span><img src="images/sm-img3.jpg" alt=""> </span>'.$audio.'<sup></sup>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-						<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/4.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FileHoot</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-						<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/1.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">HDStream</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-						<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/2.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">V-Vids</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-									<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/3.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FlashX</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-									<hr>
-			<div class="link-content row" style="padding:5px 0px 5px 0px;">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">
-					<a href="#"><img src="images/4.png" class="img-responsive" alt=""></a>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-							<a href="#"><h4 style="color:black; text-align:left; line-height: 0.1;">FileHoot</h4></a>
-						</div>						
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">1y ago</h6>
-						</div>
-					</div>
-
-					<div class="row lower">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img1.jpg" alt=""> </span>5<sup>/5</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img2.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
-							<div class="header">
-								<span><img src="images/sm-img3.jpg" alt=""> </span>10<sup>/10</sup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+						<hr>';
+					    
+					    if (++$i >= ( $count ) ) break;
+					  
+					}
+			
+			?>
+		
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</div>
 		<script src="js/scripts.js"></script>
 	<!--//scrolling js-->

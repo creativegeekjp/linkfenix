@@ -1,8 +1,15 @@
 <?php 
+   
 
-    $scoder = isset($_COOKIE['shortcoder']) ? 'checked="'.$_COOKIE['shortcoder'].'"' : '';
+    foreach (json_decode(@file_get_contents(hostname.'options/shortcoder'),true) as  $coder)
+    { 
+       $scid = $coder['id'];
+       $scoder = isset($scid) ? 'checked="checked"' : '';
+    }
     
-    foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframelinks/activecount'),true) as  $iframelinks)
+   
+    
+    foreach (json_decode(@file_get_contents(hostname.'iframelinks/activecount'),true) as  $iframelinks)
     { 
       $lid = $iframelinks['id'];
     }
@@ -35,7 +42,7 @@
     }
     
     
-    foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframes/design'),true) as  $iframe)
+    foreach (json_decode(@file_get_contents(hostname.'iframes/design'),true) as  $iframe)
     { 
       $id = $iframe['id'];
     }
@@ -70,11 +77,11 @@
  
  
 Shortcoder<br>
-<input type='checkbox' name='shortcoder' <?php echo $scoder; ?>   value='shortcoder' >Enable Shortcoder<br>
+<input type='checkbox' name='shortcoder' <?php echo $scoder; ?>   value='15' >Enable Shortcoder<br>
 
 Iframe Links<br>
-<input type='checkbox' name='l'<?php echo $link_a; ?> value='1' >5<br>
-<input type='checkbox' name='l'<?php echo $link_b; ?> value='2' >10<br>
+<input type='checkbox' id='chkf' name='l'<?php echo $link_a; ?> value='1' >5<br>
+<input type='checkbox' id='chkf' name='l'<?php echo $link_b; ?> value='2' >10<br>
 <input type='checkbox' name='l'<?php echo $link_c; ?> value='3' >15<br>
 <input type='checkbox' name='l'<?php echo $link_d; ?> value='4' >20<br>
 <input type='checkbox' name='l'<?php echo $link_e; ?> value='5' >50<br>
@@ -90,3 +97,5 @@ Iframe Designs<br>
 
 
 <input type='submit' id='searchsubmit' name='pref-searchsubmit' value='Save Changes' >
+
+

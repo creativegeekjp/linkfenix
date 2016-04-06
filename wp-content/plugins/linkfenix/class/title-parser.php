@@ -4,9 +4,10 @@
 *  Url parser that search movie title and tvshows
 *
 */
- header('Content-type: application/json');
+
+ include '../ip.php';
  
- $datus = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/movies/search/'.trim($_GET['term'])),true);
+ $datus = json_decode(@file_get_contents(hostname.'movies/search/'.trim($_GET['term'])),true);
   
     foreach($datus as $key => $value)
     {
@@ -33,7 +34,8 @@
                  }
             }
         }
-   
+
+ header('Content-type: application/json');
 echo json_encode($arr);
 
 ?>

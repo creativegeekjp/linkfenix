@@ -1,4 +1,5 @@
 <?php 
+include 'ip.php';
 
 add_action( 'admin_menu', 'my_admin_menu' );
 
@@ -65,6 +66,7 @@ function getEpisodes($id)
         }
      
     }
+    
 include 'class/validations.php';
 include 'class/functions.php';
 
@@ -181,6 +183,7 @@ function tvshows(){
             }
             else if(isset($_POST['tv-episodes']))
             {
+               
                  include 'tv-episodes.php';
             }
             else
@@ -221,8 +224,10 @@ function preferences()
         echo "</div></div>";
         echo "</form>";
         
-        
-
 
 }
+
+
+    
+   
 ?>

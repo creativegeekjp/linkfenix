@@ -3,8 +3,6 @@
 *  statement that tooks required action eg. import, updates frames etc.
 *
 */
-
-
     if(isset($_POST['tv-searchsubmit']))
     {
          if($_POST['tv-searchsubmit']=='Full Import')
@@ -19,9 +17,6 @@
               if(add_action( 'init', 'set_cookie_options_tv' ))
               {
                   add_action( 'admin_notices', 'my_option_notice' );
-                  
-                  redirects();
-                   
               }
             }
     }
@@ -39,9 +34,6 @@
               if(add_action( 'init', 'set_cookie_options' ))
               {
                   add_action( 'admin_notices', 'my_option_notice' );
-                  //add_action( 'admin_init','redirects');
-                  redirects();
-                   
               }
             }
     }
@@ -52,57 +44,27 @@
               if(add_action( 'init', 'set_cookie_preferences' ))
               {
                   add_action( 'admin_notices', 'my_option_preferences' );
-                  
-                  redirects();
-                   
               }
             }
     }
     
-/*
-*  function that redirects to current url after clicking button save
-*
-*/
-    function redirects()
-    {
-        ///sleep(1);
-        //wp_redirect($_SERVER['REQUEST_URI']);
-         header("Refresh: 0; url='".$_SERVER['REQUEST_URI']."' ");
-    }
 /*
 *  function that include that updates iframe links, designs and other inforamations
 *
 */
     function set_cookie_preferences()
     {
-        $t_billion = (20 * 365 * 24 * 60 * 60);
+      
+        $coder = isset($_POST['shortcoder']) ? $_POST['shortcoder'] : "" ;
         
-        if(isset($_POST['shortcoder']))
-        {
-         setcookie( 'shortcoder', 'checked', time() + $t_billion);
-        }
-        else
-        {
-         setcookie( 'shortcoder', '', time() - $t_billion);
-        }
+        @file_get_contents(hostname.'options/updateshortcoder/'.$coder);
+        
         
         /*Set active links default is 10*/
-        foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframelinks/setactivelinks/'.$_POST['l']),true) as  $iframelinks)
-        { 
-            
-           //do nothings
-           $id = $iframelinks['id'];
-          
-        }
+        @file_get_contents(hostname.'iframelinks/setactivelinks/'.$_POST['l']);
         
         /*Set active iframe design*/
-        foreach (json_decode(@file_get_contents('http://192.168.1.2:23268/iframes/editframe/'.$_POST['f']),true) as  $iframe)
-        { 
-            
-           // do nothing
-           $id = $iframe['id'];
-          
-        }
+        @file_get_contents(hostname.'iframes/editframe/'.$_POST['f']);
         
        
     }
@@ -112,14 +74,16 @@
 *  Those who movies that has seasons and episodes only will be imported to database
 *
 */
-    function full_import_tv()
+function full_import_tv()
     {
+         $listopt = options('optiontv');//optiontv or optionmovie
+         
          $page = 1;
 
          while(true)
          {
          
-          $tv = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/tvshows/indexrest/?page='.$page++),true);
+          $tv = json_decode(@file_get_contents(hostname.'tvshows/indexrest/?page='.$page++),true);
          
              if($tv==FALSE)
                {
@@ -161,30 +125,33 @@
                      
                         foreach($code_c['seasons'] as $key => $season)
                         {
-                             $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$season['id']),true);
+                             $episodes = json_decode(file_get_contents(hostname.'seasons/viewrest/'.$season['id']),true);
                       
                              foreach ($episodes['episodes']  as  $epi)
                              { 
                                   
+                                   $year = isset($listopt['year']) ? '('.date('Y',strtotime( $code_c['year'])).' )' : "" ;
+                                    
+                                   $tvtitle = isset($listopt['title']) ? $code_c['name'].'/'.$epi['title'] : "" ;
                                    
-                                   $post_titles = isset($_COOKIE['tv-title']) ? $code_c['name'].'/'.$epi['title'] : "" ;
+                                   $post_titles = $tvtitle.''.$year;
                                    
                                    $seasons_title = isset($season['name']) ?  $code_c['name'].' > '.$season['name'] :  $code_c['name'].' > ' ;
                                    
-                                    $imdb = isset($_COOKIE['tv-imbd']) ? '<a href="'.$epi['IMDB'].'">IMDb</a>' : "" ;
+                                   $imdb = isset($listopt['imbd']) ? '<a href="'.$epi['IMDB'].'">IMDb</a>' : "" ;
                                    
-                                   $image =  isset($_COOKIE['tv-pcontent'])  ? '<img class="" src="'.$epi['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" width="100%" />' : "" ;
+                                   $image =  isset($listopt['pcontent'])  ? '<img class="" src="'.$epi['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" />' : "" ;
                          
-                                   $pimage = isset($_COOKIE['tv-pimage']) ? true : false ;
+                                   $pimage = isset($listopt['pimage']) ? true : false ;
 
 
-                                   $category = isset($_COOKIE['tv-genres']) ?  implode( "," , $tmp ) : "" ;
+                                   $category = isset($listopt['genres']) ?  implode( "," , $tmp ) : "" ;
                         
-                                   $desc1 =  isset($_COOKIE['tv-description']) ?  $epi['description'] : "";
+                                   $desc1 =  isset($listopt['description']) ?  $epi['description'] : "";
                                      
-                                    if (strlen($desc1) > 150)
+                                    if (strlen($desc1) > 200)
                                     {
-                                       $str = substr($desc1, 0, 100) . '...';
+                                       $str = substr($desc1, 0, 150) . '...';
                                     }
                                     else
                                     {
@@ -232,7 +199,7 @@
                                         
                                          if($pimage==true)
                                          {
-                                            generate_featured_image( $epi['image'],   $post_id );
+                                            generate_featured_image( $epi['fimage'],   $post_id );
                                          }
                                         
                                     } 
@@ -253,49 +220,7 @@
 */
     function set_cookie_options_tv()
     {
-        
-        $t_billion = (20 * 365 * 24 * 60 * 60);
-        
-        if(isset($_POST['tv-title']))
-         setcookie( 'tv-title', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-title', '', time() - $t_billion);
-         
-        
-        if(isset($_POST['tv-genres']))
-         setcookie( 'tv-genres', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-genres', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['tv-description']))
-         setcookie( 'tv-description', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-description', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['tv-year']))
-         setcookie( 'tv-year', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-year', '', time() - $t_billion);
-        
-        
-        if(isset($_POST['tv-imbd']))
-         setcookie( 'tv-imbd', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-imbd', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['tv-pimage']))
-         setcookie( 'tv-pimage', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-pimage', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['tv-pcontent']))
-         setcookie( 'tv-pcontent', 'checked', time() + $t_billion);
-        else
-         setcookie( 'tv-pcontent', '', time() - $t_billion);
+        @file_get_contents(hostname.'options/tvupdateoptions/?chk='. urlencode(serialize($_POST['opt'])));
     }
 /*
 *  function that include those obligatory and non obligatory
@@ -305,50 +230,7 @@
 */
     function set_cookie_options()
     {
-     
-        $t_billion = (20 * 365 * 24 * 60 * 60);
-        
-        if(isset($_POST['title']))
-         setcookie( 'title', 'checked', time() + $t_billion);
-        else
-         setcookie( 'title', '', time() - $t_billion);
-         
-        
-        if(isset($_POST['genres']))
-         setcookie( 'genres', 'checked', time() + $t_billion);
-        else
-         setcookie( 'genres', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['description']))
-         setcookie( 'description', 'checked', time() + $t_billion);
-        else
-         setcookie( 'description', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['year']))
-         setcookie( 'year', 'checked', time() + $t_billion);
-        else
-         setcookie( 'year', '', time() - $t_billion);
-        
-        
-        if(isset($_POST['imbd']))
-         setcookie( 'imbd', 'checked', time() + $t_billion);
-        else
-         setcookie( 'imbd', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['pimage']))
-         setcookie( 'pimage', 'checked', time() + $t_billion);
-        else
-         setcookie( 'pimage', '', time() - $t_billion);
-         
-         
-        if(isset($_POST['pcontent']))
-         setcookie( 'pcontent', 'checked', time() + $t_billion);
-        else
-         setcookie( 'pcontent', '', time() - $t_billion);
-        
+        @file_get_contents(hostname.'options/mvupdateoptions/?chk='. urlencode(serialize($_POST['opt'])));
     }
     
 /*
@@ -358,11 +240,13 @@
 */
     function full_import()
     {
+        $listopt = options('optionmovie');//optiontv or optionmovie
+        
           $page = 1;
             
           while(true)
           {
-              $movies = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/movies/indexrest/?page='. $page++),true);
+              $movies = json_decode(@file_get_contents(hostname.'movies/indexrest/?page='. $page++),true);
               
               if($movies==FALSE)
               {
@@ -390,21 +274,21 @@
                          }
                          
                          
-                         $title = isset($_COOKIE['title']) ? $code_c['name'] : "" ;
+                         $title = isset($listopt['title']) ? $code_c['name'] : "" ;
                          
-                         $year = isset($_COOKIE['year']) ? '('.date('Y',strtotime( $code_c['year'])).' )' : "" ;
+                         $year = isset($listopt['year']) ? '('.date('Y',strtotime( $code_c['year'])).' )' : "" ;
                            
                          $post_titles =   $title.''.$year  ; 
                          
-                         $category = isset($_COOKIE['genres']) ?  implode( "," , $tmp ) : "" ;
+                         $category = isset($listopt['genres']) ?  implode( "," , $tmp ) : "" ;
                          
                          
-                         $desc1 =  isset($_COOKIE['description']) ?  $code_c['description'] : "";
+                         $desc1 =  isset($listopt['description']) ?  $code_c['description'] : "";
                          
                          
-                         if (strlen($desc1) > 150)
+                         if (strlen($desc1) > 200)
                          {
-                            $str = substr($desc1, 0, 100) . '...';
+                            $str = substr($desc1, 0, 150) . '...';
                          }
                          else
                          {
@@ -424,11 +308,11 @@
                          
               
                          
-                         $imdb = isset($_COOKIE['imbd']) ? '<a href="'.$code_c['IMDB'].'">IMDb</a>' : "" ;
+                         $imdb = isset($listopt['imbd']) ? '<a href="'.$code_c['IMDB'].'">IMDb</a>' : "" ;
                        
-                         $image =  isset($_COOKIE['pcontent'])  ? '<img class="" src="'.$code_c['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" width="100%" />' : "" ;
+                         $image =  isset($listopt['pcontent'])  ? '<img class="" src="'.$code_c['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" />' : "" ;
                          
-                         $pimage = isset($_COOKIE['pimage']) ? true : false ;
+                         $pimage = isset($listopt['pimage']) ? true : false ;
 
                          
                          $content = '
@@ -475,7 +359,7 @@
                               
                            if($pimage==true)
                            {
-                              generate_featured_image( $code_c['image'],   $post_id );
+                              generate_featured_image( $code_c['fimage'],   $post_id );
                            }
                            
                          }
@@ -535,4 +419,111 @@ function generate_featured_image( $image_url, $post_id  )
           
          set_post_thumbnail( $post_id, $attach_id );
 }
+
+/*
+*  selected options to be imported to the database
+*/
+ function options($controller)
+    {
+           switch($controller)
+           {
+                case 'optionmovie' :
+                         
+                        foreach( json_decode(@file_get_contents(hostname.'options/mvactiveoptions'),true)as $key => $options)
+                        {
+                          switch($options['id'])
+                          {
+                             case 1 :
+                                 $title =  'checked';
+                             break;
+                             
+                             case 2 :
+                                  $genres = 'checked';
+                             break;
+                             
+                             case 3 :
+                                  $description = 'checked';
+                             break;
+                             
+                             case 4 :
+                                  $year = 'checked';
+                             break;
+                             
+                             case 5 :
+                                  $imdb = 'checked';
+                             break;
+                             
+                             case 6 :
+                                  $pimage = 'checked';
+                             break;
+                             
+                             case 7 :
+                                  $pcontent = 'checked';
+                             break;
+                          }
+                        }
+                        
+                        return array(
+                            'title' => $title,
+                            'genres' => $genres,
+                            'description' => $description,
+                            'year' => $year,
+                            'imdb' => $imdb,
+                            'pimage' => $pimage,
+                            'pcontent' => $pcontent
+                        );
+                break;
+                
+                case 'optiontv' :
+                    
+                         foreach( json_decode(@file_get_contents(hostname.'options/tvactiveoptions'),true)as $key => $options)
+                        {
+                          switch($options['id'])
+                          {
+                             case 8 :
+                                 $title =  'checked';
+                             break;
+                             
+                             case 9 :
+                                  $genres = 'checked';
+                             break;
+                             
+                             case 10 :
+                                  $description = 'checked';
+                             break;
+                             
+                             case 11 :
+                                  $year ='checked';
+                             break;
+                             
+                             case 12 :
+                                  $imdb = 'checked';
+                             break;
+                             
+                             case 13 :
+                                  $pimage = 'checked';
+                             break;
+                             
+                             case 14 :
+                                  $pcontent = 'checked';
+                             break;
+                          }
+                        }
+                        
+                        return array(
+                            'title' => $title,
+                            'genres' => $genres,
+                            'description' => $description,
+                            'year' => $year,
+                            'imdb' => $imdb,
+                            'pimage' => $pimage,
+                            'pcontent' => $pcontent
+                        );
+                break;
+           }
+            
+    }
+
+
+
 ?>

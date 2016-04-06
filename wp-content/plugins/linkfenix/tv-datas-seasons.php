@@ -1,8 +1,9 @@
 <?php 
+include 'ip.php';
 
 $seasons_id = $_REQUEST['tv-seasons'];
 
-$seasons = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/tvshows/viewrest/'.$seasons_id),true);
+$seasons = json_decode(@file_get_contents(hostname.'tvshows/viewrest/'.$seasons_id),true);
 
 
 foreach($seasons as $key => $names)

@@ -2,7 +2,7 @@
 function frames()
 {
       
-    foreach (json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/iframes/design'),true) as  $iframe)
+    foreach (json_decode(@file_get_contents(hostname.'iframes/design'),true) as  $iframe)
     { 
          $active_frame = $iframe['name'];
      
@@ -53,7 +53,7 @@ function content_tv($atts)
         
        }
     }
-    
+     
       return '
             <script type="text/javascript">
                 $(function() {

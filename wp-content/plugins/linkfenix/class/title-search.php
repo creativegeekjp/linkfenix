@@ -4,7 +4,11 @@
 * 
 * Shortcode will automatically append to post content once the movie or tvshows episode click
 */
- if(isset($_COOKIE['shortcoder']))
+ foreach (json_decode(@file_get_contents(hostname.'options/shortcoder'),true) as  $coder)
+    { 
+       $scoder = isset($scid) ? 'checked' : '';
+    }
+ if(isset( $scoder ))
  {
      ?>
        <script type="text/javascript">

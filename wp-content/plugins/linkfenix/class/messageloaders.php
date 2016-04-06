@@ -4,7 +4,7 @@ function my_notice()
 {
     ?>
     <div class="update notice">
-        <p><?php _e( 'Full import for movies was successfull.', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Full import successfull.', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }
@@ -13,7 +13,7 @@ function my_option_notice()
 {
     ?>
     <div class="update notice">
-        <p><?php _e( 'Options was updating please wait...', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Options was successfully updated.', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }
@@ -22,7 +22,7 @@ function my_notice_tv()
 {
     ?>
     <div class="update notice">
-        <p><?php _e( 'Full import for tvshows was successfull.', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Full import successfull.', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }
@@ -31,7 +31,7 @@ function my_option_preferences()
 {
     ?>
     <div class="update notice">
-        <p><?php _e( 'Options was updating please wait...', 'my_plugin_textdomain' ); ?></p>
+        <p><?php _e( 'Options was successfully updated.', 'my_plugin_textdomain' ); ?></p>
     </div>
     <?php
 }

@@ -1,18 +1,20 @@
 <?php 
-    wp_enqueue_style('jquery_tbl_css',  plugin_dir_url(__FILE__) . 'datatable/jquery.dataTables.min.css');
-    wp_enqueue_script('jquery_lib',  plugin_dir_url(__FILE__) . 'datatable/jquery-1.12.0.min.js');
-    wp_enqueue_script('jquery_tbl',  plugin_dir_url(__FILE__) . 'datatable/jquery.dataTables.min.js');
-    wp_enqueue_script('jquery_ui_css',  plugin_dir_url(__FILE__) . 'datatable/jquery-ui.js');
-    wp_enqueue_style('jquery_ui_css2',  plugin_dir_url(__FILE__) . 'datatable/jquery-ui.css');
-    wp_enqueue_script('clipboard',  plugin_dir_url(__FILE__) . 'jquery/clipboard.js');
-    wp_enqueue_script('toast-msg',  plugin_dir_url(__FILE__) . 'jquery/toast-message/src/jquery.dpToast.js');
+
+include 'datatable-hooks.php';
+
+$episodes = json_decode(@file_get_contents(hostname.'seasons/viewrest/'.$_REQUEST['tv-episodes']),true);
+
+$id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
+     
 
 ?>
+<button id='searchsubmit' name='tv-seasons' value="<?php echo $id; ?>"> << Seasons</button> 
+ 
  <table id="tvepisodes" class="display" width="100%" cellspacing="0">
      <thead>
         <tr>
             <th>Shortcode</th>
-            <th>Episodes Code</th>
+            <th>Code</th>
             <th>Title</th>
             <th>Episodes</th>
             <th></th>
@@ -87,7 +89,7 @@
                 
                 if(data.id)
                 {
-                     $(row).find('td:eq(4)').html("<img class='clippy'  height='30' width='30' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='/wp-content/plugins/linkfenixmenu/jquery/clippy.svg' width='13' alt='Copy to clipboard'> ");
+                     $(row).find('td:eq(4)').html("<img class='clippy'  height='30' width='30' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='<?php echo plugins_url('/jquery/clippy.svg', __FILE__);  ?>' width='13' alt='Copy to clipboard'> ");
                      
                      $(row).find('td:eq(0)').html("[mov mtype=mov id="+data.id+"]");
                 }

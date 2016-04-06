@@ -3,12 +3,14 @@ header('Content-type: application/json');
 
 include 'class/time-zone.php';
 
+include 'ip.php';
+
 $page = 1;
 
 while(true)
 {
 
- $tv = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/tvshows/indexrest/?page='.$page++),true);
+ $tv = json_decode(@file_get_contents(hostname.'tvshows/indexrest/?page='.$page++),true);
 
     if($tv==FALSE)
       {

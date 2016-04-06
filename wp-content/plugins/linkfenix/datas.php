@@ -1,6 +1,7 @@
 <?php 
 header('Content-type: application/json');
 
+include 'ip.php';
 include 'class/time-zone.php';
 
 $page = 1;
@@ -8,7 +9,7 @@ $page = 1;
 while(true)
 {
     
-    $movies = json_decode(@file_get_contents('http://ide.creativegeek.ph:23268/movies/indexrest/?page='. $page++),true);
+    $movies = json_decode(@file_get_contents(hostname.'movies/indexrest/?page='. $page++),true);
     
     if($movies==FALSE)
       {

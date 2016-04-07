@@ -7,65 +7,41 @@ function my_admin_menu()
 {
     global $submenu;
     
-    add_menu_page( 'Link Fenix', 'Link Fenix', 'manage_options', 'pages/main-menu.php', 'intro', 'dashicons-tickets', 6 );
+    add_menu_page( 'Linkfenix', 'Linkfenix', 'manage_options', 'pages/main-menu.php', 'intro', 'dashicons-format-video', 6 );
     add_submenu_page( 'pages/main-menu.php', 'Introduction',  'Introduction', 'manage_options', 'pages/main-menu.php', 'intro' );
     add_submenu_page( 'pages/main-menu.php', 'Movies', 'Movies', 'manage_options', 'movies.php', 'movies'  );
     add_submenu_page( 'pages/main-menu.php', 'TV Shows',  'TV Shows', 'manage_options', 'pages/tvshows.php', 'tvshows' );
     add_submenu_page( 'pages/main-menu.php', 'Preferences', 'Preferences', 'manage_options', 'pages/preferences.php', 'preferences' );
         
-    $newmovies = count_new_movies();
-    
-    $newtvshows = count_new_tv_shows();
+    $newmovies = latestmovies();
+    $newtvshows =  latestpisodes();
     
     $submenu['pages/main-menu.php']['1'][0] .= $newmovies ? "<span class='update-plugins count-1'> <span class='update-count'>  $newmovies </span></span>" : '';
     
     $submenu['pages/main-menu.php']['2'][0] .=  $newtvshows ? "<span class='update-plugins count-1'> <span class='update-count'>   $newtvshows </span></span>" : '';
 }
 
-function count_new_movies()
+function latestmovies()
 {
-
-    include 'class/time-zone.php';
-    
-    include 'class/parser.php';
-    
-    foreach ($movies['movies']['viewVars']['movies']  as $key => $value)
+    foreach (json_decode(file_get_contents(hostname.'movies/latestmovies'),true)  as  $movies)
     { 
-      $count_m += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
+       $count += isset($movies['id']) ? 1 : 0 ;
     }
     
-    return  $count_m;
+    return  $count;
 }
 
-function count_new_tv_shows()
+function latestpisodes()
 {
-    
-    include 'class/time-zone.php';
-    
-    include 'class/tv-parser.php';
-    
-    foreach ($tv['tvshows']['viewVars']['tvshows']  as $key => $value)
-    { 
-       $count_tv += date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") ? 1 : 0;
-      
-       foreach($value['seasons'] as $key => $season)
-        {
-           $count_tv += getEpisodes($season['id']);
-        }
-    }
-    
-    return  $count_tv;
-}
-function getEpisodes($id)
-{
-    $episodes = json_decode(file_get_contents('http://ide.creativegeek.ph:23268/seasons/viewrest/'.$id),true);
- 
-        foreach ($episodes['episodes']  as  $epi)
+   
+        foreach (json_decode(file_get_contents(hostname.'seasons/episodesindicator'),true)  as  $epi)
         { 
-            return date('Y-m-d',strtotime($epi['created'])) >= date("Y-m-d") ? 1 : 0;
+           $count += isset($epi['id']) ? 1 : 0;
         }
+         
+       return $count;
+}
      
-    }
     
 include 'class/validations.php';
 include 'class/functions.php';
@@ -118,10 +94,7 @@ function intro()
             PREFERENCES - Change the look of the links and control the auto update settings.</p></div>
             <div id='movie-content'>
             <p>
-            <iframe width='360' height='219' 
-            src='https://www.youtube.com/embed/vw4S4KiqAMY?list=PL9C5E6F3F05287638' frameborder='0'
-            allowfullscreen>
-            </iframe>
+           <iframe width='500' height='315' src='https://www.youtube.com/embed/FkTybqcX-Yo' frameborder='0' allowfullscreen></iframe>
             </p>
             </p></div></div></div>";
        
@@ -186,6 +159,14 @@ function tvshows(){
                
                  include 'tv-episodes.php';
             }
+            else if(isset($_POST['tv-update-seasons']))
+            {
+                include 'tv-update-seasons.php';
+            }
+            else if(isset($_POST['tv-update-episodes']))
+            {
+                include 'tv-update-episodes.php';
+            }
             else
             {
                 switch($_POST['tv-searchsubmit'])
@@ -223,11 +204,9 @@ function preferences()
         
         echo "</div></div>";
         echo "</form>";
-        
-
 }
 
 
-    
+ 
    
 ?>

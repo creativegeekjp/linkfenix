@@ -52,7 +52,7 @@
             
                 if(data.id > 0)
                 {
-                     $(row).find('td:eq(1)').html("<button id='searchsubmit' name='tv-seasons' value="+data.id+">View List</button> ").val(data.id);
+                     $(row).find('td:eq(1)').html("<button id='searchsubmit' name='tv-update-seasons' value="+data.id+">View List</button> ").val(data.id);
                 }
             }
               

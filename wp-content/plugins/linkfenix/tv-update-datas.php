@@ -18,8 +18,7 @@ $display = false;
                 (
                    
                     'id' => $value['id'],
-                    'name'    => $value['name'],
-                    'episode_id'  =>'1',
+                    'name'    => $value['name']
                 );
            
         }

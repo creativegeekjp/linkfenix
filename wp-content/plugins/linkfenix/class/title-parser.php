@@ -7,11 +7,11 @@
 
  include '../ip.php';
  
- $datus = json_decode(@file_get_contents(hostname.'movies/search/'.trim($_GET['term'])),true);
+ $datus = json_decode(@file_get_contents(hostname.'seasons/search/'.trim($_GET['term'])),true);
   
     foreach($datus as $key => $value)
     {
-         $v = $key; //type mov or tv
+         $v = $key; //type movie or tv shows
     }
    
      foreach($datus[$v] as $key => $value)
@@ -20,18 +20,17 @@
             {
                  $arr[] = array(
                         'id' => $value['id'],
-                        'label' => $value['name'].'('.date('Y',strtotime($value['year'])).')',
+                        'label' => $value['name'].' ('.date('Y',strtotime($value['year'])).')',
                         'mtype' => $v
                     );
             }else{
-                 foreach($value as $tvs)
-                 {
+                 
                       $arr[] = array(
-                            'id' => $tvs['id'],
-                            'label' => $tvs['title'].'('.$tvs['name'].')',
+                            'id' => $value['id'],
+                            'label' => $value['tvname'].' '.$value['title'].' ('.$value['scode'].' - '.$value['ecode'].') ',
                             'mtype' => $v
                          );
-                 }
+                 
             }
         }
 

@@ -138,7 +138,7 @@ function full_import_tv()
                                    
                                    $seasons_title = isset($season['name']) ?  $code_c['name'].' > '.$season['name'] :  $code_c['name'].' > ' ;
                                    
-                                   $imdb = isset($listopt['imbd']) ? '<a href="'.$epi['IMDB'].'">IMDb</a>' : "" ;
+                                   $imdb = isset($listopt['imdb']) ? '<a href="'.$epi['imdb'].'">IMDb</a>' : "" ;
                                    
                                    $image =  isset($listopt['pcontent'])  ? '<img class="" src="'.$epi['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" />' : "" ;
                          
@@ -181,7 +181,7 @@ function full_import_tv()
                                             '.$description.'
                                           </div>
                                      </div>
-                                    
+                                       <br>
                                      <!-- shortcode for iframe -->
                                      [tv mtype=tv id='.$epi['id'].']
                                     ';
@@ -308,7 +308,7 @@ function full_import_tv()
                          
               
                          
-                         $imdb = isset($listopt['imbd']) ? '<a href="'.$code_c['IMDB'].'">IMDb</a>' : "" ;
+                         $imdb = isset($listopt['imdb']) ? '<a href="'.$code_c['imdb'].'">IMDb</a>' : "" ;
                        
                          $image =  isset($listopt['pcontent'])  ? '<img class="" src="'.$code_c['image'].'" alt="'.$code_c['name'].'" title="'.$code_c['name'].'" />' : "" ;
                          
@@ -329,9 +329,9 @@ function full_import_tv()
                                             '.$description.'
                                           </div>
                                      </div>
-                                    
+                                     <br>
                                      <!-- shortcode for iframe -->
-                                     [tv mtype=tv id='.$code_c['id'].']
+                                     [tv mtype=mov id='.$code_c['id'].']
                          ';
                          
                          

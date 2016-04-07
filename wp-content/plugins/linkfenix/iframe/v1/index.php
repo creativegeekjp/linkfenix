@@ -58,7 +58,7 @@
 					{
 					     
 					    $name = $rs[0][$i]['name'];
-					    $icon_type= $rs[0][$i]['icon'];  
+					    $icons= $rs[0][$i]['icon'];  
 					    $link = $rs[0][$i]['link'];  
 					    $source = $rs[0][$i]['source'];  
 					    $age = $rs[0][$i]['age'];  
@@ -66,25 +66,7 @@
 					    $video = $rs[0][$i]['video'];  
 					    $audio = $rs[0][$i]['audio'];      
 					   
-					    switch($icon_type)
-					    {
-					    	case 1:
-					    		$icons = "assets/img/icon-vvids.jpg";
-					    	break;
-					    	
-					    	case 2:
-					    		 $icons = "assets/img/icon-flashx.jpg";
-					    	break;
-					    	
-					    	case 3:
-					    		$icons = "assets/img/icon-filehoot.jpg"; 
-					    	break;
-					    	
-					    	case 4:
-					    		 $icons = "assets/img/icon-hdstream.jpg"; 
-					    	break;
-					    	
-					    }
+					  
 					    
 					  echo '	<tr class="text-center">
 								<td class="text-left">

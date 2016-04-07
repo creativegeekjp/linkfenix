@@ -440,7 +440,7 @@ canvas#pie {
 					{
 					     
 					    $name = $rs[0][$i]['name'];
-					    $icon_type= $rs[0][$i]['icon'];  
+					    $icons= $rs[0][$i]['icon'];  
 					    $link = $rs[0][$i]['link'];  
 					    $source = $rs[0][$i]['source'];  
 					    $age = $rs[0][$i]['age'];  
@@ -448,26 +448,7 @@ canvas#pie {
 					    $video = $rs[0][$i]['video'];  
 					    $audio = $rs[0][$i]['audio'];      
 					   
-					    switch($icon_type)
-					    {
-					    
-					    	case 1:
-					    		$icons = "assets/img/icon-vvids.png";
-					    	break;
-					    	
-					    	case 2:
-					    		 $icons = "assets/img/icon-flashx.png";
-					    	break;
-					    	
-					    	case 3:
-					    		$icons = "assets/img/icon-filehoot.png"; 
-					    	break;
-					    	
-					    	case 4:
-					    		 $icons = "assets/img/icon-hdstream.png"; 
-					    	break;
-					    	
-					    }
+					  
 					    
 					  echo '<div class="link-content row" style="padding:5px 0px 5px 0px;">
 							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-3">

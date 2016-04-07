@@ -45,7 +45,7 @@
 					{
 					     
 					    $name = $rs[0][$i]['name'];
-					    $icon_type= $rs[0][$i]['icon'];  
+					    $icons= $rs[0][$i]['icon'];  
 					    $link = $rs[0][$i]['link'];  
 					    $source = $rs[0][$i]['source'];  
 					    $age = $rs[0][$i]['age'];  
@@ -53,26 +53,7 @@
 					    $video = $rs[0][$i]['video'];  
 					    $audio = $rs[0][$i]['audio'];      
 					   
-					    switch($icon_type)
-					    {
-					    
-					    	case 1:
-					    		$icons = "assets/img/icon-vvids-hex.png";
-					    	break;
-					    	
-					    	case 2:
-					    		 $icons = "assets/img/icon-flashx-hex.png";
-					    	break;
-					    	
-					    	case 3:
-					    		$icons = "assets/img/icon-filehoot-hex.png"; 
-					    	break;
-					    	
-					    	case 4:
-					    		 $icons = "assets/img/icon-hdstream-hex.png"; 
-					    	break;
-					    	
-					    }
+					  
 					    
 					  echo '<div class="wrap">
 								<div class="half half-1">

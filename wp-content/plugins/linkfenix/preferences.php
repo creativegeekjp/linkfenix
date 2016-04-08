@@ -95,7 +95,7 @@ $(function() {
    <div style=" width: 300px;float: right;">
              Active Frame:
         <div id="timg"></div>
-        <br>  <input type='submit' id='searchsubmit' name='pref-searchsubmit' value='Save Changes' >
+        <br>  <input type='submit'  class='button-primary' name='pref-searchsubmit' value='Save Changes' >
    </div>
    
     <div style=" width: 300px;float: right;">

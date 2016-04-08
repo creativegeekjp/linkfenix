@@ -102,22 +102,13 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false
                 },
-                {"defaultContent": "<div></div>",className: "dt-body-left"} 
+                {"defaultContent": "<div></div>",className: "dt-body-right"} 
             ],
             "rowCallback": function( row, data, index ) 
             {
-                if ( data.created >= data.indicator ) 
+                if(data.id)
                 {
-                  $(row).css('color', 'red');
-                }
-                
-                $(row).css('cursor' , 'hand');
-                
-                $(row).attr('title','view list of seasons');
-                
-                if(data.id > 0)
-                {
-                     $(row).find('td:eq(1)').html("<button id='searchsubmit' name='tv-seasons' value="+data.id+">View List</button> ").val(data.id);
+                     $(row).find('td:eq(1)').html("<button  class='button-primary' name='tv-seasons' value="+data.id+">View Seasons</button> ").val(data.id);
                 }
             }
               

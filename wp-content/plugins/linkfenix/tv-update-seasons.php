@@ -2,7 +2,7 @@
     include 'datatable-hooks.php';
 ?>
 
-<button id='searchsubmit' name='tv-searchsubmit' value='Updates'> << Updates </button>
+<button class='button-primary' name='tv-searchsubmit' value='Updates'> << Updates </button>
 
  <table id="tvseasons" class="display" width="100%" cellspacing="0">
      <thead>
@@ -61,7 +61,7 @@
                     "data": "scode" ,className: "dt-body-center"
                 },
                 {
-                    "defaultContent": "<div></div>" ,className: "dt-body-center"
+                    "defaultContent": "<div></div>" ,className: "dt-body-right"
                 } 
              ],
             "rowCallback": function( row, data, index ) 
@@ -72,7 +72,7 @@
                    
                 if(data.id)
                 {
-                     $(row).find('td:eq(3)').html("<button id='searchsubmit' name='tv-update-episodes' value="+data.id+">Episodes</button> ").val(data.id);
+                     $(row).find('td:eq(3)').html("<button class='button-primary' name='tv-update-episodes' value="+data.id+">View Episodes</button> ").val(data.id);
                 }
             }
         });

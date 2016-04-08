@@ -53,4 +53,4 @@ foreach( json_decode(@file_get_contents(hostname.'options/mvactiveoptions'),true
   <input type='checkbox' name='opt[]' <?php echo $pimage; ?> value='6' >Posters only as featured image<br>
   <input type='checkbox' name='opt[]' <?php echo $pcontent; ?> value='7' >Posters only in the content<br>
     
-  <input type='submit' id='searchsubmit' name='searchsubmit' value='Save' >
+  <input type='submit'  class='button-secondary' name='searchsubmit' value='Save' >

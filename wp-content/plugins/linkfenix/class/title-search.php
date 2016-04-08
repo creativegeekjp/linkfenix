@@ -18,15 +18,15 @@
                 source: "<?php echo plugins_url('title-parser.php', __FILE__ ); ?>",
                 minLength: 2,
                 select: function(a, b) {
-                     if(b.item.mtype=='mov')
-                      {
+                     //if(b.item.mtype=='mov')
+                     // {
                              //$('#content_ifr').contents().find('body').html('[mov mtype='+b.item.mtype+' id='+b.item.id+']');
-                              $("textarea#content").html('[tv mtype='+b.item.mtype+' id='+b.item.id+']');
-                      }
-                      else
-                      {
-                             $("textarea#content").html('[tv mtype='+b.item.mtype+' id='+b.item.id+']');
-                      }
+                      //        $("textarea#content").html('[mov mtype='+b.item.mtype+' id='+b.item.id+']');
+                      //}
+                      //else
+                     // {
+                             $("textarea#content").html('['+b.item.mtype+' mtype='+b.item.mtype+' id='+b.item.id+']');
+                     // }
                 },
          
                 html: true, 

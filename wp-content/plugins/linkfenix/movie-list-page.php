@@ -81,11 +81,11 @@ Genres:
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
                 "processing": false,
-                "ajax": "<?php echo plugins_url( 'datas.php', __FILE__ ); ?>",
+                "ajax": "<?php echo plugins_url( 'movie-datas.php', __FILE__ ); ?>",
             "columns": 
             [ 
                 { 
-                    "data": "id" 
+                    "data": "id" , "bVisible" : false,
                 },
                 { 
                     "data": "name"
@@ -102,54 +102,55 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false,
                 },
-                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' height='30' width='30' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='<?php echo plugins_url('/jquery/clippy.svg', __FILE__);  ?>' width='13' alt='Copy to clipboard'>"} 
+                {"defaultContent": "" ,className: "dt-body-right" } 
             ],
             "rowCallback": function( row, data, index ) 
             {
-                if ( data.created >= data.indicator ) 
+                if(data.id)
+                {
+                    $(row).find('td:eq(2)').html("<input type='button' class='button-primary' value='Copy to Clipboard'>");
+                }
+                
+                if ( data.clicked == 0 ) 
                 {
                   $(row).css('color', 'red');
                 }
-                
-                if(data.id > 0)
-                {
-                     $(row).find('td:eq(0)').html("[mov mtype=mov id="+data.id+"]");
-                }
-                
-                $(row).css('cursor' , 'hand');
-                
-                $(row).attr('title','click to add in clipboard');
             }
               
         });
-        
-        $('#movies tbody').on('click', 'tr', function(event) 
+
+        table.on('click', 'tr', function(e)
         {
-            var aData = table.fnGetData( this );
-    
-            var clipboard = new Clipboard('tr', 
+            
+            var followingCell = $(this).parents('td').prev();
+            var rowIndex = table.fnGetPosition( $(this).closest('tr')[0] );
+            var aData = table.fnGetData( rowIndex  );
+            
+            var clipboard = new Clipboard('input', 
             {
                 text: function() 
                 {
                     return "[mov mtype=mov id="+aData['id']+"]";
                 }
             });
-            
-            clipboard.on('success', function(e) {
-                
-                console.log("Copied to clipboard");
+    
+            $.ajax(
+            {
+                url: "<?php echo plugins_url('visited.php', __FILE__ ); ?>",
+                type: "post",
+                data: 'mtype=mov&id='+ aData['id'],
+                success: function (response) 
+                {
+                   $.fn.dpToast('Shortcode [mov mtype=mov id='+aData['id']+'] was copied to clipboard',2000);      
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                   console.log(textStatus, errorThrown);
+                }
             });
-            
-            clipboard.on('error', function(e) { 
-                
-                console.log(e);
-                
-            });
-              
-               $.fn.dpToast('Shortcode [mov mtype=mov id='+aData['id']+'] was copied to clipboard',2000);
-                
+           // return false;
         });
-  
+      
+        
         $('#sort').change(function() 
         {
              if( $(this).val() == 5 )

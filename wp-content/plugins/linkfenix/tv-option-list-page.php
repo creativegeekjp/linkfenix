@@ -53,5 +53,5 @@ foreach( json_decode(@file_get_contents(hostname.'options/tvactiveoptions'),true
   <input type='checkbox' name='opt[]' <?php echo $pimage; ?> value='13' >Posters only as featured image<br>
   <input type='checkbox' name='opt[]' <?php echo $pcontent; ?> value='14' >Posters only in the content<br>
     
-  <input type='submit' id='searchsubmit' name='tv-searchsubmit' value='Save' >
+  <input type='submit'  class='button-secondary' name='tv-searchsubmit' value='Save' >
 

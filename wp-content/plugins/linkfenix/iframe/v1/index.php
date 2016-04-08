@@ -37,7 +37,6 @@
 ?>
 
 <table id="table-data" class="table table-striped">
-
 	<thead class="text-uppercase">
 		<tr>
 			<th width="40%">Link </th>
@@ -45,13 +44,8 @@
 			<th width="40%">Quality</th>
 		</tr>
 	</thead>
-
 	<tbody>
-
-	
-			
 			<?php 
-			
 				$i = 0;
 	
 					foreach($rs[0] as $key => $values)
@@ -66,12 +60,10 @@
 					    $video = $rs[0][$i]['video'];  
 					    $audio = $rs[0][$i]['audio'];      
 					   
-					  
-					    
-					  echo '	<tr class="text-center">
+					  echo '<tr class="text-center">
 								<td class="text-left">
 									<a href="#" class="icon-link" target="_blank">
-										<img class="img-responsive img-thumbnail" src="'.$icons.'" alt="icon: V-Vids">
+										<img class="img-responsive img-thumbnail" src="'.$icons.'" alt="icon: '.$name.'">
 									</a>
 									<a href="'.$link.'" class="text-link" target="_blank">'.$name.'</a>
 								</td>

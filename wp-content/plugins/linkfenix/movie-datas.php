@@ -1,5 +1,6 @@
 <?php 
 header('Content-type: application/json');
+
 include 'ip.php';
 include 'class/time-zone.php';
 
@@ -27,19 +28,17 @@ while(true)
                     $tmp[$key+1] = $v['name'];
                 }
                 
-                if(  date('Y-m-d',strtotime($value['created'])) >= date("Y-m-d") )
-                {
-                     $options['data'][] = array
-                    (
-                       
-                        'id' => $value['id'],
-                        'name'    => $value['name'],
-                        'year'  => date('Y',strtotime($value['year'])),
-                        'genre'  => implode('<br>',$tmp),
-                        'created'  => date('Y-m-d',strtotime($value['created'])),
-                        'indicator' => date("Y-m-d") ,
-                    );
-                }
+                $options['data'][] = array
+                (
+                   
+                    'id' => $value['id'],
+                    'name'    => $value['name'],
+                    'year'  => date('Y',strtotime($value['year'])),
+                    'genre'  => implode('<br>',$tmp),
+                    'created'  => date('Y-m-d',strtotime($value['created'])),
+                    'indicator' => date("Y-m-d") ,
+                    'clicked' => $value['clicked']
+                );
                
               $i++;
               

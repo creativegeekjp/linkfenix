@@ -1,4 +1,5 @@
 <?php 
+//get the active frame design
 function frames()
 {
       
@@ -70,7 +71,6 @@ function content_tv($atts)
 
 function content_mov($atts)
 {
-    
 
    extract(shortcode_atts(array(
           'mtype' => '',

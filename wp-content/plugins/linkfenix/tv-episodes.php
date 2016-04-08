@@ -8,8 +8,8 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
      
 
 ?>
-<button id='searchsubmit' name='tv-seasons' value="<?php echo $id; ?>"> << Seasons</button> 
- 
+<button class='button-primary' name='tv-seasons' value="<?php echo $id; ?>"> << Seasons </button> 
+ <br>
  <table id="tvepisodes" class="display" width="100%" cellspacing="0">
      <thead>
         <tr>
@@ -32,10 +32,10 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
             var table = $('#tvepisodes').dataTable({
             "language": 
             {
-                "lengthMenu": "Display _MENU_ tvepisodes per page",
-                "zeroRecords": "No tvepisodes found- sorry",
+                "lengthMenu": "Display _MENU_ episodes per page",
+                "zeroRecords": "No episodes found",
                 "info": "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty": "No tvepisodes available",
+                "infoEmpty": "No episodes available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
             },
                 "bFilter": true,
@@ -57,7 +57,7 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
             "columns": 
             [ 
                 { 
-                    "data": "id" 
+                    "data": "id" , "bVisible" : false
                 },
                 { 
                     "data": "ecode"
@@ -70,7 +70,7 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
                 },
                 
                 {
-                    "defaultContent": "<div></div>"
+                    "defaultContent": "<div></div>" ,className: "dt-body-right"
                 },
                 { 
                     "data": "created", "bVisible" : false,
@@ -89,45 +89,41 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
                 
                 if(data.id)
                 {
-                     $(row).find('td:eq(4)').html("<img class='clippy'  height='30' width='30' title='Copy to Clipboard' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='<?php echo plugins_url('/jquery/clippy.svg', __FILE__);  ?>' width='13' alt='Copy to clipboard'> ");
-                     
-                     $(row).find('td:eq(0)').html("[mov mtype=mov id="+data.id+"]");
+                     $(row).find('td:eq(3)').html("<input type='button' class='button-primary' value='Copy to Clipboard'>");
                 }
-                
-                $(row).css('cursor' , 'hand');
-                
-                $(row).attr('title','click to add in clipboard');
-                
             }
         });
         
-        
-        $('#tvepisodes tbody').on('click', 'tr', function(event) 
+        table.on('click', 'tr', function(e)
         {
-            var aData = table.fnGetData( this );
-    
-            var clipboard = new Clipboard('tr', 
+            
+            var followingCell = $(this).parents('td').prev();
+            var rowIndex = table.fnGetPosition( $(this).closest('tr')[0] );
+            var aData = table.fnGetData( rowIndex  );
+            
+            var clipboard = new Clipboard('input', 
             {
                 text: function() 
                 {
                     return "[tv mtype=tv id="+aData['id']+"]";
                 }
             });
-            
-            clipboard.on('success', function(e) {
-                
-                console.log("Copied to clipboard");
+      
+            $.ajax(
+            {
+                url: "<?php echo plugins_url('visited.php', __FILE__ ); ?>",
+                type: "post",
+                data: 'mtype=tv&id='+ aData['id'],
+                success: function (response) 
+                {
+                   $.fn.dpToast('Shortcode [tv mtype=tv id='+aData['id']+'] was copied to clipboard',2000);      
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                   console.log(textStatus, errorThrown);
+                }
             });
-            
-            clipboard.on('error', function(e) { 
-                
-                console.log(e);
-                
-            });
-              
-               $.fn.dpToast('Shortcode [tv mtype=tv id='+aData['id']+'] was copied to clipboard',2000);
-                
         });
+      
 
 } );
 </script> 

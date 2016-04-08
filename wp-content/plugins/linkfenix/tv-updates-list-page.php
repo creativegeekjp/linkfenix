@@ -20,7 +20,7 @@
             "language": 
             {
                 "lengthMenu": "Display _MENU_ tvshows per page",
-                "zeroRecords": "No updates for tvshows found",
+                "zeroRecords": "No updates found.",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No tvshows available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
@@ -44,7 +44,7 @@
                     "data": "name"
                 },
                 
-                {"defaultContent": "<div></div>"} 
+                {"defaultContent": "<div></div>" ,className: "dt-body-right" } 
             ],
             "rowCallback": function( row, data, index ) 
             {
@@ -52,7 +52,7 @@
             
                 if(data.id > 0)
                 {
-                     $(row).find('td:eq(1)').html("<button id='searchsubmit' name='tv-update-seasons' value="+data.id+">View List</button> ").val(data.id);
+                     $(row).find('td:eq(1)').html("<button  class='button-primary' name='tv-update-seasons' value="+data.id+">View Seasons</button> ").val(data.id);
                 }
             }
               

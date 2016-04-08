@@ -2,8 +2,8 @@
     include 'datatable-hooks.php';
 ?>
 
-<button id='searchsubmit' name='tv-searchsubmit' value='Tv Shows'> << Movies</button>
-
+<button class='button-primary' name='tv-searchsubmit' value='Tv Shows'> << Tv </button>
+<br>
  <table id="tvseasons" class="display" width="100%" cellspacing="0">
      <thead>
         <tr>
@@ -24,10 +24,10 @@
             $('#tvseasons').dataTable({
             "language": 
             {
-                "lengthMenu": "Display _MENU_ tvseasons per page",
-                "zeroRecords": "No tvseasons found",
+                "lengthMenu": "Display _MENU_ seasons per page",
+                "zeroRecords": "No seasons found",
                 "info": "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty": "No tvseasons available",
+                "infoEmpty": "No seasons available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
             },
                 "bFilter": true,
@@ -61,7 +61,7 @@
                     "data": "scode" ,className: "dt-body-center"
                 },
                 {
-                    "defaultContent": "<div></div>" ,className: "dt-body-center"
+                    "defaultContent": "<div></div>" ,className: "dt-body-right"
                 } 
              ],
             "rowCallback": function( row, data, index ) 
@@ -70,7 +70,7 @@
                 
                 if(data.id)
                 {
-                     $(row).find('td:eq(3)').html("<button id='searchsubmit' name='tv-episodes' value="+data.id+">Episodes</button> ").val(data.id);
+                     $(row).find('td:eq(3)').html("<button  class='button-primary' name='tv-episodes' value="+data.id+">View Episodes</button> ").val(data.id);
                 }
             }
         });

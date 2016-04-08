@@ -69,7 +69,7 @@ Genres:
             "language": 
             {
                 "lengthMenu": "Display _MENU_ movies per page",
-                "zeroRecords": "No updates found- sorry",
+                "zeroRecords": "No updates found.",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No movies available",
                 "infoFiltered": "(filtered from _MAX_ total records)"
@@ -82,11 +82,11 @@ Genres:
                 "aaSorting": [ [1,'asc'], [3,'asc'] ],
                 "lengthMenu": [ [50, 100, 300, 500], [50, 100, 300, 500] ],
                 "processing": false,
-                "ajax": "<?php echo plugins_url( 'upate-datas.php', __FILE__ ); ?>",
+                "ajax": "<?php echo plugins_url( 'movie-upate-datas.php', __FILE__ ); ?>",
             "columns": 
             [ 
                 { 
-                    "data": "id" 
+                    "data": "id" , "bVisible" : false,
                 },
                 { 
                     "data": "name"
@@ -103,52 +103,51 @@ Genres:
                 { 
                     "data": "indicator" , "bVisible" : false,
                 },
-                {"defaultContent": "<img class='clippy' title='Copy to Clipboard' height='30' width='30' alt='Copy to Clipboard' style='cursor: pointer; cursor: hand;' id='copy' src='<?php echo plugins_url('/jquery/clippy.svg', __FILE__);  ?>' width='13' alt='Copy to clipboard'>"} 
+                {"defaultContent": "" ,className: "dt-body-right" } 
             ],
             "rowCallback": function( row, data, index ) 
             {
-                if ( data.created >= data.indicator ) 
+                if(data.id)
                 {
-                  $(row).css('color', 'red');
+                    $(row).find('td:eq(2)').html("<input type='button' class='button-primary' value='Copy to Clipboard'>");
                 }
+              
+                $(row).css('color', 'red');
                 
-                if(data.id > 0)
-                {
-                     $(row).find('td:eq(0)').html("[mov mtype=mov id="+data.id+"]");
-                }
-                
-                $(row).css('cursor' , 'hand');
-                
-                $(row).attr('title','click to add in clipboard');
             }
               
         });
         
-        $('#movies tbody').on('click', 'tr', function(event) 
+        table.on('click', 'tr', function(e)
         {
-            var aData = table.fnGetData( this );
-    
-            var clipboard = new Clipboard('tr', 
+            
+            var followingCell = $(this).parents('td').prev();
+            var rowIndex = table.fnGetPosition( $(this).closest('tr')[0] );
+            var aData = table.fnGetData( rowIndex  );
+            
+               var clipboard = new Clipboard('input', 
+                        {
+                            text: function() 
+                            {
+                                return "[mov mtype=mov id="+aData['id']+"]";
+                            }
+                        });
+                
+                      
+             
+            $.ajax(
             {
-                text: function() 
+                url: "<?php echo plugins_url('visited.php', __FILE__ ); ?>",
+                type: "post",
+                data: 'mtype=mov&id='+ aData['id'],
+                success: function (response) 
                 {
-                    return "[mov mtype=mov id="+aData['id']+"]";
+                   $.fn.dpToast('Shortcode [mov mtype=mov id='+aData['id']+'] was copied to clipboard',2000);      
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                   console.log(textStatus, errorThrown);
                 }
             });
-            
-            clipboard.on('success', function(e) {
-                
-                console.log("Copied to clipboard");
-            });
-            
-            clipboard.on('error', function(e) { 
-                
-                console.log(e);
-                
-            });
-              
-               $.fn.dpToast('Shortcode [mov mtype=mov id='+aData['id']+'] was copied to clipboard',2000);
-                
         });
   
         $('#sort').change(function() 

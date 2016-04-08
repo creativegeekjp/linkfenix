@@ -1,6 +1,5 @@
 <?php 
 header('Content-type: application/json');
-
 include 'ip.php';
 include 'class/time-zone.php';
 
@@ -28,16 +27,19 @@ while(true)
                     $tmp[$key+1] = $v['name'];
                 }
                 
-                $options['data'][] = array
-                (
-                   
-                    'id' => $value['id'],
-                    'name'    => $value['name'],
-                    'year'  => date('Y',strtotime($value['year'])),
-                    'genre'  => implode('<br>',$tmp),
-                    'created'  => date('Y-m-d',strtotime($value['created'])),
-                    'indicator' => date("Y-m-d") ,
-                );
+                if( $value['clicked'] == 0)
+                {
+                     $options['data'][] = array
+                    (
+                       
+                        'id' => $value['id'],
+                        'name'    => $value['name'],
+                        'year'  => date('Y',strtotime($value['year'])),
+                        'genre'  => implode('<br>',$tmp),
+                        'created'  => date('Y-m-d',strtotime($value['created'])),
+                        'indicator' => date("Y-m-d") ,
+                    );
+                }
                
               $i++;
               
@@ -45,7 +47,6 @@ while(true)
       }
 }
 
- 
 echo json_encode($options); 
 
 ?>

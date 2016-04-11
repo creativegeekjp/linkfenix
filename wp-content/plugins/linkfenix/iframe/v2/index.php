@@ -422,15 +422,14 @@ canvas#pie {
 <body>
 <?php 
 	include '../links.php';
-
+    
+    $settings = framesettings();
 ?>
 	<div class="container-fluid">
 		<div class="col-md-12 col-lg-12">
-			<div class="header-link row" style="background-color:#ff6418; height:50px; border-radius:5px 5px 0px 0px;" >
-				<h3 id="center text-white" style="color:white; text-align:center; line-height: 0.1;">LINKS</h3>
+			<div class="header-link row" style="background-color: <?php echo $settings["color"]; ?>; height:50px; border-radius:5px 5px 0px 0px;" >
+				<h3 id="center text-white" style="font-size: <?php echo $settings["size"]; ?>px; font-family: <?php echo $settings["family"]; ?>; color:white; text-align:center; line-height: 0.1;">LINKS</h3>
 			</div>
-			
-		
 			
 				<?php 
 			
@@ -457,21 +456,21 @@ canvas#pie {
 								<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 									<div class="row">
 										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-											<a href="'.$link.'" target="_blank" ><h4 style="color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
-											<span>'.$age.'</span>
+											<a href="'.$link.'" target="_blank" ><h4 style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px; color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
+											<span style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;">'.$age.'</span>
 										</div>						
-										<div class="col-xs-8 col-lg-5">
+										<div class="col-xs-8 col-sm-5">
 											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-											    '.$vote.'
-												<sup style="top: 4.5em; right:-5px; font-size:9px;">RATING</sup>
+											    <span font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;>'.$vote.'</span>
+												<sup style="top: 1em; right:-5px; font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;">RATING</sup>
 											</div>
 											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-												'.$video.'
-												<sup style="top: 4.5em; right:-5px; font-size:9px;">VIDEO</sup>
+												 <span font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;>'.$video.'</span>
+												<sup style="top: 1em; right:-5px; font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;">VIDEO</sup>
 											</div>
 											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-											   	'.$audio.'
-												<sup style="top: 4.5em; right:-5px; font-size:9px;">AUDIO</sup>
+											   	 <span font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;>'.$audio.'</span>
+												<sup style="top: 1em; right:-5px; font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;">AUDIO</sup>
 											</div>
 										</div>
 									</div>

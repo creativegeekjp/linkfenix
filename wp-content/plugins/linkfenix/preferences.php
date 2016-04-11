@@ -115,7 +115,62 @@ $(function() {
             <input type='checkbox' name='f'<?php echo $frame_b; ?> value='2' >Design 2 <br>
             <input type='checkbox' name='f'<?php echo $frame_c; ?> value='3' >Design 3 <br>
             <input type='checkbox' name='f'<?php echo $frame_d; ?> value='4' >Design 4 <br>
-            <input type='checkbox' name='f'<?php echo $frame_e; ?> value='5' >Design 5 <br><br><br>
+            <input type='checkbox' name='f'<?php echo $frame_e; ?> value='5' >Design 5 <br>
+            
+            iframe color(s):
+    
+              <?php
+            echo ' <select name="color">';
+            foreach (json_decode(@file_get_contents(hostname.'iframecolors/activecolor'),true) as  $color)
+            { 
+                    if($color['active'] == 1)
+                    {
+                        echo '<option selected="selected" value="'.$color['id'].'">'.$color['value'].'</option>';
+                    }
+                    else
+                    {
+                        echo '<option value="'.$color['id'].'">'.$color['value'].'</option>';
+                    }
+            } 
+            echo '</select>';
+            ?>
+            <br>
+            font family:
+    
+            <?php
+            echo ' <select name="family">';
+            foreach (json_decode(@file_get_contents(hostname.'fontfamilies/activefontfamily'),true) as  $family)
+            { 
+                    if($family['active'] == 1)
+                    {
+                        echo '<option selected="selected" value="'.$family['id'].'">'.$family['value'].'</option>';
+                    }
+                    else
+                    {
+                        echo '<option value="'.$family['id'].'">'.$family['value'].'</option>';
+                    }
+            } 
+            echo '</select>';
+            ?>
+            <br>
+             font size:
+    
+            <?php
+            echo ' <select name="size">';
+            foreach (json_decode(@file_get_contents(hostname.'fontsizes/activefontsize'),true) as  $size)
+            { 
+                    if($size['active'] == 1)
+                    {
+                        echo '<option selected="selected" value="'.$size['id'].'">'.$size['value'].'</option>';
+                    }
+                    else
+                    {
+                        echo '<option value="'.$size['id'].'">'.$size['value'].'</option>';
+                    }
+            } 
+            echo '</select>';
+            ?>
+           
    </div>
  </div>
  

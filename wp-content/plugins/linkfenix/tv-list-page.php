@@ -6,8 +6,8 @@ Sort By:
 <select id="sort">
     <option></option> 
     <option value="1">Name</option> 
-    <option value="0">Id</option>  
-    <option value="2">Year</option>              
+    <!--<option value="0">Id</option>  -->
+    <!--<option value="2">Year</option>              -->
     <option value="3">Genre</option>  
     <option value="4">Newest</option> 
     <option value="5">Oldest</option>  
@@ -110,6 +110,11 @@ Genres:
                 {
                      $(row).find('td:eq(1)').html("<button  class='button-primary' name='tv-seasons' value="+data.id+">View Seasons</button> ").val(data.id);
                 }
+                
+                if(data.clicked==0)
+                {
+                      $(row).css('color', 'red');
+                }
             }
               
         });
@@ -135,8 +140,6 @@ Genres:
             var values = $(this).val();
            
             table.fnFilter( '^'+values+'.*', 3, true  );
-            
-            
        });
        
 } );

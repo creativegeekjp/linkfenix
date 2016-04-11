@@ -91,6 +91,11 @@ $id = isset($episodes['tvshow_id'] ) ? $episodes['tvshow_id']  : "no data";
                 {
                      $(row).find('td:eq(3)').html("<input type='button' class='button-primary' value='Copy to Clipboard'>");
                 }
+                
+                if(data.clicked==0)
+                {
+                      $(row).css('color', 'red');
+                }
             }
         });
         

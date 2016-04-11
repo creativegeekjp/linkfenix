@@ -56,15 +56,29 @@
     {
       
         $coder = isset($_POST['shortcoder']) ? $_POST['shortcoder'] : "" ;
+        $links = isset($_POST['l'])  ? $_POST['l'] : "";
+        $frame_d = isset($_POST['f'])  ? $_POST['f'] : "";
+        $color = isset($_POST['color'])  ? $_POST['color'] : "";
+        $family = isset($_POST['family'])  ? $_POST['family'] : "";
+        $size = isset($_POST['size'])  ? $_POST['size'] : "";
+
         
         @file_get_contents(hostname.'options/updateshortcoder/'.$coder);
         
-        
         /*Set active links default is 10*/
-        @file_get_contents(hostname.'iframelinks/setactivelinks/'.$_POST['l']);
+        @file_get_contents(hostname.'iframelinks/setactivelinks/'.$links);
         
         /*Set active iframe design*/
-        @file_get_contents(hostname.'iframes/editframe/'.$_POST['f']);
+        @file_get_contents(hostname.'iframes/editframe/'.$frame_d);
+        
+        /*Set active iframe color*/
+        @file_get_contents(hostname.'iframecolors/updatecolor/'.$color);
+        
+        /*Set active font family*/
+        @file_get_contents(hostname.'fontfamilies/updatefamily/'.$family);
+        
+        /*Set active font sizes*/
+        @file_get_contents(hostname.'fontsizes/updatesize/'.$size);
         
        
     }

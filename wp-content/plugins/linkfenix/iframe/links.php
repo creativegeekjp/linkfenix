@@ -54,6 +54,43 @@ function getmovies($scode)
         return $arr;
 }
     
+function framesettings()
+{
+         foreach (json_decode(@file_get_contents(hostname.'iframecolors/activecolor'),true) as  $color)
+            { 
+                    if($color['active'] == 1)
+                    {
+                        $col = $color['value'] ;
+                        
+                    }
+                   
+            } 
+            foreach (json_decode(@file_get_contents(hostname.'fontfamilies/activefontfamily'),true) as  $family)
+            { 
+                    if($family['active'] == 1)
+                    {
+                        
+                     $fam = $family['value'] ;
+                        
+                    }
+                   
+            } 
+            foreach (json_decode(@file_get_contents(hostname.'fontsizes/activefontsize'),true) as  $size)
+            { 
+                    if($size['active'] == 1)
+                    {
+                       $siz = $size['value'] ;
+                        
+                    }
+            } 
+            
+            return array(
+                'color' => $col,
+                'family' => $fam,
+                'size' => $siz
+            );
+}
+
 
 //get number of links to be display
 

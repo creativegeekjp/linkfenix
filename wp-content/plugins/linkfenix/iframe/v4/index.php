@@ -33,10 +33,11 @@
 
 <?php 
 	include '../links.php';
+	$settings = framesettings();
 ?>
 
 
-<div id="table-data">
+<div  id="table-data">
 		<?php 
 			
 				$i = 0;
@@ -55,29 +56,29 @@
 					   
 					  
 					    
-					  echo '<div class="wrap">
-								<div class="half half-1">
+					  echo '<div class="wrap" >
+								<div class="half half-1" style="background-color: '.$settings['color'].'; ">
 									<div class="b1">
 										<a href="#" class="icon-link" target="_blank">
 											<img class="img-responsive" src="'.$icons.'" alt="icon: '.$name.'">
 										</a>
-										<a href="'.$link.'" class="text-link" target="_blank">'.$name.'</a>
+										<a style=" font-family: '.$settings['family'].'; font-size: '.$settings['size'].'px;" href="'.$link.'" class="text-link" target="_blank">'.$name.'</a>
 									</div><!-- /.b1 -->
 						
 									<div class="b2">
-										<span class="text-muted">'.$age.' ago</span>
+										<span style="font-family: '.$settings['family'].'; font-size: '.$settings['size'].'px;"  class="text-muted">'.$age.' ago</span>
 									</div><!-- /.b2 -->
 								</div><!-- /.half -->
 						
-								<div class="half half-2">
+								<div class="half half-2" style="background-color: '.$settings['color'].';  font-family: '.$settings['family'].'; ">
 									<div class="b3">
-										<div class="quality rating">
+										<div style=" font-size: '.$settings['size'].'px;" class="quality rating">
 											<img src="assets/img/icon-rating.png" alt="icon: rating">'.$vote.'<sup></sup>
 										</div>
-										<div class="quality video">
+										<div style=" font-size: '.$settings['size'].'px;" class="quality video">
 											<img src="assets/img/icon-video.png" alt="icon: video">'.$video.'%
 										</div>
-										<div class="quality audio">
+										<div style=" font-size: '.$settings['size'].'px;" class="quality audio">
 											<img src="assets/img/icon-audio.png" alt="icon: audio">'.$audio.'%
 										</div>
 									</div><!-- /.b3 -->

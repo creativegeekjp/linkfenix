@@ -7,8 +7,8 @@ Sort By:
 <select id="sort">
     <option></option> 
     <option value="1">Name</option> 
-    <option value="0">Id</option>  
-    <option value="2">Year</option>              
+    <!--<option value="0">Id</option>  -->
+    <!--<option value="2">Year</option>              -->
     <option value="3">Genre</option>  
     <option value="4">Newest</option> 
     <option value="5">Oldest</option>  

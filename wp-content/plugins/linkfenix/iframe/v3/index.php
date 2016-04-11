@@ -420,11 +420,13 @@ canvas#pie {
 <body>
 <?php 
 	include '../links.php';
+	
+	$settings = framesettings();
 ?>
 	<div class="container-fluid">
 		<div class="col-md-12 col-lg-12">
-			<div class="header-link row" style="background-color:#ca0000; height:50px;" >
-				<h3 id="center text-white" style="color:white; text-align:center; line-height: 0.1;">LINKS</h3>
+			<div class="header-link row" style=" background-color: <?php echo $settings["color"]; ?>; height:50px;" >
+				<h3 id="center text-white" style="font-size: <?php echo $settings['size']; ?>px; font-family: <?php echo $settings["family"]; ?>; color:white; text-align:center; line-height: 0.1;">LINKS</h3>
 			</div>
 			
 			
@@ -453,27 +455,27 @@ canvas#pie {
 							<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 								<div class="row">
 									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-pad">
-										<a target="_blank" href="'.$link.'"><h4 style="color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
+										<a target="_blank" href="'.$link.'"><h4 style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;  color:black; text-align:left; line-height: 0.1;">'.$name.'</h4></a>
 									</div>						
 									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-										<h6 style="color:black; font-weight:300; text-align:right; line-height: 0.1;">'.$age.' ago</h6>
+										<h6 style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px;  color:black; font-weight:300; text-align:right; line-height: 0.1;">'.$age.' ago</h6>
 									</div>
 								</div>
 			
 								<div class="row lower">
 									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
 										<div class="header">
-											<span><img src="images/sm-img1.jpg" alt=""> </span>'.$vote.'<sup></sup>
+											<span style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px; "><img src="images/sm-img1.jpg" alt=""> '.$vote.' </span> <sup></sup>
 										</div>
 									</div>						
 									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
 										<div class="header">
-											<span><img src="images/sm-img2.jpg" alt=""> </span>'.$video.'<sup></sup>
+											<span style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px; "><img src="images/sm-img2.jpg" alt=""> '.$video.' </span> <sup></sup>
 										</div>
 									</div>						
 									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-pad">
 										<div class="header">
-											<span><img src="images/sm-img3.jpg" alt=""> </span>'.$audio.'<sup></sup>
+											<span style="font-family: '.$settings["family"].'; font-size:'.$settings["size"].'px; "><img src="images/sm-img3.jpg" alt=""> '.$audio.' </span> <sup></sup>
 										</div>
 									</div>
 								</div>

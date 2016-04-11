@@ -33,11 +33,12 @@
 
 <?php 
 	include '../links.php';
+	$settings = framesettings();
 ?>
 
 <div id="panel-data" class="panel panel-primary">
-	<div class="panel-heading">
-		<h4 class="panel-title text-uppercase text-center">Links</h4>
+	<div style="background-color:<?php echo $settings['color']; ?>;" class="panel-heading">
+		<h4  style="font-size: <?php  echo $settings['size'];?>px;" class="panel-title text-uppercase text-center">Links</h4>
 	</div><!-- /.panel-heading -->
 
 	<div class="panel-body">
@@ -57,38 +58,36 @@
 					    $video = $rs[0][$i]['video'];  
 					    $audio = $rs[0][$i]['audio'];      
 					   
-					   
-					    
 					  echo '<div class="row">
 								<div class="col-xs-12 col-sm-6">
 									<div class="item">
 										<div class="row">
 											<div class="col-xs-3 col-sm-3 col-md-2 no-rpad">
 												<a href="#" class="icon-link" target="_blank">
-													<img class="img-circle" src="'.$icons.'" alt="icon: HDStrem">
+													<img class="img-circle" src="'.$icons.'" alt="icon: '.$name.'">
 												</a>
 											</div><!-- /.col -->
 					
-											<div class="col-xs-9 col-sm-9 col-md-10">
+											<div  style=" font-size:'.$settings['size'].'px; font-family:'.$settings['family'].'; " class="col-xs-9 col-sm-9 col-md-10">
 												
-												<h3 class="text-link">
-													<a href="'.$link.'" target="_blank">HDStream</a>
-													<small class="text-muted pull-right">'.$age.' ago</small>
+												<h3  style=" font-family:'.$settings['family'].'; font-size:'.$settings['size'].'px; " class="text-link">
+													<a href="'.$link.'" target="_blank">'.$name.'</a>
+													<small  style=" font-size:'.$settings['size'].'px;  font-family:'.$settings['family'].'; " class="text-muted pull-right">'.$age.' ago</small>
 												</h3>
 					
 												<div class="quality">
-													<span class="badge big">'.$vote.'</span>
-													<span class="text-uppercase">rating</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="badge big">'.$vote.'</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="text-uppercase">rating</span>
 												</div><!-- /.quality -->
 					
 												<div class="quality">
-													<span class="badge big">'.$video.'</span>
-													<span class="text-uppercase">video</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="badge big">'.$video.'</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="text-uppercase">video</span>
 												</div><!-- /.quality -->
 					
 												<div class="quality">
-													<span class="badge big">'.$audio.'</span>
-													<span class="text-uppercase">audio</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="badge big">'.$audio.'</span>
+													<span style=" font-size:'.$settings['size'].'px;" class="text-uppercase">audio</span>
 												</div><!-- /.quality -->
 											</div><!-- /.col -->
 										</div><!-- /.row -->

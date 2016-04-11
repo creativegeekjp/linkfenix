@@ -72,6 +72,11 @@
                 {
                      $(row).find('td:eq(3)').html("<button  class='button-primary' name='tv-episodes' value="+data.id+">View Episodes</button> ").val(data.id);
                 }
+                
+                if(data.clicked==0)
+                {
+                      $(row).css('color', 'red');
+                }
             }
         });
 

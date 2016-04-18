@@ -68,7 +68,7 @@ Genres:
             "language": 
             {
                 "lengthMenu": "Display _MENU_ movies per page",
-                //"zeroRecords": "No movies found- sorry",
+                "zeroRecords": "No movies found- sorry",
                 "info": "Showing page _PAGE_ of _PAGES_",
                 "infoEmpty": "No movies available",
                 "infoFiltered": "(filtered from _MAX_ total records)"

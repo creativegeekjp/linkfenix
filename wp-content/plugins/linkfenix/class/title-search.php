@@ -6,7 +6,7 @@
 * Shortcode will automatically append to post content once the movie or tvshows episode click
 */
 
-include '../ip.php';
+//include '../ip.php';
 
  foreach (json_decode(@file_get_contents(hostname.'options/shortcoder'),true) as  $coder)
     { 

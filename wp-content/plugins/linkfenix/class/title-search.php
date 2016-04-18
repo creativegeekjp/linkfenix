@@ -1,9 +1,13 @@
 <?php 
+
 /*
 * Autosuggest check first if shorcoder has enabled from options
 * 
 * Shortcode will automatically append to post content once the movie or tvshows episode click
 */
+
+include '../ip.php';
+
  foreach (json_decode(@file_get_contents(hostname.'options/shortcoder'),true) as  $coder)
     { 
        $scoder = isset($scid) ? 'checked' : '';

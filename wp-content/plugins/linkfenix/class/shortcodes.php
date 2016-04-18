@@ -1,6 +1,6 @@
 <?php 
 //get the active frame design
-//include '../ip.php';
+include '../ip.php';
 
 function frames()
 {
